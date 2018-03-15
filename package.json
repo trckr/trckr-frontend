@@ -1,8 +1,8 @@
 {
-  "name": "auth-handling",
-  "version": "1.0.0",
-  "description": "A Vue.js project",
-  "author": "vouill <thibaud@sqreen.io>",
+  "name": "trckr",
+  "version": "0.0.1",
+  "description": "trckr",
+  "author": "trckr",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",

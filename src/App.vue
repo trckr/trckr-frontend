@@ -32,7 +32,6 @@ export default {
   body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    color: #2e426b;
   }
   ul {
     margin: 0;
