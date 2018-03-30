@@ -1,22 +1,30 @@
 <template>
   <div class="user-login">
+    <p v-if="$route.query.redirect">
+      Please login first.
+    </p>
+
+    <p v-if="error" class="error">
+      Wrong login credentials.
+    </p>
+
     <h1>User Login</h1>
 
-    <form>
+    <form @submit.prevent="login">
       <table>
         <tfoot>
           <tr>
-            <td colspan="2"><input type="button" value="Login" /></td>
+            <td colspan="2"><input type="submit" value="Login" /></td>
           </tr>
         </tfoot>
         <tbody>
           <tr>
-            <td><label for="">Username</label></td>
-            <td><input type="text" /></td>
+            <td><label for="username">Username</label></td>
+            <td><input v-model="username" id="username" type="text" /></td>
           </tr>
           <tr>
-            <td><label for="">Password</label></td>
-            <td><input type="password" /></td>
+            <td><label for="password">Password</label></td>
+            <td><input v-model="password" id="password" type="password"></td>
           </tr>
         </tbody>
       </table>
@@ -29,7 +37,20 @@ export default {
   name: 'user-login',
   data () {
     return {
-      msg: 'Please log in'
+      username: '',
+      password: '',
+      error: false,
+    }
+  },
+  methods: {
+    login () {
+      auth.login(this.username, this.password, loggedIn => {
+        if (!loggedIn) {
+          this.error = true
+        } else {
+          this.$router.replace(this.$route.query.redirect || '/')
+        }
+      })
     }
   }
 }
