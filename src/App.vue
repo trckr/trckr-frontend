@@ -10,7 +10,9 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+@import 'sass/style.scss';
+
 * {
   box-sizing: border-box;
   font-size: 100%;
@@ -19,6 +21,7 @@ export default {
 }
 
 #app {
+  color: $color-main;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   font-size: 100%;
   font-weight: normal;
