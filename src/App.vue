@@ -25,11 +25,4 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-#app {
-  align-items: center;
-  display: flex;
-  justify-content: center;
-  min-height: 100vh;
-}
 </style>
