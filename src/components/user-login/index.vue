@@ -58,17 +58,20 @@ export default {
 
 <style scoped>
   .user-login {
+    display: inline-block;
     margin: 0 auto;
-    max-width: 30rem;
   }
 
   table {
     width: 100%;
   }
 
+  td {
+    text-align: left;
+  }
+
   label {
-    margin-right: 2rem;
-    width: 13rem;
+    margin-right: 1.5rem;
   }
 
   input[type=text],
