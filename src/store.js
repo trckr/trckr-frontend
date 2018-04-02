@@ -21,14 +21,17 @@ export const store = new Vuex.Store({
   },
   mutations: {
     login(state, { username, password }) {
-      console.log('username: [' + username + '], password: [' + password + ']');
       state.currentUser = {
         id: 1,
         username: username,
       };
+
+      localStorage.trckrCurrentUser = JSON.stringify(state.currentUser);
     },
     logout(state) {
       state.currentUser = {};
+
+      localStorage.trckrCurrentUser = JSON.stringify(state.currentUser);
     },
   },
   actions: {
