@@ -8,26 +8,22 @@
       Wrong login credentials.
     </p>
 
-    <h1>User Login</h1>
+    <h1>Login</h1>
 
     <form @submit.prevent="login">
-      <table>
-        <tfoot>
-        <tr>
-          <td colspan="2"><input type="submit" value="Login" /></td>
-        </tr>
-        </tfoot>
-        <tbody>
-        <tr>
-          <td><label for="username">Username</label></td>
-          <td><input v-model="username" id="username" type="text" required="required" /></td>
-        </tr>
-        <tr>
-          <td><label for="password">Password</label></td>
-          <td><input v-model="password" id="password" type="password" required="required" /></td>
-        </tr>
-        </tbody>
-      </table>
+      <div class="form-item">
+        <label for="username">Username</label>
+        <input v-model="username" id="username" type="text" required="required" />
+      </div>
+
+      <div class="form-item">
+        <label for="password">Password</label>
+        <input v-model="password" id="password" type="password" required="required" />
+      </div>
+
+      <div class="form-actions">
+        <input type="submit" value="Login" />
+      </div>
     </form>
   </div>
 </template>
@@ -57,27 +53,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-  .component--user-login {
-    display: inline-block;
-    margin: 0 auto;
-  }
-
-  table {
-    width: 100%;
-  }
-
-  td {
-    text-align: left;
-  }
-
-  label {
-    margin-right: 1.5rem;
-  }
-
-  input[type=text],
-  input[type=password] {
-    width: 15rem;
-  }
-</style>
