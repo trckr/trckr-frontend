@@ -21,11 +21,11 @@
           <tbody>
           <tr>
             <td><label for="username">Username</label></td>
-            <td><input v-model="username" id="username" type="text" /></td>
+            <td><input v-model="username" id="username" type="text" required="required" /></td>
           </tr>
           <tr>
             <td><label for="password">Password</label></td>
-            <td><input v-model="password" id="password" type="password"></td>
+            <td><input v-model="password" id="password" type="password" required="required" /></td>
           </tr>
           </tbody>
         </table>
@@ -36,7 +36,7 @@
 
 <script>
 export default {
-  name: 'user-login',
+  name: 'UserLogin',
   data () {
     return {
       username: '',
@@ -46,13 +46,11 @@ export default {
   },
   methods: {
     login () {
-      auth.login(this.username, this.password, loggedIn => {
-        if (!loggedIn) {
-          this.error = true
-        } else {
-          this.$router.replace(this.$route.query.redirect || '/')
-        }
-      })
+      this.$store.dispatch({
+        type: 'login',
+        username:  this.username,
+        password: this.password,
+      });
     }
   }
 }

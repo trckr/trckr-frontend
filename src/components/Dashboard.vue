@@ -1,17 +1,13 @@
 <template>
   <div class="dashboard">
-    <h1>Dashboard</h1>
+    <h1>trckr</h1>
+    <p>Welcome!</p>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'dashboard',
-  data () {
-    return {
-      msg: 'Dashboard',
-    }
-  }
+  name: 'Dashboard',
 }
 </script>
 
