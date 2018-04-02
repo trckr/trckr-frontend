@@ -44,10 +44,14 @@ export default {
   },
   methods: {
     login () {
+      const router = this.$router;
+
       this.$store.dispatch({
         type: 'login',
         username:  this.username,
         password: this.password,
+      }).then(function() {
+        router.push('/dashboard');
       });
     }
   }
