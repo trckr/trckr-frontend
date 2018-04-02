@@ -39,11 +39,21 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  > header {
+    background-color: $color-header;
+  }
+
   > main {
-    align-items: center;
     display: flex;
     justify-content: center;
-    min-height: 100vh;
+    padding-top: 1rem;
+  }
+
+  > header > .component,
+  > main > .component,
+  > footer > .component {
+    margin: 0 auto;
+    max-width: $component-max-width;
   }
 }
 </style>

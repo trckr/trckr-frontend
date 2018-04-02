@@ -6,4 +6,19 @@
 $color-base-white: #ffffff;
 $color-base-black: #000000;
 
+$color-shark: #2f3033;
+$color-mid-gray: #626366;
+
 $color-main: $color-base-black;
+$color-header: $color-shark;
+$color-nav-active: $color-base-black;
+$color-nav-hover: $color-mid-gray;
+
+
+// Transitions.
+$transition-ease-in-out: all .35s ease-in-out;
+$transition-linear: all .35s linear;
+
+
+// Sizes (Desktop First).
+$component-max-width: 90rem; // 1440px
