@@ -29,6 +29,8 @@
 </template>
 
 <script>
+  import axios from 'axios';
+
   export default {
     name: 'UserLogin',
     data () {
@@ -40,14 +42,26 @@
     },
     methods: {
       login: function() {
+        const store = this.$store;
         const router = this.$router;
+        const username = this.username;
 
-        this.$store.dispatch({
-          type: 'login',
+        axios.post('https://trckr.trvlr.ch/api/token-auth/', {
           username:  this.username,
           password: this.password,
-        }).then(function() {
-          router.push('/dashboard');
+          headers: {
+            'Content-type': 'application/json',
+          }
+        }).then(function(response) {
+          store.dispatch({
+            type: 'login',
+            username:  username,
+            token: response.data.token,
+          }).then(function() {
+            router.push('/dashboard');
+          });
+        }).catch(function(error) {
+          console.log(error);
         });
       },
     },

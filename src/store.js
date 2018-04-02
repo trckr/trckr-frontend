@@ -20,10 +20,10 @@ export const store = new Vuex.Store({
     },
   },
   mutations: {
-    login(state, { username, password }) {
+    login(state, { username, token }) {
       state.currentUser = {
-        id: 1,
         username: username,
+        token: token,
       };
 
       localStorage.trckrCurrentUser = JSON.stringify(state.currentUser);

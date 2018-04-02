@@ -13,6 +13,7 @@ if (typeof localStorage.trckrCurrentUser !== 'undefined') {
     store.dispatch({
       type: 'login',
       username:  currentUser.username,
+      token: currentUser.token,
     });
   }
 }
