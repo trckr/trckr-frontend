@@ -16,6 +16,11 @@ router.beforeEach(function (to, from, next) {
     } else {
       next('/login');
     }
+  } else if (to.fullPath === '/logout') {
+    store.dispatch({
+      type: 'logout',
+    });
+    next('/');
   } else if (requiresAuth && !isLoggedIn) {
     next('/login');
   } else {
