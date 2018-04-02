@@ -81,7 +81,7 @@
         })
           .then(response => {
             store.dispatch({
-              type: 'registration',
+              type: 'login',
               username: username,
               token: response.data.token,
             })

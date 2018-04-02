@@ -1,0 +1,39 @@
+//-----------------------------------------------------------------------------
+// Elements: Form.
+//-----------------------------------------------------------------------------
+
+label {
+  display: inline-block;
+  margin-right: 1.5rem;
+  width: 7rem;
+}
+
+input[type=text],
+input[type=password] {
+  width: 15rem;
+}
+
+input[type=submit] {
+  background-color: $color-button;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  line-height: 1;
+  padding: 0.75rem 2rem;
+  transition: $transition-ease-in-out;
+
+  &:hover {
+    background-color: $color-button-hover;
+  }
+}
+
+.form-item {
+  & + .form-item {
+    margin-top: 0.5rem;
+  }
+}
+
+.form-actions {
+  margin-top: 1rem;
+}
