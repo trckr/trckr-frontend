@@ -4,12 +4,14 @@
       <navigation />
     </header>
 
-    <router-view />
+    <main>
+      <router-view />
+    </main>
   </div>
 </template>
 
 <script>
-import Navigation from '@/components/navigation'
+import Navigation from '@/components/navigation';
 
 export default {
   name: 'trckr',
@@ -36,5 +38,12 @@ export default {
   font-weight: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  > main {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+  }
 }
 </style>

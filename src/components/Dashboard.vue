@@ -1,5 +1,5 @@
 <template>
-  <div class="dashboard">
+  <div class="component component--dashboard">
     <h1>trckr</h1>
     <p>Welcome!</p>
   </div>

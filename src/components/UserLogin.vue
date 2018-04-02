@@ -1,37 +1,35 @@
 <template>
-  <main>
-    <div class="user-login">
-      <p v-if="$route.query.redirect">
-        Please login first.
-      </p>
+  <div class="component component--user-login">
+    <p v-if="$route.query.redirect">
+      Please login first.
+    </p>
 
-      <p v-if="error" class="error">
-        Wrong login credentials.
-      </p>
+    <p v-if="error" class="error">
+      Wrong login credentials.
+    </p>
 
-      <h1>User Login</h1>
+    <h1>User Login</h1>
 
-      <form @submit.prevent="login">
-        <table>
-          <tfoot>
-          <tr>
-            <td colspan="2"><input type="submit" value="Login" /></td>
-          </tr>
-          </tfoot>
-          <tbody>
-          <tr>
-            <td><label for="username">Username</label></td>
-            <td><input v-model="username" id="username" type="text" required="required" /></td>
-          </tr>
-          <tr>
-            <td><label for="password">Password</label></td>
-            <td><input v-model="password" id="password" type="password" required="required" /></td>
-          </tr>
-          </tbody>
-        </table>
-      </form>
-    </div>
-  </main>
+    <form @submit.prevent="login">
+      <table>
+        <tfoot>
+        <tr>
+          <td colspan="2"><input type="submit" value="Login" /></td>
+        </tr>
+        </tfoot>
+        <tbody>
+        <tr>
+          <td><label for="username">Username</label></td>
+          <td><input v-model="username" id="username" type="text" required="required" /></td>
+        </tr>
+        <tr>
+          <td><label for="password">Password</label></td>
+          <td><input v-model="password" id="password" type="password" required="required" /></td>
+        </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
 </template>
 
 <script>
@@ -57,7 +55,7 @@ export default {
 </script>
 
 <style scoped>
-  .user-login {
+  .component--user-login {
     display: inline-block;
     margin: 0 auto;
   }
@@ -77,12 +75,5 @@ export default {
   input[type=text],
   input[type=password] {
     width: 15rem;
-  }
-
-  main {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    min-height: 100vh;
   }
 </style>
