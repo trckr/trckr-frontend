@@ -47,40 +47,54 @@
 </template>
 
 <script>
-import axios from "axios"
+  import axios from "axios"
 
-export default {
-  data() {
-    return {
-      username: '',
-      email: '',
-      password: '',
-      first_name: '',
-      last_name: '',
-      error: false
-    }
-  },
-  methods: {
-    // TODO: check if user is already logged in
-    register() {
-      console.log(typeof username);
-      axios.post('https://trckr.trvlr.ch/api/user/', {
-        "username": username._value,
-        "email": email._value,
-        "password": password._value,
-        "first_name": first_name._value,
-        "last_name": last_name._value
-      })
-        .then(response => {
-          console.log(response.data.token);
-          window.localStorage.setItem("trckr-user-token", response.data.token)
+  export default {
+    name: 'UserRegistration',
+    data() {
+      return {
+        username: '',
+        email: '',
+        password: '',
+        first_name: '',
+        last_name: '',
+        error: false
+      }
+    },
+    methods: {
+      // TODO: check if user is already logged in
+
+      register() {
+
+        const that = this;
+        const store = this.$store;
+        const router = this.$router;
+        const username = this.username;
+
+        console.log(typeof username);
+        axios.post('https://trckr.trvlr.ch/api/user/', {
+          username: this.username,
+          email: this.email,
+          password: this.password,
+          first_name: this.first_name,
+          last_name: this.last_name,
         })
-        .catch(e => {
-          console.log("error")
-        })
+          .then(response => {
+            store.dispatch({
+              type: 'registration',
+              username: username,
+              token: response.data.token,
+            })
+          })
+          .then(function() {
+            router.push('/dashboard')
+          })
+          .catch(error => {
+            that.error = true;
+          })
+      }
     }
   }
-}
 </script>
 
 <style scoped>
