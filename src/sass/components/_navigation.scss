@@ -1,0 +1,38 @@
+//-----------------------------------------------------------------------------
+// Components: Navigation.
+//-----------------------------------------------------------------------------
+
+.component--navigation {
+  nav {
+    ul {
+      display: block;
+
+      &::after {
+        clear: both;
+        content: '';
+        display: table;
+      }
+
+      li {
+        display: inline-block;
+        float: left;
+
+        a {
+          color: $color-base-white;
+          display: block;
+          padding: 1.5rem 1.5rem;
+          text-decoration: none;
+          transition: $transition-ease-in-out;
+
+          &.router-link-active {
+            background-color: $color-nav-active;
+          }
+
+          &:hover {
+            background-color: $color-nav-hover;
+          }
+        }
+      }
+    }
+  }
+}

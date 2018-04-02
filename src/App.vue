@@ -1,47 +1,26 @@
 <template>
   <div id="app">
-    <navigation/>
-    <div class="main-container">
-      <center-container>
-        <router-view/>
-      </center-container>
-    </div>
-    <sqreen-footer/>
+    <header>
+      <navigation />
+    </header>
+
+    <main>
+      <router-view />
+    </main>
   </div>
 </template>
 
 <script>
-import Navigation from 'components/navigation'
-import { USER_REQUEST } from 'actions/user'
-import SqreenFooter from './components/footer/index.vue'
+  import Navigation from '@/components/navigation';
 
-export default {
-  components: {
-    SqreenFooter,
-    Navigation },
-  name: 'app',
-  created: function () {
-    if (this.$store.getters.isAuthenticated) {
-      this.$store.dispatch(USER_REQUEST)
-    }
+  export default {
+    name: 'trckr',
+    components: {
+      Navigation,
+    },
   }
-}
 </script>
 
-<style>
-  body {
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-  }
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-  }
-</style>
-
-<style scoped>
-  .main-container {
-    min-height: calc(100vh - 70px);
-  }
+<style lang="scss">
+  @import 'sass/style.scss';
 </style>

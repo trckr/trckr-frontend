@@ -1,38 +1,27 @@
-# trckr.trvlr.ch (Frontend)
+# trckr
 
-## Build setup
-```
-# Install dependencies
+> A Vue.js project
+
+## Build Setup
+
+``` bash
+# install dependencies
 npm install
 
-# Serve with hot reload at localhost:8080
+# serve with hot reload at localhost:8080
 npm run dev
 
-# Build for production with minification
+# build for production with minification
 npm run build
 
-# Run unit tests
+# build for production and view the bundle analyzer report
+npm run build --report
+
+# run unit tests
 npm run unit
 
-# Run e2e tests
-npm run e2e
-
-# Run all tests
+# run all tests
 npm test
 ```
 
-## To do's
-Deny access to following files:
-- .circleci
-- .git
-- LICENSE
-- README.md
-
-## Wireframes
-- User registration: Self-explanatory
-- Login/Logout: Self-explanatory
-- Dashboard: https://wireframe.cc/1Uy388
-- Project creation form: Self-explanatory (Just one field, project name)
-- Project listing: Table with all projects & maybe filter/sort criterias
-- User listing (for admins): Table with all users & maybe filter/sort criterias
-
+For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
