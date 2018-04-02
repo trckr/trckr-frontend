@@ -1,9 +1,9 @@
 <template>
   <nav>
     <ul>
-      <router-link to="/login">Login</router-link>
-      <router-link to="/dashboard">Dashboard</router-link>
-      <router-link to="/logout">Logout</router-link>
+      <li><router-link to="/login">Login</router-link></li>
+      <li v-if="this.$store.getters.isLoggedIn"><router-link to="/dashboard">Dashboard</router-link></li>
+      <li v-if="this.$store.getters.isLoggedIn"><router-link to="/logout">Logout</router-link></li>
     </ul>
   </nav>
 </template>

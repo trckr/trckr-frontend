@@ -15,6 +15,9 @@ export const store = new Vuex.Store({
 
       return true;
     },
+    getCurrentUser(state) {
+      return state.currentUser;
+    },
   },
   mutations: {
     login(state, { username, password }) {

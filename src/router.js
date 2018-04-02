@@ -16,10 +16,14 @@ export default new Router({
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard,
-    beforeEnter: store.getters.isLoggedIn,
+    meta: {
+      requiresAuth: true,
+    },
   }, {
     path: '/logout',
     name: 'User Logout',
-    //beforeEnter: store.mutations.logout,
-  },],
+    meta: {
+      requiresAuth: true,
+    },
+  }],
 });
