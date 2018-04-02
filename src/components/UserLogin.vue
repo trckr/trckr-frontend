@@ -1,12 +1,8 @@
 <template>
   <div class="component component--user-login">
-    <p v-if="$route.query.redirect">
-      Please login first.
-    </p>
-
-    <p v-if="error" class="error">
-      Wrong login credentials.
-    </p>
+    <div v-if="error" class="message message--error">
+      Wrong login credentials. Please try again.
+    </div>
 
     <h1>Login</h1>
 
@@ -33,7 +29,7 @@
 
   export default {
     name: 'UserLogin',
-    data () {
+    data: function() {
       return {
         username: '',
         password: '',
@@ -42,6 +38,7 @@
     },
     methods: {
       login: function() {
+        const that = this;
         const store = this.$store;
         const router = this.$router;
         const username = this.username;
@@ -51,7 +48,7 @@
           password: this.password,
           headers: {
             'Content-type': 'application/json',
-          }
+          },
         }).then(function(response) {
           store.dispatch({
             type: 'login',
@@ -61,7 +58,7 @@
             router.push('/dashboard');
           });
         }).catch(function(error) {
-          console.log(error);
+          that.error = true;
         });
       },
     },
