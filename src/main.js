@@ -10,7 +10,13 @@ router.beforeEach(function (to, from, next) {
   const isLoggedIn = store.getters.isLoggedIn;
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
-  if (requiresAuth && !isLoggedIn) {
+  if (to.fullPath === '/') {
+    if (isLoggedIn) {
+      next('/dashboard');
+    } else {
+      next('/login');
+    }
+  } else if (requiresAuth && !isLoggedIn) {
     next('/login');
   } else {
     next();
