@@ -25,7 +25,7 @@
           </tr>
           <tr>
             <td><label for="email">E-Mail</label></td>
-            <td><input v-model="email" id="email" type="text" /></td>
+            <td><input v-model="email" id="email" type="email" /></td>
           </tr>
           <tr>
             <td><label for="password">Password</label></td>
@@ -82,6 +82,7 @@ export default {
   }
 
   input[type=text],
+  input[type=email],
   input[type=password] {
     width: 15rem;
   }
