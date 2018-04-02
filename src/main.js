@@ -28,6 +28,12 @@ router.beforeEach(function (to, from, next) {
     } else {
       next('/login');
     }
+  } else if (to.fullPath === '/login') {
+    if (isLoggedIn) {
+      next('/dashboard');
+    } else {
+      next();
+    }
   } else if (to.fullPath === '/logout') {
     store.dispatch({
       type: 'logout',
