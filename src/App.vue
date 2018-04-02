@@ -11,14 +11,14 @@
 </template>
 
 <script>
-import Navigation from '@/components/navigation';
+  import Navigation from '@/components/navigation';
 
-export default {
-  name: 'trckr',
-  components: {
-    Navigation,
+  export default {
+    name: 'trckr',
+    components: {
+      Navigation,
+    },
   }
-}
 </script>
 
 <style lang="scss">

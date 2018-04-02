@@ -1,15 +1,12 @@
 <template>
   <div class="component component--dashboard">
-    <h1>trckr</h1>
-    <p>Welcome!</p>
+    <h1>Dashboard</h1>
+    <p>Welcome to <em>trckr</em>!</p>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'Dashboard',
-}
+  export default {
+    name: 'Dashboard',
+  }
 </script>
-
-<style lang="scss" scoped>
-</style>

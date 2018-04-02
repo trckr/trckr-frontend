@@ -11,37 +11,7 @@
 </template>
 
 <script>
-export default {
-  name: 'Navigation',
-}
-</script>
-
-<style lang="scss" scoped>
-  @import '../sass/style.scss';
-
-  nav {
-    ul {
-      display: block;
-
-      li {
-        display: inline-block;
-
-        a {
-          color: $color-base-white;
-          display: block;
-          padding: 1.5rem 1.5rem;
-          text-decoration: none;
-          transition: $transition-ease-in-out;
-
-          &.router-link-active {
-            background-color: $color-nav-active;
-          }
-
-          &:hover {
-            background-color: $color-nav-hover;
-          }
-        }
-      }
-    }
+  export default {
+    name: 'Navigation',
   }
-</style>
+</script>

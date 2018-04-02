@@ -29,27 +29,27 @@
 </template>
 
 <script>
-export default {
-  name: 'UserLogin',
-  data () {
-    return {
-      username: '',
-      password: '',
-      error: false,
-    }
-  },
-  methods: {
-    login () {
-      const router = this.$router;
+  export default {
+    name: 'UserLogin',
+    data () {
+      return {
+        username: '',
+        password: '',
+        error: false,
+      }
+    },
+    methods: {
+      login: function() {
+        const router = this.$router;
 
-      this.$store.dispatch({
-        type: 'login',
-        username:  this.username,
-        password: this.password,
-      }).then(function() {
-        router.push('/dashboard');
-      });
-    }
+        this.$store.dispatch({
+          type: 'login',
+          username:  this.username,
+          password: this.password,
+        }).then(function() {
+          router.push('/dashboard');
+        });
+      },
+    },
   }
-}
 </script>
