@@ -7,8 +7,15 @@
     ul {
       display: block;
 
+      &::after {
+        clear: both;
+        content: '';
+        display: table;
+      }
+
       li {
         display: inline-block;
+        float: left;
 
         a {
           color: $color-base-white;
