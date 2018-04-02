@@ -31,6 +31,14 @@
             <td><label for="password">Password</label></td>
             <td><input v-model="password" id="password" type="password"></td>
           </tr>
+          <tr>
+            <td><label for="first_name">First name</label></td>
+            <td><input v-model="first_name" id="first_name" type="text" /></td>
+          </tr>
+          <tr>
+            <td><label for="last_name">Last name</label></td>
+            <td><input v-model="last_name" id="last_name" type="text" /></td>
+          </tr>
           </tbody>
         </table>
       </form>
@@ -39,25 +47,37 @@
 </template>
 
 <script>
+import axios from "axios"
+
 export default {
-  name: 'user-registration',
-  data () {
+  data() {
     return {
       username: '',
       email: '',
       password: '',
-      error: false,
+      first_name: '',
+      last_name: '',
+      error: false
     }
   },
   methods: {
-    register () {
-      auth.register(this.username, this.email, this.password, registered => {
-        if (!registered) {
-          this.error = true
-        } else {
-          this.$router.replace(this.$route.query.redirect || '/')
-        }
+    // TODO: check if user is already logged in
+    register() {
+      console.log(typeof username);
+      axios.post('https://trckr.trvlr.ch/api/user/', {
+        "username": username._value,
+        "email": email._value,
+        "password": password._value,
+        "first_name": first_name._value,
+        "last_name": last_name._value
       })
+        .then(response => {
+          console.log(response.data.token);
+          window.localStorage.setItem("trckr-user-token", response.data.token)
+        })
+        .catch(e => {
+          console.log("error")
+        })
     }
   }
 }
