@@ -5,13 +5,13 @@
 label {
   display: inline-block;
   margin-right: 1.5rem;
-  width: 7rem;
+  width: 8rem;
 }
 
 input[type=text],
 input[type=password],
 input[type=email] {
-  width: 15rem;
+  width: 18rem;
 }
 
 input[type=submit] {
@@ -36,5 +36,13 @@ input[type=submit] {
 }
 
 .form-actions {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
+
+  .form-action {
+    display: inline-block;
+
+    & + .form-action {
+      margin-left: 1rem;
+    }
+  }
 }
