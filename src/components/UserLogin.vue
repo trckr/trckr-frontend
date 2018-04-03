@@ -18,15 +18,10 @@
       </div>
 
       <div class="form-actions">
-        <input type="submit" value="Login" />
+        <p><input type="submit" value="Login" /> &ensp; Don't have an account yet? <router-link :to="{path: '/registration'}">Register</router-link></p>
       </div>
     </form>
-    <br/>
-    <p>Or register as a User if you don't have an account already.</p>
-    <form @submit.prevent="register">
-      <input type="submit" name="register" id="register" value="Register">
-    </form>
-    </div>
+  </div>
 </template>
 
 <script>
@@ -67,9 +62,6 @@
           that.error = true;
         });
       },
-    register: function () {
-      router.push('/registration')
-    }
     },
   }
 </script>

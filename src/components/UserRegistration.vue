@@ -1,6 +1,5 @@
 <template>
-  <main>
-    <div class="user-registration">
+    <div class="component component--user-registration">
       <p v-if="$route.query.redirect">
         Please register first.
       </p>
@@ -12,43 +11,31 @@
       <h1>User Registration</h1>
 
       <form @submit.prevent="register">
-        <table>
-          <tfoot>
-          <tr>
-            <td colspan="2"><input type="submit" value="Register" /></td>
-          </tr>
-          </tfoot>
-          <tbody>
-          <tr>
-            <td><label for="username">Username</label></td>
-            <td><input v-model="username" id="username" type="text" /></td>
-          </tr>
-          <tr>
-            <td><label for="email">E-Mail</label></td>
-            <td><input v-model="email" id="email" type="email" /></td>
-          </tr>
-          <tr>
-            <td><label for="password">Password</label></td>
-            <td><input v-model="password" id="password" type="password"></td>
-          </tr>
-          <tr>
-            <td><label for="first_name">First name</label></td>
-            <td><input v-model="first_name" id="first_name" type="text" /></td>
-          </tr>
-          <tr>
-            <td><label for="last_name">Last name</label></td>
-            <td><input v-model="last_name" id="last_name" type="text" /></td>
-          </tr>
-          </tbody>
-        </table>
-      </form>
-      <br/>
-      <p>Or login if you already have an account.</p>
-      <form @submit.prevent="login">
-        <input type="submit" name="login" id="login" value="Login">
+        <div class="form-item">
+          <label for="username">Username</label>
+          <input v-model="username" id="username" type="text" />
+        </div>
+        <div class="form-item">
+          <label for="email">E-Mail</label>
+          <input v-model="email" id="email" type="email" />
+        </div>
+        <div class="form-item">
+          <label for="password">Password</label>
+          <input v-model="password" id="password" type="password">
+        </div>
+        <div class="form-item">
+          <label for="first_name">First name</label>
+          <input v-model="first_name" id="first_name" type="text" />
+        </div>
+        <div class="form-item">
+          <label for="last_name">Last name</label>
+          <input v-model="last_name" id="last_name" type="text" />
+        </div>
+        <div class="form-item">
+          <p><input type="submit" value="Register" /> &ensp; Already have an account? <router-link :to="{path: '/login'}">Login</router-link></p>
+        </div>
       </form>
     </div>
-  </main>
 </template>
 
 <script>
@@ -68,10 +55,7 @@
       }
     },
     methods: {
-      // TODO: check if user is already logged in
-
       register() {
-
         const that = this;
         const store = this.$store;
         const router = this.$router;
@@ -97,10 +81,7 @@
           .catch(error => {
             that.error = true;
           })
-      },
-    login() {
-        router.push('/login')
-    }
+      }
     }
   }
 </script>
