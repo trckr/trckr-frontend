@@ -18,7 +18,12 @@
       </div>
 
       <div class="form-actions">
-        <input type="submit" value="Login" />
+        <div class="form-action">
+          <input type="submit" value="Login" />
+        </div>
+        <div class="form-action">
+          <p>Don't have an account yet? <router-link :to="{path: '/register'}">Register</router-link> now!</p>
+        </div>
       </div>
     </form>
   </div>
