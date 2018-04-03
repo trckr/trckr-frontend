@@ -2,13 +2,16 @@
   <div class="component component--dashboard">
     <h1>Dashboard</h1>
     <p>Welcome to <em>trckr</em>!</p>
-
-    <p>Pong response: <em>{{ pong }}</em></p>
+      <h2>Your Projects</h2>
+    <form @submit.prevent="createProject">
+      <input type="submit" value="Create Project" />
+    </form>
   </div>
 </template>
 
 <script>
   import axios from 'axios';
+  import router from "../router";
 
   export default {
     name: 'Dashboard',
@@ -34,6 +37,9 @@
         }).catch(function(error) {
           that.pong = 'The ping request resulted in an error.'
         });
+      },
+      createProject() {
+        router.push('/createproject')
       }
     }
   }
