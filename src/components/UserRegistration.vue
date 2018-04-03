@@ -61,7 +61,7 @@
         const router = this.$router;
         const username = this.username;
 
-        axios.post('https://trckr-api.trvlr.ch/api/user/', {
+        axios.post(this.$apiBaseUrl + '/api/user/', {
           username: this.username,
           email: this.email,
           password: this.password,

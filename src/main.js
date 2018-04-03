@@ -4,6 +4,7 @@ import { store } from './store';
 import router from './router';
 
 Vue.config.productionTip = false;
+Vue.prototype.$apiBaseUrl = 'https://trckr.trvlr.ch';
 
 // Auto Login if we have a user object in the local storage.
 if (typeof localStorage.trckrCurrentUser !== 'undefined') {
