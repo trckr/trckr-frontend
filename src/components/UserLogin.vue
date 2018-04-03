@@ -21,11 +21,17 @@
         <input type="submit" value="Login" />
       </div>
     </form>
-  </div>
+    <br/>
+    <p>Or register as a User if you don't have an account already.</p>
+    <form @submit.prevent="register">
+      <input type="submit" name="register" id="register" value="Register">
+    </form>
+    </div>
 </template>
 
 <script>
   import axios from 'axios';
+  import router from "../router";
 
   export default {
     name: 'UserLogin',
@@ -61,6 +67,9 @@
           that.error = true;
         });
       },
+    register: function () {
+      router.push('/registration')
+    }
     },
   }
 </script>

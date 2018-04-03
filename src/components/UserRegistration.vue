@@ -42,12 +42,18 @@
           </tbody>
         </table>
       </form>
+      <br/>
+      <p>Or login if you already have an account.</p>
+      <form @submit.prevent="login">
+        <input type="submit" name="login" id="login" value="Login">
+      </form>
     </div>
   </main>
 </template>
 
 <script>
   import axios from "axios"
+  import router from "../router";
 
   export default {
     name: 'UserRegistration',
@@ -71,7 +77,6 @@
         const router = this.$router;
         const username = this.username;
 
-        console.log(typeof username);
         axios.post('https://trckr.trvlr.ch/api/user/', {
           username: this.username,
           email: this.email,
@@ -92,7 +97,10 @@
           .catch(error => {
             that.error = true;
           })
-      }
+      },
+    login() {
+        router.push('/login')
+    }
     }
   }
 </script>
