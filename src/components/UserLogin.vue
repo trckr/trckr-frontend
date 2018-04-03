@@ -18,11 +18,11 @@
       </div>
 
       <div class="form-actions">
-        <div class="form-actions" style="float: left;">
+        <div class="form-action">
           <input type="submit" value="Login" />
         </div>
-        <div class="form-actions" style="float: left; margin-left: 15px;">
-          <p>Don't have an account yet? <router-link :to="{path: '/register'}">Register</router-link></p>
+        <div class="form-action">
+          <p>Don't have an account yet? <router-link :to="{path: '/register'}">Register</router-link> now!</p>
         </div>
       </div>
     </form>

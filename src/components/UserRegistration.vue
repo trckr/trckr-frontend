@@ -51,7 +51,7 @@
         password: '',
         first_name: '',
         last_name: '',
-        error: false
+        error: false,
       }
     },
     methods: {
@@ -67,20 +67,17 @@
           password: this.password,
           first_name: this.first_name,
           last_name: this.last_name,
-        })
-          .then(response => {
-            store.dispatch({
-              type: 'login',
-              username: username,
-              token: response.data.token,
-            })
-          })
-          .then(function() {
+        }).then(function(response) {
+          store.dispatch({
+            type: 'login',
+            username: username,
+            token: response.data.token,
+          }).then(function() {
             router.push('/dashboard')
-          })
-          .catch(error => {
-            that.error = true;
-          })
+          });
+        }).catch(function(error) {
+          that.error = true;
+        });
       }
     }
   }
