@@ -18,7 +18,12 @@
       </div>
 
       <div class="form-actions">
-        <p><input type="submit" value="Login" /> &ensp; Don't have an account yet? <router-link :to="{path: '/registration'}">Register</router-link></p>
+        <div class="form-actions" style="float: left;">
+          <input type="submit" value="Login" />
+        </div>
+        <div class="form-actions" style="float: left; margin-left: 15px;">
+          <p>Don't have an account yet? <router-link :to="{path: '/register'}">Register</router-link></p>
+        </div>
       </div>
     </form>
   </div>
@@ -26,7 +31,6 @@
 
 <script>
   import axios from 'axios';
-  import router from "../router";
 
   export default {
     name: 'UserLogin',
