@@ -12,7 +12,7 @@
       </div>
       <div class="form-item">
         <label for="projectdesc">Project Description</label>
-        <textarea v-model="projectdesc" id="projectdesc" required="required"></textarea>
+        <textarea v-model="projectdesc" id="projectdesc"></textarea>
       </div>
       <div class="form-action">
         <input type="submit" value="Create" />
@@ -36,16 +36,19 @@
     methods: {
       createProject(){
         const that = this;
-        const store = this.$store;
         const router = this.$router;
+        const token = this.$store.getters.getCurrentUser.token;
 
-        //TODO: api call doesn't exist in backend yet
-        axios.post('https://trckr.trvlr.ch/api/project/', {
-          projectname: this.projectname,
-          projectdesc: this.projectdesc
-        })
+        axios.post('https://trckr-api.trvlr.ch/api/project/', {
+            name: this.projectname,
+            description: this.projectdesc
+          },{
+            headers: {
+              'Authorization': 'JWT ' + token
+            }}
+        )
           .then(function() {
-            router.push('/dashborad')
+            router.push('/dashboard')
           })
           .catch(function(error) {
             that.error = true;
