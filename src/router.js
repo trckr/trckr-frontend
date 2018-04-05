@@ -4,6 +4,7 @@ import UserLogin from '@/components/UserLogin';
 import UserRegistration from '@/components/UserRegistration';
 import Dashboard from '@/components/Dashboard';
 import CreateProject from '@/components/CreateProject';
+import ProjectPage from '@/components/ProjectPage';
 
 Vue.use(Router);
 
@@ -34,6 +35,13 @@ export default new Router({
     path: '/createproject',
     name: 'Create Project',
     component: CreateProject,
+    meta: {
+      requiresAuth: true,
+    }
+  }, {
+    path: '/project/:id',
+    name: 'Project page',
+    component: ProjectPage,
     meta: {
       requiresAuth: true,
     }

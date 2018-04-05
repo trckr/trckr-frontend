@@ -8,7 +8,8 @@
     </form>
     <div class="container" id="projectContainer">
       <div class="field" v-for="project in projects">
-        <router-link :to="{path: '/project', params: project}">{{ project.name }}</router-link>
+        <!--project.id doesn't get returned yet, so testing with project.name-->
+        <router-link :to="{path: '/project/' + project.name}">{{ project.name }}</router-link>
       </div>
     </div>
   </div>
@@ -21,11 +22,9 @@
   export default {
     name: 'Dashboard',
     data: function() {
-      var that = this;
       return {
         pong: 'Waiting for server response',
-        projects: [
-        ]
+        projects: []
       }
     },
     created: function() {
