@@ -7,6 +7,9 @@
       <input type="submit" value="Create New Project" />
     </form>
     <div class="container" id="projectContainer">
+      <div class="field" v-for="project in projects">
+        <router-link :to="{path: '/project', params: project}">{{ project.name }}</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -18,62 +21,41 @@
   export default {
     name: 'Dashboard',
     data: function() {
+      var that = this;
       return {
         pong: 'Waiting for server response',
+        projects: [
+        ]
       }
     },
     created: function() {
       this.fetchData();
     },
     methods: {
-      fetchData: function() {
+      fetchData: function () {
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
-
-        that.getprojects();
 
         axios.get('https://trckr-api.trvlr.ch/api/ping/', {
           headers: {
             'Authorization': 'JWT ' + token
           }
-        }).then(function(response) {
+        }).then(function (response) {
           that.pong = response.data;
-        }).catch(function(error) {
+        }).catch(function (error) {
           that.pong = 'The ping request resulted in an error.'
         });
-      },
-      createProject() {
-        router.push('/createproject')
-      },
-      getprojects(){
-        // TODO:
-        // - loop correctly through json response
-        // - redirect to correct projectpage
-        // - call this method on creation of page
-        // - router-link doesn't work yet
 
-        const token = this.$store.getters.getCurrentUser.token;
         axios.get('https://trckr-api.trvlr.ch/api/project/', {
           headers: {
             'Authorization': 'JWT ' + token
           }
-        })
-          .then(response => {
+        }).then(function (response) {
+          that.projects = response.data;
+        }).catch(function (error) {
+          that.pong = 'The ping request resulted in an error.'
+        });
 
-            for (var count in response.data){
-              var projectname =  response.data[count].name;
-
-              var project = document.createElement("div");
-              project.style.width = "200px";
-              project.style.height = "50px";
-
-              project.innerHTML = "<router-link :to=\"{path: '/dashboard'}\">" + projectname + "</router-link>";
-              document.getElementById("projectContainer").appendChild(project);
-            }
-          })
-          .catch({
-
-          });
       },
     }
   }
