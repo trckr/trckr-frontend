@@ -5,6 +5,8 @@ import UserRegistration from '@/components/UserRegistration';
 import Dashboard from '@/components/Dashboard';
 import CreateProject from '@/components/CreateProject';
 import ProjectPage from '@/components/ProjectPage';
+import CreateTask from '@/components/CreateTask';
+import TaskPage from '@/components/TaskPage';
 
 Vue.use(Router);
 
@@ -39,9 +41,23 @@ export default new Router({
       requiresAuth: true,
     }
   }, {
-    path: '/project/:id',
+    path: '/project/:projectid',
     name: 'Project page',
     component: ProjectPage,
+    meta: {
+      requiresAuth: true,
+    }
+  }, {
+    path: '/project/:projectid/createtask',
+    name: 'Create Task',
+    component: CreateTask,
+    meta: {
+      requiresAuth: true,
+    }
+  }, {
+    path: '/project/:projectid/task/:taskid',
+    name: 'task page',
+    component: TaskPage,
     meta: {
       requiresAuth: true,
     }

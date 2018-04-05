@@ -6,6 +6,14 @@
     </div>
     <h2>Tasks</h2>
 
+    <p><router-link :to="{path: '/project/'+ projectid +'/createtask'}">Create</router-link> a new task here!</p>
+
+    <!--TODO: this is not yet supported by the backend-->
+    <ul v-for="task in tasks">
+      <router-link :to="{path: projectid +'/task/' + task.id}">{{ task.name }}</router-link>
+      <p>{{ task.description }}</p>
+    </ul>
+
   </div>
 </template>
 
@@ -23,6 +31,7 @@
         description: '',
         modifiedDate: '',
         createdDate: '',
+        tasks: [],
         error: '',
       }
     },
@@ -35,7 +44,7 @@
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
 
-        that.projectid = that.$route.params.id;
+        that.projectid = that.$route.params.projectid;
 
         axios.get(this.$apiBaseUrl + '/api/projects/' + that.projectid, {
           headers: {
@@ -52,6 +61,17 @@
           .catch(error => {
             that.error = error;
           });
+
+
+        axios.get(this.$apiBaseUrl + '/api/projects/' + that.projectid + '/tasks', {
+          headers: {
+            'Authorization': 'JWT ' + token
+          }
+        }).then(function (response) {
+          that.tasks = response.data;
+        }).catch(function (error) {
+          that.error = 'there was a problem'
+        });
       }
     }
   }
