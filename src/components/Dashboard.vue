@@ -9,7 +9,7 @@
     <div class="container" id="projectContainer">
       <div class="field" v-for="project in projects">
         <!--project.id doesn't get returned yet, so testing with project.name-->
-        <router-link :to="{path: '/project/' + project.name}">{{ project.name }}</router-link>
+        <router-link :to="{path: '/project/' + project.id}">{{ project.name }}</router-link>
       </div>
     </div>
   </div>
@@ -45,7 +45,7 @@
           that.pong = 'The ping request resulted in an error.'
         });
 
-        axios.get('https://trckr-api.trvlr.ch/api/project/', {
+        axios.get('https://trckr-api.trvlr.ch/api/projects/', {
           headers: {
             'Authorization': 'JWT ' + token
           }

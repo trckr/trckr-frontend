@@ -39,7 +39,7 @@
         const router = this.$router;
         const token = this.$store.getters.getCurrentUser.token;
 
-        axios.post('https://trckr-api.trvlr.ch/api/project/', {
+        axios.post('https://trckr-api.trvlr.ch/api/projects/', {
             name: this.projectname,
             description: this.projectdesc
           },{
