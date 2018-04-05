@@ -8,6 +8,7 @@ $color-base-black: #000000;
 
 $color-shark: #2f3033;
 $color-mid-gray: #626366;
+$color-red: #e20505;
 
 $color-main: $color-base-black;
 $color-header: $color-shark;
@@ -17,6 +18,9 @@ $color-nav-hover: $color-mid-gray;
 
 $color-button: $color-shark;
 $color-button-hover: $color-mid-gray;
+
+$color-link: $color-red;
+$color-link-hover: $color-shark;
 
 
 // Transitions.

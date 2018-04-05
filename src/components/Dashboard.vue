@@ -35,7 +35,7 @@
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
 
-        axios.get('https://trckr-api.trvlr.ch/api/ping/', {
+        axios.get(this.$apiBaseUrl + '/api/ping/', {
           headers: {
             'Authorization': 'JWT ' + token
           }
