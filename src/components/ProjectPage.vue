@@ -17,6 +17,7 @@
     data(){
       return {
         project: [],
+        // these can currently not be used, TODO: figure out why
         projectname: '',
         projectid: 0,
         description: '',
@@ -36,7 +37,7 @@
 
         that.projectid = that.$route.params.id;
 
-        axios.get('https://trckr-api.trvlr.ch/api/projects/' + that.projectid, {
+        axios.get(this.$apiBaseUrl + '/api/projects/' + that.projectid, {
           headers: {
             'Authorization': 'JWT ' + token
           }

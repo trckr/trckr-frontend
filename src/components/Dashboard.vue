@@ -2,22 +2,19 @@
   <div class="component component--dashboard">
     <h1>Dashboard</h1>
     <p>Welcome to <em>trckr</em>!</p>
-    <h2>Your Projects</h2>
-    <form @submit.prevent="createProject">
-      <input type="submit" value="Create New Project" />
-    </form>
     <div class="container" id="projectContainer">
+      <p><router-link :to="{path: '/createproject'}">Create</router-link> a new project here!</p>
       <div class="field" v-for="project in projects">
         <!--project.id doesn't get returned yet, so testing with project.name-->
         <router-link :to="{path: '/project/' + project.id}">{{ project.name }}</router-link>
       </div>
     </div>
+    <p>Pong response: <em>{{ pong }}</em></p>
   </div>
 </template>
 
 <script>
   import axios from 'axios';
-  import router from "../router";
 
   export default {
     name: 'Dashboard',
@@ -31,7 +28,7 @@
       this.fetchData();
     },
     methods: {
-      fetchData: function () {
+      fetchData: function() {
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
 
@@ -39,22 +36,21 @@
           headers: {
             'Authorization': 'JWT ' + token
           }
-        }).then(function (response) {
+        }).then(function(response) {
           that.pong = response.data;
-        }).catch(function (error) {
+        }).catch(function(error) {
           that.pong = 'The ping request resulted in an error.'
         });
 
-        axios.get('https://trckr-api.trvlr.ch/api/projects/', {
+        axios.get(this.$apiBaseUrl + '/api/projects/', {
           headers: {
             'Authorization': 'JWT ' + token
           }
         }).then(function (response) {
           that.projects = response.data;
         }).catch(function (error) {
-          that.pong = 'The ping request resulted in an error.'
+          that.pong = 'there was a problem'
         });
-
       },
     }
   }
