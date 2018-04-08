@@ -46,8 +46,6 @@
 
         console.log(that.projectid);
 
-        // TODO: Backend is not yet running the url like this
-        // axios.post(this.$apiBaseUrl + '/api/projects/' + that.projectid + '/tasks' , {
         axios.post(this.$apiBaseUrl + '/api/tasks/', {
           name: that.taskname,
           description: that.taskdesc,

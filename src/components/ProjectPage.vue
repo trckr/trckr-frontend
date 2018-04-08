@@ -1,5 +1,8 @@
 <template>
   <div class="component component--projectPage">
+    <div v-if="error" class="message message--error">
+      Something went wrong.
+    </div>
     <div v-for="item in project">
       <h1>{{ item.name }}</h1>
       <p>{{ item.description }}</p>
@@ -8,11 +11,20 @@
 
     <p><router-link :to="{path: '/project/'+ projectid +'/createtask'}">Create</router-link> a new task here!</p>
 
-    <!--TODO: this is not yet supported by the backend-->
-    <ul v-for="task in tasks">
-      <router-link :to="{path: projectid +'/task/' + task.id}">{{ task.name }}</router-link>
-      <p>{{ task.description }}</p>
-    </ul>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Project</th>
+        <th>Description</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="task in tasks">
+        <td><router-link :to="{path: projectid +'/task/' + task.id}">{{ task.name }}</router-link></td>
+        <td>{{ task.description }}</td>
+      </tr>
+      </tbody>
+    </table>
 
   </div>
 </template>
@@ -25,7 +37,6 @@
     data(){
       return {
         project: [],
-        // these can currently not be used, TODO: figure out why
         projectname: '',
         projectid: 0,
         description: '',

@@ -1,5 +1,8 @@
 <template>
   <div class="component component--taskPage">
+    <div v-if="error" class="message message--error">
+      Something went wrong.
+    </div>
     <div v-for="item in task">
       <h1>{{ item.name }}</h1>
       <p>{{ item.description }}</p>
@@ -27,10 +30,8 @@
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
 
-        // that.projectid = that.$route.params.projectid;
         that.taskid = that.$route.params.taskid;
 
-        // axios.get(this.$apiBaseUrl + '/api/projects/' + that.projectid + '/tasks/' + that.taskid, {
         axios.get(this.$apiBaseUrl + '/api/tasks/' + that.taskid, {
           headers: {
             'Authorization': 'JWT ' + token
