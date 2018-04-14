@@ -9,9 +9,8 @@
     </div>
     <h2>Tasks</h2>
 
-    <p><router-link :to="{path: '/project/'+ projectid +'/task/create'}">Create</router-link> a new task here!</p>
     <p><router-link :to="{path: '/project/edit/'+ projectid }">Edit</router-link> your project here!</p>
-
+    <p><router-link :to="{path: '/project/'+ projectid +'/task/create'}">Create</router-link> a new task here!</p>
 
     <table id="table--project-task">
       <thead>
