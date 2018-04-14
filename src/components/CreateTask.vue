@@ -45,8 +45,6 @@
 
         that.projectid = that.$route.params.projectid;
 
-        console.log(that.projectid);
-
         axios.post(this.$apiBaseUrl + '/api/tasks/', {
             name: that.taskname,
             description: that.taskdesc,

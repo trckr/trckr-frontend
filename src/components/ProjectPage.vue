@@ -11,10 +11,10 @@
 
     <p><router-link :to="{path: '/project/'+ projectid +'/task/create'}">Create</router-link> a new task here!</p>
 
-    <table class="table">
+    <table id="table--project-task">
       <thead>
         <tr>
-          <th>Project</th>
+          <th>Task</th>
           <th>Description</th>
         </tr>
       </thead>
