@@ -1,13 +1,14 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import CreateProject from '@/components/CreateProject';
+import CreateTask from '@/components/CreateTask';
+import Dashboard from '@/components/Dashboard';
+import EditProject from '@/components/EditProject';
+import ProjectPage from '@/components/ProjectPage';
+import TaskPage from '@/components/TaskPage';
 import UserLogin from '@/components/UserLogin';
 import UserRegistration from '@/components/UserRegistration';
-import Dashboard from '@/components/Dashboard';
-import CreateProject from '@/components/CreateProject';
-import ProjectPage from '@/components/ProjectPage';
-import CreateTask from '@/components/CreateTask';
-import TaskPage from '@/components/TaskPage';
-import EditProject from '@/components/EditProject';
+
 
 Vue.use(Router);
 
@@ -35,7 +36,7 @@ export default new Router({
       requiresAuth: true,
     }
   }, {
-    path: '/createproject',
+    path: '/project/create',
     name: 'Create Project',
     component: CreateProject,
     meta: {
@@ -49,7 +50,7 @@ export default new Router({
       requiresAuth: true,
     }
   }, {
-    path: '/project/:projectid/createtask',
+    path: '/project/:projectid/task/create',
     name: 'Create Task',
     component: CreateTask,
     meta: {
@@ -63,7 +64,7 @@ export default new Router({
       requiresAuth: true,
     }
   }, {
-    path: '/editproject/:projectid',
+    path: '/project/edit/:projectid',
     name: 'edit project',
     component: EditProject,
     meta: {

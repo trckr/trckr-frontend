@@ -14,8 +14,10 @@
         <label for="projectdesc">Project Description</label>
         <textarea v-model="projectdesc" id="projectdesc"></textarea>
       </div>
-      <div class="form-action">
-        <input type="submit" value="Create" />
+      <div class="form-actions">
+        <div class="form-action">
+          <input type="submit" value="Create" />
+        </div>
       </div>
     </form>
   </div>
@@ -30,7 +32,7 @@
       return{
         projectname: '',
         projectdesc: '',
-        error: false
+        error: false,
       }
     },
     methods: {
