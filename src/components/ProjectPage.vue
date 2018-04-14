@@ -9,20 +9,20 @@
     </div>
     <h2>Tasks</h2>
 
-    <p><router-link :to="{path: '/project/'+ projectid +'/createtask'}">Create</router-link> a new task here!</p>
+    <p><router-link :to="{path: '/project/'+ projectid +'/task/create'}">Create</router-link> a new task here!</p>
 
     <table class="table">
       <thead>
-      <tr>
-        <th>Project</th>
-        <th>Description</th>
-      </tr>
+        <tr>
+          <th>Project</th>
+          <th>Description</th>
+        </tr>
       </thead>
       <tbody>
-      <tr v-for="task in tasks">
-        <td><router-link :to="{path: projectid +'/task/' + task.id}">{{ task.name }}</router-link></td>
-        <td>{{ task.description }}</td>
-      </tr>
+        <tr v-for="task in tasks">
+          <td><router-link :to="{path: projectid +'/task/' + task.id}">{{ task.name }}</router-link></td>
+          <td>{{ task.description }}</td>
+        </tr>
       </tbody>
     </table>
 
@@ -43,7 +43,7 @@
         modifiedDate: '',
         createdDate: '',
         tasks: [],
-        error: '',
+        error: false,
       }
     },
     created: function() {
@@ -81,7 +81,7 @@
         }).then(function (response) {
           that.tasks = response.data;
         }).catch(function (error) {
-          that.error = 'there was a problem'
+          that.error = true;
         });
       }
     }

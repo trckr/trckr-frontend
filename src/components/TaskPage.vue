@@ -19,7 +19,7 @@
     data() {
       return {
         task:[],
-        error: ''
+        error: false,
       }
     },
     created() {
@@ -41,7 +41,7 @@
             that.task = response;
           })
           .catch(error => {
-            that.error = error;
+            that.error = true;
           });
       }
     }

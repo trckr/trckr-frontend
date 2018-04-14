@@ -15,9 +15,10 @@
         <label for="taskdesc">Task Description</label>
         <textarea v-model="taskdesc" id="taskdesc"></textarea>
       </div>
-
-      <div class="form-action">
-        <input type="submit" value="Create" />
+      <div class="form-actions">
+        <div class="form-action">
+          <input type="submit" value="Create" />
+        </div>
       </div>
     </form>
   </div>
@@ -33,7 +34,7 @@
         taskname: '',
         taskdesc: '',
         projectid: '',
-        error: false
+        error: false,
       }
     },
     methods: {
@@ -47,9 +48,9 @@
         console.log(that.projectid);
 
         axios.post(this.$apiBaseUrl + '/api/tasks/', {
-          name: that.taskname,
-          description: that.taskdesc,
-          project: that.projectid
+            name: that.taskname,
+            description: that.taskdesc,
+            project: that.projectid
           },{
             headers: {
               'Authorization': 'JWT ' + token
