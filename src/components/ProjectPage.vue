@@ -10,6 +10,8 @@
     <h2>Tasks</h2>
 
     <p><router-link :to="{path: '/project/'+ projectid +'/createtask'}">Create</router-link> a new task here!</p>
+    <p><router-link :to="{path: '/editproject/'+ projectid }">Edit</router-link> your project here!</p>
+
 
     <table class="table">
       <thead>

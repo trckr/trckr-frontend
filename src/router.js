@@ -7,6 +7,7 @@ import CreateProject from '@/components/CreateProject';
 import ProjectPage from '@/components/ProjectPage';
 import CreateTask from '@/components/CreateTask';
 import TaskPage from '@/components/TaskPage';
+import EditProject from '@/components/EditProject';
 
 Vue.use(Router);
 
@@ -58,6 +59,13 @@ export default new Router({
     path: '/project/:projectid/task/:taskid',
     name: 'task page',
     component: TaskPage,
+    meta: {
+      requiresAuth: true,
+    }
+  }, {
+    path: '/editproject/:projectid',
+    name: 'edit project',
+    component: EditProject,
     meta: {
       requiresAuth: true,
     }
