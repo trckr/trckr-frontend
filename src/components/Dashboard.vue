@@ -1,9 +1,9 @@
 <template>
   <div class="component component--dashboard">
     <h1>Dashboard</h1>
-    <p>Welcome to <em>trckr</em>!</p>
-    <p><router-link :to="{path: '/project/create'}">Create</router-link> a new project here!</p>
-
+    <p>Welcome to <em>trckr</em>!</p><br />
+    <p><router-link :to="{path: '/project/create'}">Create</router-link> a new project here!</p><br />
+    <input type="text" v-model="search" placeholder="search for a project"/>
     <table id="table--project-task">
       <thead>
         <tr>
@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="project in projects">
+        <tr v-for="project in filteredProjects">
           <td><router-link :to="{path: '/project/' + project.id}">{{ project.name }}</router-link></td>
           <td>{{ project.description }}</td>
         </tr>
@@ -32,6 +32,7 @@
       return {
         pong: 'Waiting for server response',
         projects: [],
+        search: '',
         error: false,
       }
     },
@@ -63,6 +64,13 @@
           that.error = true;
         });
       },
+    },
+    computed:{
+      filteredProjects: function(){
+        return this.projects.filter((project) => {
+          return project.name.match(this.search)
+        });
+      }
     }
   }
 </script>
