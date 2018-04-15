@@ -14,8 +14,10 @@
         <label for="projectdesc">Project Description</label>
         <textarea v-model="projectdesc" id="projectdesc"></textarea>
       </div>
-      <div class="form-action">
-        <input type="submit" value="Edit" />
+      <div class="form-actions">
+        <div class="form-action">
+          <input type="submit" value="Edit" />
+        </div>
       </div>
     </form>
   </div>
@@ -32,7 +34,7 @@
         projectid: '',
         projectname: '',
         projectdesc:'',
-        error: false
+        error: false,
       }
     },
     created() {
@@ -50,12 +52,9 @@
             'Authorization': 'JWT ' + token
           }
         }).then(function (response) {
-
           that.project = response.data;
           that.projectname = response.data.name;
           that.projectdesc = response.data.description;
-
-
         }).catch(function (error) {
           that.error = 'there was a problem'
         });
