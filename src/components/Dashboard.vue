@@ -1,9 +1,9 @@
 <template>
   <div class="component component--dashboard">
     <h1>Dashboard</h1>
-    <p>Welcome to <em>trckr</em>!</p><br />
-    <p><router-link :to="{path: '/project/create'}">Create</router-link> a new project here!</p><br />
-    <input type="text" v-model="search" placeholder="search for a project"/>
+    <p>Welcome to <em>trckr</em>!</p>
+    <p><router-link :to="{path: '/project/create'}">Create</router-link> a new project here!</p>
+    <input type="text" v-model="search" placeholder="Search for a project" />
     <table id="table--project-task">
       <thead>
         <tr>
