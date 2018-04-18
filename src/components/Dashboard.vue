@@ -46,7 +46,7 @@
 
         axios.get(this.$apiBaseUrl + '/api/ping/', {
           headers: {
-            'Authorization': 'JWT ' + token
+            'Authorization': 'Token ' + token
           }
         }).then(function(response) {
           that.pong = response.data;

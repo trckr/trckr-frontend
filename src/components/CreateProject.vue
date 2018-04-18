@@ -46,7 +46,7 @@
             description: this.projectdesc
           },{
             headers: {
-              'Authorization': 'JWT ' + token
+              'Authorization': 'Token ' + token
             }}
         )
           .then(function() {

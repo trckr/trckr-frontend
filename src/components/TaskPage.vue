@@ -34,7 +34,7 @@
 
         axios.get(this.$apiBaseUrl + '/api/tasks/' + that.taskid, {
           headers: {
-            'Authorization': 'JWT ' + token
+            'Authorization': 'Token ' + token
           }
         })
           .then(response => {
