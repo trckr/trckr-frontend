@@ -21,7 +21,7 @@ jest.mock('@/api/token-auth', function() {
         } else {
           let response = {
             data: {
-              non_field_errors: ["Unable to log in with provided credentials."],
+              non_field_errors: ['Unable to log in with provided credentials.'],
             },
           };
 
