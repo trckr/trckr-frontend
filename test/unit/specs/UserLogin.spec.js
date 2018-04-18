@@ -40,6 +40,10 @@ describe('UserLogin.vue', function() {
     jest.clearAllMocks();
   });
 
+  it('Shows no error message at start', function() {
+    expect(wrapper.find('.message--error').exists()).toBeFalsy();
+  });
+
   it('Testing invalid API call [/api/token-auth]', function() {
     wrapper.setData({
       username: 'invalid',
@@ -48,6 +52,7 @@ describe('UserLogin.vue', function() {
     wrapper.find('form').trigger('submit');
 
     expect(localStorage.length).toBe(0);
+    expect(wrapper.find('.message--error').exists()).toBeTruthy();
   });
 
   it('Testing valid API call [/api/token-auth]', function() {
