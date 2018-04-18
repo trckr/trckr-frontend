@@ -8,8 +8,8 @@ localVue.use(Router);
 
 jest.mock('@/api/token-auth', function() {
   return {
-    tokenAuth: {
-      post: function(username, password, success, error) {
+    apiTokenAuth: {
+      post: function(host, username, password, success, error) {
         if (username === 'jest' && password === 'unit-testing') {
           let response = {
             data: {

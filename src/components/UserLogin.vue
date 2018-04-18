@@ -30,7 +30,7 @@
 </template>
 
 <script>
-  import { tokenAuth } from '@/api/token-auth';
+  import { apiTokenAuth } from '@/api/token-auth';
 
   export default {
     name: 'UserLogin',
@@ -48,7 +48,8 @@
         const router = this.$router;
         const username = this.username;
 
-        tokenAuth.post(
+        apiTokenAuth.post(
+          this.$apiBaseUrl,
           this.username,
           this.password,
           function(response) {
