@@ -40,7 +40,7 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  import { apiUser } from '@/api/user';
 
   export default {
     name: 'UserRegistration',
@@ -61,23 +61,28 @@
         const router = this.$router;
         const username = this.username;
 
-        axios.post(this.$apiBaseUrl + '/api/user/', {
-          username: this.username,
-          email: this.email,
-          password: this.password,
-          first_name: this.first_name,
-          last_name: this.last_name,
-        }).then(function(response) {
-          store.dispatch({
-            type: 'login',
-            username: username,
-            token: response.data.token,
-          }).then(function() {
-            router.push('/dashboard')
-          });
-        }).catch(function(error) {
-          that.error = true;
-        });
+        apiUser.post(
+          this.$apiBaseUrl,
+          this.username,
+          this.email,
+          this.password,
+          this.first_name,
+          this.last_name,
+          function(response) {
+            store.dispatch({
+              type: 'login',
+              username: username,
+              token: response.data.token,
+            }).then(function() {
+              router.push('/dashboard')
+            }).catch(function() {
+              that.error = true;
+            });
+          },
+          function(error) {
+            that.error = true;
+          },
+        );
       }
     }
   }

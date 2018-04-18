@@ -30,7 +30,7 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  import { apiTokenAuth } from '@/api/token-auth';
 
   export default {
     name: 'UserLogin',
@@ -48,23 +48,25 @@
         const router = this.$router;
         const username = this.username;
 
-        axios.post(this.$apiBaseUrl + '/api/token-auth/', {
-          username:  this.username,
-          password: this.password,
-          headers: {
-            'Content-type': 'application/json',
+        apiTokenAuth.post(
+          this.$apiBaseUrl,
+          this.username,
+          this.password,
+          function(response) {
+            store.dispatch({
+              type: 'login',
+              username: username,
+              token: response.data.token,
+            }).then(function() {
+              router.push('/dashboard');
+            }).catch(function() {
+              that.error = true;
+            });
           },
-        }).then(function(response) {
-          store.dispatch({
-            type: 'login',
-            username:  username,
-            token: response.data.token,
-          }).then(function() {
-            router.push('/dashboard');
-          });
-        }).catch(function(error) {
-          that.error = true;
-        });
+          function(error) {
+            that.error = true;
+          },
+        );
       },
     },
   }
