@@ -1,7 +1,7 @@
 import { shallow } from '@vue/test-utils';
 import Vue from 'vue'
 import Router from 'vue-router';
-import UserRegistration from '../src/components/UserRegistration.vue';
+import UserRegistration from '@/components/UserRegistration.vue';
 
 Vue.use(Router);
 

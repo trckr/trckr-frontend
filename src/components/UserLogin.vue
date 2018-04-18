@@ -54,10 +54,12 @@
           function(response) {
             store.dispatch({
               type: 'login',
-              username:  username,
+              username: username,
               token: response.data.token,
             }).then(function() {
               router.push('/dashboard');
+            }).catch(function() {
+              that.error = true;
             });
           },
           function(error) {
