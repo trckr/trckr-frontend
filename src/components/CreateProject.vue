@@ -24,12 +24,12 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  import { apiProjects } from '@/api/projects';
 
   export default {
     name: 'CreateProject',
-    data(){
-      return{
+    data() {
+      return {
         projectname: '',
         projectdesc: '',
         error: false,
@@ -41,21 +41,25 @@
         const router = this.$router;
         const token = this.$store.getters.getCurrentUser.token;
 
-        axios.post(this.$apiBaseUrl + '/api/projects/', {
-            name: this.projectname,
-            description: this.projectdesc
-          },{
-            headers: {
-              'Authorization': 'Token ' + token
-            }}
-        )
-          .then(function() {
+        // TODO: error handling
+        apiProjects.post(
+          this.$apiBaseUrl,
+          this.projectname,
+          this.projectdesc,
+          token,
+          function(response) {
+            // TODO: figure out how to do this better
+            localStorage.setItem('newestproj', JSON.stringify(response.data)); //only used for testing
             router.push('/dashboard')
-          })
-          .catch(function(error) {
+              .catch(function() {
+                that.error = true;
+              })
+          },
+          function(error) {
             that.error = true;
-          });
-      },
+          }
+        )
+      }
     }
   }
 </script>

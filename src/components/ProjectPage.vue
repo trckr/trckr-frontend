@@ -31,7 +31,8 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  import { apiProjects } from '@/api/projects';
+  import { apiTasks } from '@/api/tasks';
 
   export default {
     name: "Project",
@@ -58,32 +59,29 @@
 
         that.projectid = that.$route.params.projectid;
 
-        axios.get(this.$apiBaseUrl + '/api/projects/' + that.projectid, {
-          headers: {
-            'Authorization': 'Token ' + token
-          }
-        })
-          .then(response => {
+        // TODO: error handling
+        apiProjects.getOne(
+          this.$apiBaseUrl,
+          that.projectid,
+          token,
+          function(response) {
             that.project = response;
             that.projectname = response.name;
             that.description = response.description;
             that.modifiedDate = response.modifiedDate;
             that.createdDate = response.createdDate;
-          })
-          .catch(error => {
-            that.error = error;
-          });
-
-
-        axios.get(this.$apiBaseUrl + '/api/projects/' + that.projectid + '/tasks', {
-          headers: {
-            'Authorization': 'Token ' + token
           }
-        }).then(function (response) {
-          that.tasks = response.data;
-        }).catch(function (error) {
-          that.error = true;
-        });
+        );
+
+        // TODO: error handling
+        apiTasks.getAllTasks(
+          this.$apiBaseUrl,
+          this.projectid,
+          token,
+          function(response) {
+            that.tasks  = response.data;
+          }
+        );
       }
     }
   }

@@ -26,6 +26,8 @@
 <script>
   import axios from 'axios';
 
+  // TODO: refactor to use apiProjects
+
   export default {
     name: 'CreateProject',
     data(){

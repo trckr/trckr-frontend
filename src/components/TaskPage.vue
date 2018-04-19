@@ -12,7 +12,7 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  import { apiTasks } from "@/api/tasks";
 
   export default {
     name: "TaskPage",
@@ -31,18 +31,15 @@
         const that = this;
 
         that.taskid = that.$route.params.taskid;
-
-        axios.get(this.$apiBaseUrl + '/api/tasks/' + that.taskid, {
-          headers: {
-            'Authorization': 'Token ' + token
+        // TODO: error handling
+        apiTasks.getOne(
+          this.$apiBaseUrl,
+          that.taskid,
+          token,
+          function(response) {
+            that.task = response
           }
-        })
-          .then(response => {
-            that.task = response;
-          })
-          .catch(error => {
-            that.error = true;
-          });
+        );
       }
     }
 

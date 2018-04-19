@@ -25,7 +25,7 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  import { apiTasks } from '@/api/tasks';
 
   export default {
     name: 'CreateTask',
@@ -45,21 +45,24 @@
 
         that.projectid = that.$route.params.projectid;
 
-        axios.post(this.$apiBaseUrl + '/api/tasks/', {
-            name: that.taskname,
-            description: that.taskdesc,
-            project: that.projectid
-          },{
-            headers: {
-              'Authorization': 'Token ' + token
-            }}
-        )
-          .then(function() {
-            router.push('/project/'+ that.projectid)
-          })
-          .catch(function(error) {
+        // TODO: error handling
+        apiTasks.post(
+          this.$apiBaseUrl,
+          this.taskname,
+          this.taskdesc,
+          that.projectid,
+          token,
+          function() {
+            router.push('/project/' + that.projectid)
+              .catch(function() {
+                that.error = true;
+              })
+          },
+          function(error) {
             that.error = true;
-          });
+          }
+        )
+
       },
     }
   }
