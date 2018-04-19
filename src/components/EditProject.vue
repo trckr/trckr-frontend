@@ -49,7 +49,7 @@
 
         axios.get(this.$apiBaseUrl + '/api/projects/' + that.projectid, {
           headers: {
-            'Authorization': 'JWT ' + token
+            'Authorization': 'Token ' + token
           }
         }).then(function (response) {
           that.project = response.data;
