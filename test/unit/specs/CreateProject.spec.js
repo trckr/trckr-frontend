@@ -1,0 +1,70 @@
+import { createLocalVue, shallow } from '@vue/test-utils';
+import { store } from '@/store';
+import CreateProject from '@/components/CreateProject.vue';
+import Router from 'vue-router';
+
+const localVue = createLocalVue();
+localVue.use(Router);
+
+jest.mock('@/api/projects', function() {
+  return {
+    apiProjects: {
+      post: function(host, name, description, token, success, error){
+        if(name.trim().length && description.trim().length) {
+          let response = {
+            data:{
+              id: 1,
+              name: name,
+              description: description,
+              modifiedDate: '2018-04-19T16:54:07.677763Z',
+              createdDate: '2018-04-19T16:54:07.677717Z',
+            },
+          };
+          success(response);
+        } else {
+          let response ={
+            data: {
+              non_field_errors: ['Something went wrong.'],
+            },
+          };
+          error(response);
+        }
+      }
+    }
+  };
+});
+
+import { apiProjects } from '@/api/projects';
+
+describe('CreateProject.vue', function() {
+  let wrapper = shallow(CreateProject, {localVue, store});
+
+  beforeEach(function() {
+    jest.resetModules();
+    jest.clearAllMocks();
+  });
+
+  it('Shows no error message at start', function() {
+    expect(wrapper.find('.message--error').exists()).toBeFalsy();
+  });
+
+  it('cannot submit empty form', function () {
+    wrapper.setData({
+      name: ' ',
+      description: ' ',
+    });
+    wrapper.find('form').trigger('submit');
+    expect(wrapper.find('.message--error').exists()).toBeTruthy();
+  });
+
+  it('can create a new project', function () {
+    wrapper.setData({
+      name: 'test1234',
+      description: 'test test 1 2 3 4',
+    });
+    wrapper.find('form').trigger('submit');
+    // TODO: doesn't work yet
+    //expect(localStorage.newestproj).toBe('{"id":1,"name":"test1234","description":"test test 1 2 3 4","modifiedDate":"2018-04-19T16:54:07.677763Z","createdDate":"2018-04-19T16:54:07.677717Z"}')
+  });
+
+});
