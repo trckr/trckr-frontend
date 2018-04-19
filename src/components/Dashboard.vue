@@ -3,7 +3,9 @@
     <h1>Dashboard</h1>
     <p>Welcome to <em>trckr</em>!</p>
     <p><router-link :to="{path: '/project/create'}">Create</router-link> a new project here!</p>
+
     <input type="text" v-model="search" placeholder="Search for a project" />
+
     <table id="table--project-task">
       <thead>
         <tr>
@@ -18,8 +20,6 @@
         </tr>
       </tbody>
     </table>
-
-    <p>Pong response: <em>{{ pong }}</em></p>
   </div>
 </template>
 
@@ -30,7 +30,6 @@
     name: 'Dashboard',
     data: function() {
       return {
-        pong: 'Waiting for server response',
         projects: [],
         search: '',
         error: false,
@@ -44,19 +43,9 @@
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
 
-        axios.get(this.$apiBaseUrl + '/api/ping/', {
-          headers: {
-            'Authorization': 'Token ' + token
-          }
-        }).then(function(response) {
-          that.pong = response.data;
-        }).catch(function(error) {
-          that.pong = 'The ping request resulted in an error.'
-        });
-
         axios.get(this.$apiBaseUrl + '/api/projects/', {
           headers: {
-            'Authorization': 'JWT ' + token
+            'Authorization': 'Token ' + token
           }
         }).then(function (response) {
           that.projects = response.data;
