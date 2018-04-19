@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App';
 import { store } from './store';
 import router from './router';
+import { apiTokensInvalidate } from '@/api/tokens/invalidate';
 
 Vue.config.productionTip = false;
 Vue.prototype.$apiBaseUrl = 'https://trckr-api.trvlr.ch';
@@ -37,10 +38,24 @@ router.beforeEach(function (to, from, next) {
       next();
     }
   } else if (to.fullPath === '/logout') {
-    store.dispatch({
-      type: 'logout',
-    });
-    next('/');
+    let token = store.getters.getCurrentUser.token;
+
+    apiTokensInvalidate.post(
+      Vue.prototype.$apiBaseUrl,
+      token,
+      function() {
+        store.dispatch({
+          type: 'logout',
+        });
+        next('/');
+      },
+      function() {
+        store.dispatch({
+          type: 'logout',
+        });
+        next('/');
+      },
+    );
   } else if (requiresAuth && !isLoggedIn) {
     next('/login');
   } else {
