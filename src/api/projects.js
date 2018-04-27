@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const apiProjects = {
-  post: function(host, name, description, token, success, error) {
+  post: function(host, token, name, description, success, error) {
     axios.post(host + '/api/projects/', {
       name: name,
       description: description,
@@ -12,7 +12,7 @@ export const apiProjects = {
     }).then(success).catch(error);
   },
 
-  getAllProjects: function (host, token, success, error) {
+  getAll: function (host, token, success, error) {
     axios.get(host + '/api/projects/', {
       headers: {
         'Authorization': 'Token ' + token
@@ -20,7 +20,7 @@ export const apiProjects = {
     }).then(success).catch(error);
   },
 
-  getOne: function (host, projectId, token, success, error) {
+  getSingle: function (host, token, projectId, success, error) {
     axios.get(host + '/api/projects/' + projectId, {
       headers: {
         'Authorization': 'Token ' + token
@@ -28,7 +28,7 @@ export const apiProjects = {
     }).then(success).catch(error);
   },
 
-  edit: function (host, projectid, name, description, token, success, error) {
+  put: function (host, token, projectid, name, description, success, error) {
     axios.put(host + '/api/projects/' + projectid + '/',
       {
         name: name,

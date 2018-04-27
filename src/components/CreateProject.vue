@@ -43,11 +43,11 @@
 
         apiProjects.post(
           this.$apiBaseUrl,
+          token,
           this.projectname,
           this.projectdesc,
-          token,
           function() {
-            router.push('/dashboard');
+            router.push('/projects');
           },
           function(error) {
             that.error = true;

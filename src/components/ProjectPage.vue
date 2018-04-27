@@ -55,10 +55,10 @@
 
         that.projectid = that.$route.params.projectid;
 
-        apiProjects.getOne(
+        apiProjects.getSingle(
           this.$apiBaseUrl,
-          this.projectid,
           token,
+          this.projectid,
           function(response) {
             that.project = response;
           },
@@ -67,10 +67,10 @@
           }
         );
 
-        apiTasks.getAllTasks(
+        apiTasks.getAll(
           this.$apiBaseUrl,
-          this.projectid,
           token,
+          this.projectid,
           function(response) {
             var tasks = [];
 

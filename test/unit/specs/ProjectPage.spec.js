@@ -9,7 +9,7 @@ localVue.use(Router);
 jest.mock('@/api/projects', function() {
   return {
     apiProjects: {
-      getOne: function (host, projectId,token, success, error) {
+      getSingle: function (host, token, projectId, success, error) {
         //TODO: what 'if statement' to use?
         if(true) {
           let response = {
@@ -38,7 +38,7 @@ jest.mock('@/api/projects', function() {
 jest.mock('@/api/tasks', function() {
   return {
     apiTasks:{
-      getAllTasks: function(host, project, token, success, error){
+      getAll: function(host, project, token, success, error){
         //TODO: what 'if statement' to use?
         if(true){
           let response = {

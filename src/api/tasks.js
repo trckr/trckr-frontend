@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const apiTasks = {
-  post: function(host, name, description, project, token, success, error) {
+  post: function(host, token, name, description, project, success, error) {
     axios.post(host + '/api/tasks/', {
         name: name,
         description: description,
@@ -13,7 +13,7 @@ export const apiTasks = {
     ).then(success).catch(error);
   },
 
-  getAllTasks: function (host, project, token, success, error) {
+  getAll: function (host, token, project, success, error) {
     axios.get(host + '/api/projects/' + project + '/tasks', {
       headers: {
         'Authorization': 'Token ' + token
@@ -21,7 +21,7 @@ export const apiTasks = {
     }).then(success).catch(error);
   },
 
-  getOne: function (host, task, token, success, error) {
+  getSingle: function (host, token, task, success, error) {
     axios.get(host + '/api/tasks/' + task, {
       headers: {
         'Authorization': 'Token ' + token

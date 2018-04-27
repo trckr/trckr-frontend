@@ -47,10 +47,10 @@
 
         apiTasks.post(
           this.$apiBaseUrl,
+          token,
           this.taskname,
           this.taskdesc,
           that.projectid,
-          token,
           function() {
             router.push('/project/' + that.projectid)
           },

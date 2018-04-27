@@ -47,10 +47,10 @@
 
         that.projectid = that.$route.params.projectid;
 
-        apiProjects.getOne(
+        apiProjects.getSingle(
           this.$apiBaseUrl,
-          this.projectid,
           token,
+          this.projectid,
           function(response) {
             that.project = response;
             that.projectname = response.data.name;
@@ -67,12 +67,12 @@
         const token = this.$store.getters.getCurrentUser.token;
 
 
-        apiProjects.edit(
+        apiProjects.put(
           this.$apiBaseUrl,
+          token,
           this.projectid,
           this.projectname,
           this.projectdesc,
-          token,
           function() {
             router.push('/project/' + that.projectid)
           },

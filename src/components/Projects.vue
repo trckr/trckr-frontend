@@ -44,7 +44,7 @@
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
 
-        apiProjects.getAllProjects(
+        apiProjects.getAll(
           this.$apiBaseUrl,
           token,
           function(response) {
