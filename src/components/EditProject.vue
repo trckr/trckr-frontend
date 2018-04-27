@@ -24,9 +24,7 @@
 </template>
 
 <script>
-  import axios from 'axios';
-
-  // TODO: refactor to use apiProjects
+  import { apiProjects } from '@/api/projects';
 
   export default {
     name: 'CreateProject',
@@ -49,37 +47,39 @@
 
         that.projectid = that.$route.params.projectid;
 
-        axios.get(this.$apiBaseUrl + '/api/projects/' + that.projectid, {
-          headers: {
-            'Authorization': 'Token ' + token
+        apiProjects.getOne(
+          this.$apiBaseUrl,
+          this.projectid,
+          token,
+          function(response) {
+            that.project = response;
+            that.projectname = response.data.name;
+            that.projectdesc = response.data.description;
+          },
+          function(error) {
+            that.error = true;
           }
-        }).then(function (response) {
-          that.project = response.data;
-          that.projectname = response.data.name;
-          that.projectdesc = response.data.description;
-        }).catch(function (error) {
-          that.error = 'there was a problem'
-        });
+        );
       },
       editProject(){
         const that = this;
         const router = this.$router;
         const token = this.$store.getters.getCurrentUser.token;
 
-        axios.put(this.$apiBaseUrl + '/api/projects/' + that.projectid + '/', {
-            name: this.projectname,
-            description: this.projectdesc
-          },{
-            headers: {
-              'Authorization': 'Token ' + token
-            }}
-        )
-          .then(function() {
+
+        apiProjects.edit(
+          this.$apiBaseUrl,
+          this.projectid,
+          this.projectname,
+          this.projectdesc,
+          token,
+          function() {
             router.push('/project/' + that.projectid)
-          })
-          .catch(function(error) {
-            that.error = true;
-          });
+          },
+          function(error) {
+            that.error  =true;
+          }
+        );
       },
     }
   }

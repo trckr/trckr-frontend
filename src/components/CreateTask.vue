@@ -45,7 +45,6 @@
 
         that.projectid = that.$route.params.projectid;
 
-        // TODO: error handling
         apiTasks.post(
           this.$apiBaseUrl,
           this.taskname,
@@ -54,9 +53,6 @@
           token,
           function() {
             router.push('/project/' + that.projectid)
-              .catch(function() {
-                that.error = true;
-              })
           },
           function(error) {
             that.error = true;

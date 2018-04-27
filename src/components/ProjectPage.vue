@@ -39,11 +39,7 @@
     data(){
       return {
         project: [],
-        projectname: '',
         projectid: 0,
-        description: '',
-        modifiedDate: '',
-        createdDate: '',
         tasks: [],
         error: false,
       }
@@ -59,27 +55,38 @@
 
         that.projectid = that.$route.params.projectid;
 
-        // TODO: error handling
         apiProjects.getOne(
           this.$apiBaseUrl,
-          that.projectid,
+          this.projectid,
           token,
           function(response) {
             that.project = response;
-            that.projectname = response.name;
-            that.description = response.description;
-            that.modifiedDate = response.modifiedDate;
-            that.createdDate = response.createdDate;
+          },
+          function(error) {
+            that.error = true;
           }
         );
 
-        // TODO: error handling
         apiTasks.getAllTasks(
           this.$apiBaseUrl,
           this.projectid,
           token,
           function(response) {
-            that.tasks  = response.data;
+            var tasks = [];
+
+            for (var i = 0; i < response.data.length; i++) {
+              var task = {
+                name: response.data[i]['name'],
+                id: response.data[i]['id'],
+                description: response.data[i]['description'],
+                project: response.data[i]['project'],
+              };
+              tasks.push(task);
+            }
+            that.tasks  = tasks;
+          },
+          function(error) {
+            that.error = true;
           }
         );
       }

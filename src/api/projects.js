@@ -28,5 +28,17 @@ export const apiProjects = {
     }).then(success).catch(error);
   },
 
+  edit: function (host, projectid, name, description, token, success, error) {
+    axios.put(host + '/api/projects/' + projectid + '/',
+      {
+        name: name,
+        description: description,
+      },{
+        headers: {
+          'Authorization': 'Token ' + token
+        }
+    }).then(success).catch(error);
+  }
+
 
 };

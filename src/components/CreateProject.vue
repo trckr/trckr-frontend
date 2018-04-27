@@ -41,19 +41,15 @@
         const router = this.$router;
         const token = this.$store.getters.getCurrentUser.token;
 
-        // TODO: error handling
         apiProjects.post(
           this.$apiBaseUrl,
           this.projectname,
           this.projectdesc,
           token,
-          function(response) {
+          function() {
             // TODO: figure out how to do this better
-            localStorage.setItem('newestproj', JSON.stringify(response.data)); //only used for testing
-            router.push('/dashboard')
-              .catch(function() {
-                that.error = true;
-              })
+            // localStorage.setItem('newestproj', JSON.stringify(response.data)); //only used for testing
+            router.push('/dashboard');
           },
           function(error) {
             that.error = true;

@@ -31,13 +31,15 @@
         const that = this;
 
         that.taskid = that.$route.params.taskid;
-        // TODO: error handling
         apiTasks.getOne(
           this.$apiBaseUrl,
           that.taskid,
           token,
           function(response) {
-            that.task = response
+            that.task = response;
+          },
+          function(error) {
+            that.error = true;
           }
         );
       }
