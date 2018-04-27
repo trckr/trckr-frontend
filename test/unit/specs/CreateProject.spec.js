@@ -63,8 +63,9 @@ describe('CreateProject.vue', function() {
       description: 'test test 1 2 3 4',
     });
     wrapper.find('form').trigger('submit');
-    // TODO: doesn't work yet
-    //expect(localStorage.newestproj).toBe('{"id":1,"name":"test1234","description":"test test 1 2 3 4","modifiedDate":"2018-04-19T16:54:07.677763Z","createdDate":"2018-04-19T16:54:07.677717Z"}')
+
+    console.log(wrapper.vm.$route);
+
   });
 
 });

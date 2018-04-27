@@ -47,8 +47,6 @@
           this.projectdesc,
           token,
           function() {
-            // TODO: figure out how to do this better
-            // localStorage.setItem('newestproj', JSON.stringify(response.data)); //only used for testing
             router.push('/dashboard');
           },
           function(error) {

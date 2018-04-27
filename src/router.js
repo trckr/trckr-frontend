@@ -5,6 +5,7 @@ import CreateTask from '@/components/CreateTask';
 import Dashboard from '@/components/Dashboard';
 import EditProject from '@/components/EditProject';
 import ProjectPage from '@/components/ProjectPage';
+import Projects from '@/components/Projects';
 import TaskPage from '@/components/TaskPage';
 import UserLogin from '@/components/UserLogin';
 import UserRegistration from '@/components/UserRegistration';
@@ -67,6 +68,13 @@ export default new Router({
     path: '/project/edit/:projectid',
     name: 'edit project',
     component: EditProject,
+    meta: {
+      requiresAuth: true,
+    }
+  },{
+    path: '/projects',
+    name: 'all projects',
+    component: Projects,
     meta: {
       requiresAuth: true,
     }
