@@ -58,7 +58,7 @@ export default new Router({
       requiresAuth: true,
     }
   }, {
-    path: '/project/:projectId/task/:taskid',
+    path: '/project/:projectId/task/:taskId',
     name: 'task page',
     component: TaskPage,
     meta: {
