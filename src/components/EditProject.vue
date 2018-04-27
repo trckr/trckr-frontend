@@ -7,12 +7,12 @@
     <h1>Edit Project </h1>
     <form @submit.prevent="editProject">
       <div class="form-item">
-        <label for="projectname">Project Name</label>
-        <input v-model="projectname" id="projectname" type="text" required="required" />
+        <label for="name">Project Name</label>
+        <input v-model="name" id="name" type="text" required="required" />
       </div>
       <div class="form-item">
-        <label for="projectdesc">Project Description</label>
-        <textarea v-model="projectdesc" id="projectdesc"></textarea>
+        <label for="description">Project Description</label>
+        <textarea v-model="description" id="description"></textarea>
       </div>
       <div class="form-actions">
         <div class="form-action">

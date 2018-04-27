@@ -31,10 +31,10 @@
         const that = this;
 
         that.taskId = that.$route.params.taskId;
-        apiTasks.getOne(
+        apiTasks.getSingle(
           this.$apiBaseUrl,
-          that.taskId,
           token,
+          that.taskId,
           function(response) {
             that.task = response;
           },

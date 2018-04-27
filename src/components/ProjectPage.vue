@@ -21,7 +21,7 @@
       </thead>
       <tbody>
         <tr v-for="task in tasks">
-          <td><router-link :to="{path: projectid +'/task/' + task.id}">{{ task.name }}</router-link></td>
+          <td><router-link :to="{path: projectId +'/task/' + task.id}">{{ task.name }}</router-link></td>
           <td>{{ task.description }}</td>
         </tr>
       </tbody>
