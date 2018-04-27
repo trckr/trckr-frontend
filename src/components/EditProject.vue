@@ -7,12 +7,12 @@
     <h1>Edit Project </h1>
     <form @submit.prevent="editProject">
       <div class="form-item">
-        <label for="projectname">Project Name</label>
-        <input v-model="projectname" id="projectname" type="text" required="required" />
+        <label for="name">Project Name</label>
+        <input v-model="name" id="name" type="text" required="required" />
       </div>
       <div class="form-item">
-        <label for="projectdesc">Project Description</label>
-        <textarea v-model="projectdesc" id="projectdesc"></textarea>
+        <label for="description">Project Description</label>
+        <textarea v-model="description" id="description"></textarea>
       </div>
       <div class="form-actions">
         <div class="form-action">
@@ -24,18 +24,18 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  import { apiProjects } from '@/api/projects';
 
   export default {
     name: 'CreateProject',
-    data(){
+    data: function(){
       return{
         project: [],
-        projectid: '',
-        projectname: '',
-        projectdesc:'',
+        projectId: '',
+        name: '',
+        description:'',
         error: false,
-      }
+      };
     },
     created() {
       this.fetchData();
@@ -45,39 +45,41 @@
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
 
-        that.projectid = that.$route.params.projectid;
+        that.projectId = that.$route.params.projectId;
 
-        axios.get(this.$apiBaseUrl + '/api/projects/' + that.projectid, {
-          headers: {
-            'Authorization': 'Token ' + token
+        apiProjects.getSingle(
+          this.$apiBaseUrl,
+          token,
+          this.projectId,
+          function(response) {
+            that.project = response;
+            that.name = response.data.name;
+            that.description = response.data.description;
+          },
+          function(error) {
+            that.error = true;
           }
-        }).then(function (response) {
-          that.project = response.data;
-          that.projectname = response.data.name;
-          that.projectdesc = response.data.description;
-        }).catch(function (error) {
-          that.error = 'there was a problem'
-        });
+        );
       },
       editProject(){
         const that = this;
         const router = this.$router;
         const token = this.$store.getters.getCurrentUser.token;
 
-        axios.put(this.$apiBaseUrl + '/api/projects/' + that.projectid + '/', {
-            name: this.projectname,
-            description: this.projectdesc
-          },{
-            headers: {
-              'Authorization': 'Token ' + token
-            }}
-        )
-          .then(function() {
-            router.push('/project/' + that.projectid)
-          })
-          .catch(function(error) {
+
+        apiProjects.put(
+          this.$apiBaseUrl,
+          token,
+          this.projectId,
+          this.name,
+          this.description,
+          function() {
+            router.push('/project/' + that.projectId)
+          },
+          function(error) {
             that.error = true;
-          });
+          }
+        );
       },
     }
   }

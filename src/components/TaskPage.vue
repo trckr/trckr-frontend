@@ -12,15 +12,15 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  import { apiTasks } from "@/api/tasks";
 
   export default {
     name: "TaskPage",
-    data() {
+    data: function() {
       return {
         task:[],
         error: false,
-      }
+      };
     },
     created() {
       this.fetchData();
@@ -30,21 +30,19 @@
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
 
-        that.taskid = that.$route.params.taskid;
-
-        axios.get(this.$apiBaseUrl + '/api/tasks/' + that.taskid, {
-          headers: {
-            'Authorization': 'Token ' + token
-          }
-        })
-          .then(response => {
+        that.taskId = that.$route.params.taskId;
+        apiTasks.getSingle(
+          this.$apiBaseUrl,
+          token,
+          that.taskId,
+          function(response) {
             that.task = response;
-          })
-          .catch(error => {
+          },
+          function(error) {
             that.error = true;
-          });
+          }
+        );
       }
     }
-
   }
 </script>

@@ -8,12 +8,12 @@
     <form @submit.prevent="createTask">
       <div class="form-item">
         <label for="taskname">Task Name</label>
-        <input v-model="taskname" id="taskname" type="text" required="required" />
+        <input v-model="name" id="taskname" type="text" required="required" />
       </div>
 
       <div class="form-item">
         <label for="taskdesc">Task Description</label>
-        <textarea v-model="taskdesc" id="taskdesc"></textarea>
+        <textarea v-model="description" id="taskdesc"></textarea>
       </div>
       <div class="form-actions">
         <div class="form-action">
@@ -25,17 +25,18 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  import { apiTasks } from '@/api/tasks';
 
   export default {
     name: 'CreateTask',
-    data(){
+    data: function(){
       return{
-        taskname: '',
-        taskdesc: '',
-        projectid: '',
+        id: '',
+        name: '',
+        description: '',
+        projectId: '',
         error: false,
-      }
+      };
     },
     methods: {
       createTask(){
@@ -43,23 +44,21 @@
         const router = this.$router;
         const token = this.$store.getters.getCurrentUser.token;
 
-        that.projectid = that.$route.params.projectid;
+        that.projectId = that.$route.params.projectId;
 
-        axios.post(this.$apiBaseUrl + '/api/tasks/', {
-            name: that.taskname,
-            description: that.taskdesc,
-            project: that.projectid
-          },{
-            headers: {
-              'Authorization': 'Token ' + token
-            }}
-        )
-          .then(function() {
-            router.push('/project/'+ that.projectid)
-          })
-          .catch(function(error) {
+        apiTasks.post(
+          this.$apiBaseUrl,
+          token,
+          this.name,
+          this.description,
+          that.projectId,
+          function() {
+            router.push('/project/' + that.projectId)
+          },
+          function(error) {
             that.error = true;
-          });
+          }
+        )
       },
     }
   }

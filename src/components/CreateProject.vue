@@ -7,12 +7,12 @@
     <h1>Create a project</h1>
     <form @submit.prevent="createProject">
       <div class="form-item">
-        <label for="projectname">Project Name</label>
-        <input v-model="projectname" id="projectname" type="text" required="required" />
+        <label for="name">Project Name</label>
+        <input v-model="name" id="name" type="text" required="required" />
       </div>
       <div class="form-item">
-        <label for="projectdesc">Project Description</label>
-        <textarea v-model="projectdesc" id="projectdesc"></textarea>
+        <label for="description">Project Description</label>
+        <textarea v-model="description" id="description"></textarea>
       </div>
       <div class="form-actions">
         <div class="form-action">
@@ -24,16 +24,16 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  import { apiProjects } from '@/api/projects';
 
   export default {
     name: 'CreateProject',
-    data(){
-      return{
-        projectname: '',
-        projectdesc: '',
+    data: function() {
+      return {
+        name: '',
+        description: '',
         error: false,
-      }
+      };
     },
     methods: {
       createProject(){
@@ -41,21 +41,19 @@
         const router = this.$router;
         const token = this.$store.getters.getCurrentUser.token;
 
-        axios.post(this.$apiBaseUrl + '/api/projects/', {
-            name: this.projectname,
-            description: this.projectdesc
-          },{
-            headers: {
-              'Authorization': 'Token ' + token
-            }}
-        )
-          .then(function() {
-            router.push('/dashboard')
-          })
-          .catch(function(error) {
+        apiProjects.post(
+          this.$apiBaseUrl,
+          token,
+          this.name,
+          this.description,
+          function() {
+            router.push('/projects');
+          },
+          function(error) {
             that.error = true;
-          });
-      },
+          }
+        )
+      }
     }
   }
 </script>

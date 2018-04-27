@@ -44,7 +44,7 @@
 
   export default {
     name: 'UserRegistration',
-    data() {
+    data: function() {
       return {
         username: '',
         password: '',
