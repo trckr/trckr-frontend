@@ -41,23 +41,6 @@
         }).catch(function(error) {
           that.pong = 'The ping request resulted in an error.'
         });
-<<<<<<< HEAD
-=======
-
-<<<<<<< HEAD
-        apiProjects.getAllProjects(
-          this.$apiBaseUrl,
-          token,
-          function(response) {
-            that.projects = response.data;
-          },
-          function(error) {
-            that.error = true;
-          }
-        )
->>>>>>> refactoring for testing
-=======
->>>>>>> adds projects page, removes projects from dashboard
       },
     },
   }
