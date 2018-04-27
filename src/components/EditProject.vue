@@ -28,14 +28,14 @@
 
   export default {
     name: 'CreateProject',
-    data(){
+    data: function(){
       return{
         project: [],
         projectId: '',
         name: '',
         description:'',
         error: false,
-      }
+      };
     },
     created() {
       this.fetchData();

@@ -36,13 +36,13 @@
 
   export default {
     name: "Project",
-    data(){
+    data: function(){
       return {
         project: [],
         projectId: 0,
         tasks: [],
         error: false,
-      }
+      };
     },
     created: function() {
       this.fetchData();

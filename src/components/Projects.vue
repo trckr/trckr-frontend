@@ -34,7 +34,7 @@
         projects: [],
         search: '',
         error: false,
-      }
+      };
     },
     created: function() {
       this.fetchData();

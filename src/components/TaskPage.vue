@@ -16,11 +16,11 @@
 
   export default {
     name: "TaskPage",
-    data() {
+    data: function() {
       return {
         task:[],
         error: false,
-      }
+      };
     },
     created() {
       this.fetchData();

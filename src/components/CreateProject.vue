@@ -28,12 +28,12 @@
 
   export default {
     name: 'CreateProject',
-    data() {
+    data: function() {
       return {
         name: '',
         description: '',
         error: false,
-      }
+      };
     },
     methods: {
       createProject(){

@@ -12,7 +12,6 @@
 
 <script>
   import axios from 'axios';
-  import { apiProjects } from '@/api/projects';
 
   export default {
     name: 'Dashboard',
@@ -22,7 +21,7 @@
         projects: [],
         search: '',
         error: false,
-      }
+      };
     },
     created: function() {
       this.fetchData();

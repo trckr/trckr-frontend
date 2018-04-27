@@ -29,13 +29,14 @@
 
   export default {
     name: 'CreateTask',
-    data(){
+    data: function(){
       return{
+        id: '',
         name: '',
         description: '',
         projectId: '',
         error: false,
-      }
+      };
     },
     methods: {
       createTask(){
