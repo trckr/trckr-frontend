@@ -1,5 +1,6 @@
 import { createLocalVue, shallow } from '@vue/test-utils';
 import { store } from '@/store';
+import { apiTokensInvalidate } from '@/api/tokens/invalidate';
 import UserLogin from '@/components/UserLogin.vue';
 import Router from 'vue-router';
 
@@ -27,6 +28,21 @@ jest.mock('@/api/token-auth', function() {
 
           error(response);
         }
+      },
+    },
+  };
+});
+
+jest.mock('@/api/tokens/invalidate', function() {
+  return {
+    apiTokensInvalidate: {
+      post: function(host, token, success, error) {
+        // We only need to callback success as we don't test any network errors on logging out.
+        let response = {
+          data: 'success',
+        };
+
+        success(response);
       },
     },
   };
@@ -63,5 +79,25 @@ describe('UserLogin.vue', function() {
     wrapper.find('form').trigger('submit');
 
     expect(localStorage.trckrCurrentUser).toBe('{"username":"jest","token":"secret-token"}');
+  });
+
+  it('Testing Logout', function() {
+    // First, check if we're still logged in.
+    expect(localStorage.length).not.toBe(0);
+
+    apiTokensInvalidate.post(
+      '',
+      'secret-token',
+      function(response) {
+        if (response.data === 'success') {
+          store.dispatch({
+            type: 'logout',
+          });
+        }
+      }
+    );
+
+    // Secondly, check if we're logged out.
+    expect(localStorage.trckrCurrentUser).toBe('{}');
   });
 });
