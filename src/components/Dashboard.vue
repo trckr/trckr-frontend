@@ -31,7 +31,7 @@
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
 
-        axios.get(this.$apiBaseUrl + '/api/ping/', {
+        axios.get(this.$apiBaseUrl + '/api/ping', {
           headers: {
             'Authorization': 'Token ' + token
           }

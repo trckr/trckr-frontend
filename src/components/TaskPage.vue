@@ -30,10 +30,10 @@
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
 
-        that.taskid = that.$route.params.taskid;
+        that.taskId = that.$route.params.taskId;
         apiTasks.getOne(
           this.$apiBaseUrl,
-          that.taskid,
+          that.taskId,
           token,
           function(response) {
             that.task = response;

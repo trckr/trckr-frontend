@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const apiUser = {
   post: function(host, username, email, password, first_name, last_name, success, error) {
-    axios.post(host + '/api/user/', {
+    axios.post(host + '/api/user', {
       username: username,
       email: email,
       password: password,
