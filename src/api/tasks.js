@@ -8,21 +8,21 @@ export const apiTasks = {
         project: projectId,
       },{
         headers: {
-          'Authorization': 'Token ' + token
+          'Authorization': 'Token ' + token,
         }}
     ).then(success).catch(error);
   },
   getAll: function (host, token, projectId, success, error) {
     axios.get(host + '/api/projects/' + projectId + '/tasks/', {
       headers: {
-        'Authorization': 'Token ' + token
+        'Authorization': 'Token ' + token,
       }
     }).then(success).catch(error);
   },
   getSingle: function (host, token, taskId, success, error) {
     axios.get(host + '/api/tasks/' + taskId + '/', {
       headers: {
-        'Authorization': 'Token ' + token
+        'Authorization': 'Token ' + token,
       }
     }).then(success).catch(error);
   },

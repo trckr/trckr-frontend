@@ -8,12 +8,12 @@
     <form @submit.prevent="createTask">
       <div class="form-item">
         <label for="taskname">Task Name</label>
-        <input v-model="taskname" id="taskname" type="text" required="required" />
+        <input v-model="name" id="taskname" type="text" required="required" />
       </div>
 
       <div class="form-item">
         <label for="taskdesc">Task Description</label>
-        <textarea v-model="taskdesc" id="taskdesc"></textarea>
+        <textarea v-model="description" id="taskdesc"></textarea>
       </div>
       <div class="form-actions">
         <div class="form-action">
@@ -31,9 +31,9 @@
     name: 'CreateTask',
     data(){
       return{
-        taskname: '',
-        taskdesc: '',
-        projectid: '',
+        name: '',
+        description: '',
+        projectId: '',
         error: false,
       }
     },
@@ -43,22 +43,21 @@
         const router = this.$router;
         const token = this.$store.getters.getCurrentUser.token;
 
-        that.projectid = that.$route.params.projectid;
+        that.projectId = that.$route.params.projectId;
 
         apiTasks.post(
           this.$apiBaseUrl,
           token,
-          this.taskname,
-          this.taskdesc,
-          that.projectid,
+          this.name,
+          this.description,
+          that.projectId,
           function() {
-            router.push('/project/' + that.projectid)
+            router.push('/project/' + that.projectId)
           },
           function(error) {
             that.error = true;
           }
         )
-
       },
     }
   }

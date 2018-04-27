@@ -31,9 +31,9 @@
     data(){
       return{
         project: [],
-        projectid: '',
-        projectname: '',
-        projectdesc:'',
+        projectId: '',
+        name: '',
+        description:'',
         error: false,
       }
     },
@@ -45,16 +45,16 @@
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
 
-        that.projectid = that.$route.params.projectid;
+        that.projectId = that.$route.params.projectId;
 
         apiProjects.getSingle(
           this.$apiBaseUrl,
           token,
-          this.projectid,
+          this.projectId,
           function(response) {
             that.project = response;
-            that.projectname = response.data.name;
-            that.projectdesc = response.data.description;
+            that.name = response.data.name;
+            that.description = response.data.description;
           },
           function(error) {
             that.error = true;
@@ -70,14 +70,14 @@
         apiProjects.put(
           this.$apiBaseUrl,
           token,
-          this.projectid,
-          this.projectname,
-          this.projectdesc,
+          this.projectId,
+          this.name,
+          this.description,
           function() {
-            router.push('/project/' + that.projectid)
+            router.push('/project/' + that.projectId)
           },
           function(error) {
-            that.error  =true;
+            that.error = true;
           }
         );
       },

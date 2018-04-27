@@ -7,21 +7,21 @@ export const apiProjects = {
       description: description,
     }, {
       headers: {
-        'Authorization': 'Token ' + token
+        'Authorization': 'Token ' + token,
       }
     }).then(success).catch(error);
   },
   getAll: function (host, token, success, error) {
     axios.get(host + '/api/projects/', {
       headers: {
-        'Authorization': 'Token ' + token
+        'Authorization': 'Token ' + token,
       }
     }).then(success).catch(error);
   },
   getSingle: function (host, token, projectId, success, error) {
     axios.get(host + '/api/projects/' + projectId + '/', {
       headers: {
-        'Authorization': 'Token ' + token
+        'Authorization': 'Token ' + token,
       }
     }).then(success).catch(error);
   },
@@ -31,7 +31,7 @@ export const apiProjects = {
       description: description,
     },{
       headers: {
-        'Authorization': 'Token ' + token
+        'Authorization': 'Token ' + token,
       }
     }).then(success).catch(error);
   },

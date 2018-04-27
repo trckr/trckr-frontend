@@ -39,7 +39,7 @@
     data(){
       return {
         project: [],
-        projectid: 0,
+        projectId: 0,
         tasks: [],
         error: false,
       }
@@ -53,12 +53,12 @@
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
 
-        that.projectid = that.$route.params.projectid;
+        that.projectId = that.$route.params.projectId;
 
         apiProjects.getSingle(
           this.$apiBaseUrl,
           token,
-          this.projectid,
+          this.projectId,
           function(response) {
             that.project = response;
           },
@@ -70,7 +70,7 @@
         apiTasks.getAll(
           this.$apiBaseUrl,
           token,
-          this.projectid,
+          this.projectId,
           function(response) {
             var tasks = [];
 

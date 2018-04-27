@@ -44,28 +44,28 @@ export default new Router({
       requiresAuth: true,
     }
   }, {
-    path: '/project/:projectid',
+    path: '/project/:projectId',
     name: 'Project page',
     component: ProjectPage,
     meta: {
       requiresAuth: true,
     }
   }, {
-    path: '/project/:projectid/task/create',
+    path: '/project/:projectId/task/create',
     name: 'Create Task',
     component: CreateTask,
     meta: {
       requiresAuth: true,
     }
   }, {
-    path: '/project/:projectid/task/:taskid',
+    path: '/project/:projectId/task/:taskid',
     name: 'task page',
     component: TaskPage,
     meta: {
       requiresAuth: true,
     }
   }, {
-    path: '/project/edit/:projectid',
+    path: '/project/edit/:projectId',
     name: 'edit project',
     component: EditProject,
     meta: {
