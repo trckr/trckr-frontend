@@ -7,13 +7,13 @@
     <h1>Create a task</h1>
     <form @submit.prevent="createTask">
       <div class="form-item">
-        <label for="taskname">Task Name</label>
-        <input v-model="name" id="taskname" type="text" required="required" />
+        <label for="name">Task Name</label>
+        <input v-model="name" id="name" type="text" required="required" />
       </div>
 
       <div class="form-item">
-        <label for="taskdesc">Task Description</label>
-        <textarea v-model="description" id="taskdesc"></textarea>
+        <label for="description">Task Description</label>
+        <textarea v-model="description" id="description"></textarea>
       </div>
       <div class="form-actions">
         <div class="form-action">
