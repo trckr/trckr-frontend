@@ -3,9 +3,15 @@ import { store } from '@/store';
 import CreateTask from '@/components/CreateTask.vue';
 import Router from 'vue-router';
 
-const router = new Router();
 const localVue = createLocalVue();
-localVue.use(Router);
+
+const $route = { params: { projectId: 1 }};
+const $router = {
+    path: '',
+    push: function(string) {
+        this.path = string
+    }
+}
 
 jest.mock('@/api/tasks', function() {
   return {
@@ -37,7 +43,7 @@ jest.mock('@/api/tasks', function() {
 import { apiTasks } from '@/api/tasks';
 
 describe('CreateTask.vue', function () {
-  let wrapper = shallow(CreateTask, {localVue, store, router});
+  let wrapper = shallow(CreateTask, {localVue, store, mocks: { $router, $route }});
 
   beforeEach(function() {
     jest.resetModules();
@@ -63,7 +69,6 @@ describe('CreateTask.vue', function () {
       description: 'this is test task1',
     });
     wrapper.find('form').trigger('submit');
-    //TODO: projectid is undefined
-    expect(wrapper.vm.$router.history.current.path).toBe('/project/1');
+    expect(wrapper.vm.$router.path).toBe('/project/1');
   });
 });
