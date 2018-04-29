@@ -1,34 +1,29 @@
 import { createLocalVue, shallow } from '@vue/test-utils';
 import { store } from '@/store';
 import EditProject from '@/components/EditProject.vue';
-import Router from 'vue-router';
 
-const router = new Router();
 const localVue = createLocalVue();
-localVue.use(Router);
+
+const $route = { params: { projectId: 1 }};
+const $router = {
+  path: '',
+  push: function(string) {
+    this.path = string
+  }
+};
 
 jest.mock('@/api/projects', function() {
     return {
       apiProjects: {
         getSingle: function (host, token, projectId, success, error) {
-          //TODO: what to check for
-          if(true){
-            let response = {
-              data:{
-                id: 1,
-                name: 'proj 1',
-                description: 'this is stock',
-              },
-            };
-            success(response);
-          } else {
-            let response ={
-              data: {
-                non_field_errors: ['Something went wrong.'],
-              },
-            };
-            error(response);
-          }
+          let response = {
+            data:{
+              id: 1,
+              name: 'proj 1',
+              description: 'this is stock',
+            },
+          };
+          success(response);
         },
         put: function (host, token, projectId, name, description, success, error) {
           if(name.trim().length && description.trim().length){
@@ -59,7 +54,7 @@ jest.mock('@/api/projects', function() {
 import { apiProjects } from '@/api/projects';
 
 describe('EditProject.vue', function() {
-  let wrapper = shallow(EditProject, {localVue, store, router});
+  let wrapper = shallow(EditProject, {localVue, store, mocks: { $router, $route }});
 
   beforeEach(function () {
     jest.resetModules();
@@ -85,7 +80,6 @@ describe('EditProject.vue', function() {
       description: 'this has been edited',
     });
     wrapper.find('form').trigger('submit');
-    //TODO: projectid is undefined
-    expect(wrapper.vm.$router.history.current.path).toBe('/project/1');
+    expect(wrapper.vm.$router.path).toBe('/project/1');
   });
 });

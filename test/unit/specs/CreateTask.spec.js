@@ -1,7 +1,6 @@
 import { createLocalVue, shallow } from '@vue/test-utils';
 import { store } from '@/store';
 import CreateTask from '@/components/CreateTask.vue';
-import Router from 'vue-router';
 
 const localVue = createLocalVue();
 
@@ -11,7 +10,7 @@ const $router = {
     push: function(string) {
         this.path = string
     }
-}
+};
 
 jest.mock('@/api/tasks', function() {
   return {
