@@ -61,4 +61,10 @@ describe('Projects.vue', function() {
   it('shows all the projects', function(){
     expect(wrapper.find('tbody').text()).toBe('test 1 this is test 1test 2 this is test 2test 3 this is test 3')
   });
+
+  it('shows the search result', function(){
+    if( Projects.data.name.match(this.search)== "3"){
+      expect(wrapper.find('tbody').text()).toBe('test 3 this is test 3');
+      }
+  });
 });
