@@ -58,13 +58,23 @@ describe('Projects.vue', function() {
     expect(wrapper.find('.message--error').exists()).toBeFalsy();
   });
 
-  it('shows all the projects', function(){
+  it('shows all the projects', function() {
     expect(wrapper.find('tbody').text()).toBe('test 1 this is test 1test 2 this is test 2test 3 this is test 3')
   });
 
-  it('shows the search result', function(){
-    if( Projects.data.name.match(this.search)== "3"){
-      expect(wrapper.find('tbody').text()).toBe('test 3 this is test 3');
-      }
+  it('shows the search result', function() {
+    wrapper.setData({
+      search: '3',
+    });
+
+    expect(wrapper.find('tbody').text()).toBe('test 3 this is test 3');
+  });
+
+  it('search result is empty', function() {
+    wrapper.setData({
+      search: '4',
+    });
+
+    expect(wrapper.find('tbody').text()).toBe('');
   });
 });
