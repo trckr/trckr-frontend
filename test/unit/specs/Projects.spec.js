@@ -69,4 +69,12 @@ describe('Projects.vue', function() {
 
     expect(wrapper.find('tbody').text()).toBe('test 3 this is test 3');
   });
+
+  it('search result is empty', function() {
+    wrapper.setData({
+      search: '4',
+    });
+
+    expect(wrapper.find('tbody').text()).toBe('');
+  });
 });
