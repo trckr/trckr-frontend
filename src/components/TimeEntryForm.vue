@@ -1,40 +1,46 @@
 <template>
   <div class="component component--create-time-entry">
-    <div v-if="error" class="message message--error">
-      Something went wrong.
-    </div>
+    <article>
+      <header>
+        <h1>{{ title }}</h1>
+      </header>
 
-    <h1>{{ title }}</h1>
-
-    <form @submit.prevent="createTimeEntry">
-      <div class="form-item">
-        <label for="projectId">Project</label>
-        <select id="projectId" v-model="projectId" v-on:change="fetchTasks()" required="required">
-          <option value="">Please select</option>
-          <option v-for="project in projects" :value="project.id">{{ project.name }}</option>
-        </select>
-      </div>
-      <div class="form-item" v-if="projectId">
-        <label for="taskId">Task</label>
-        <select id="taskId" v-model="taskId" required="required">
-          <option value="">Please select</option>
-          <option v-for="task in tasks" :value="task.id">{{ task.name }}</option>
-        </select>
-      </div>
-      <div class="form-item">
-        <label for="description">Description</label>
-        <textarea v-model="description" id="description"></textarea>
-      </div>
-      <div class="form-item">
-        <label for="timeSpent">Time (hours)</label>
-        <input v-model="timeSpent" id="timeSpent" type="number" step="0.25" required="required" min="0.25" />
-      </div>
-      <div class="form-actions">
-        <div class="form-action">
-          <input type="submit" value="Save time entry" />
+      <section>
+        <div v-if="error" class="message message--error">
+          Something went wrong.
         </div>
-      </div>
-    </form>
+
+        <form @submit.prevent="createTimeEntry">
+          <div class="form-item">
+            <label for="projectId">Project</label>
+            <select id="projectId" v-model="projectId" v-on:change="fetchTasks()" required="required">
+              <option value="">Please select</option>
+              <option v-for="project in projects" :value="project.id">{{ project.name }}</option>
+            </select>
+          </div>
+          <div class="form-item" v-if="projectId">
+            <label for="taskId">Task</label>
+            <select id="taskId" v-model="taskId" required="required">
+              <option value="">Please select</option>
+              <option v-for="task in tasks" :value="task.id">{{ task.name }}</option>
+            </select>
+          </div>
+          <div class="form-item">
+            <label for="description">Description</label>
+            <textarea v-model="description" id="description"></textarea>
+          </div>
+          <div class="form-item">
+            <label for="timeSpent">Time (hours)</label>
+            <input v-model="timeSpent" id="timeSpent" type="number" step="0.25" required="required" min="0.25" />
+          </div>
+          <div class="form-actions">
+            <div class="form-action">
+              <input type="submit" value="Save time entry" />
+            </div>
+          </div>
+        </form>
+      </section>
+    </article>
   </div>
 </template>
 
@@ -47,10 +53,10 @@
     name: 'TimeEntryForm',
     data: function() {
       return {
-        title: 'New time entry',
+        title: 'Create a time entry',
         timeEntryId: '',
         description: '',
-        timeSpent: 0,
+        timeSpent: '',
         taskId: '',
         projectId: '',
         tasks: [],

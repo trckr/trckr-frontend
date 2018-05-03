@@ -5,7 +5,7 @@
         <h1>Dashboard</h1>
       </header>
 
-      <section class="content">
+      <section>
         <div v-if="error" class="message message--error">
           Something went wrong.
         </div>

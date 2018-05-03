@@ -9,7 +9,7 @@
         </div>
       </header>
 
-      <section class="content">
+      <section>
         <div v-if="error" class="message message--error">
           Something went wrong.
         </div>

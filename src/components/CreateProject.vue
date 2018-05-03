@@ -1,25 +1,32 @@
 <template>
   <div class="component component--project-creation">
-    <div v-if="error" class="message message--error">
-      Something went wrong.
-    </div>
+    <article>
+      <header>
+        <h1>Create a project</h1>
+      </header>
 
-    <h1>Create a project</h1>
-    <form @submit.prevent="createProject">
-      <div class="form-item">
-        <label for="name">Project Name</label>
-        <input v-model="name" id="name" type="text" required="required" />
-      </div>
-      <div class="form-item">
-        <label for="description">Project Description</label>
-        <textarea v-model="description" id="description"></textarea>
-      </div>
-      <div class="form-actions">
-        <div class="form-action">
-          <input type="submit" value="Create" />
+      <section>
+        <div v-if="error" class="message message--error">
+          Something went wrong.
         </div>
-      </div>
-    </form>
+
+        <form @submit.prevent="createProject">
+          <div class="form-item">
+            <label for="name">Project Name</label>
+            <input v-model="name" id="name" type="text" required="required" />
+          </div>
+          <div class="form-item">
+            <label for="description">Project Description</label>
+            <textarea v-model="description" id="description"></textarea>
+          </div>
+          <div class="form-actions">
+            <div class="form-action">
+              <input type="submit" value="Create" />
+            </div>
+          </div>
+        </form>
+      </section>
+    </article>
   </div>
 </template>
 
@@ -36,7 +43,7 @@
       };
     },
     methods: {
-      createProject(){
+      createProject() {
         const that = this;
         const router = this.$router;
         const token = this.$store.getters.getCurrentUser.token;

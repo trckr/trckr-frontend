@@ -1,25 +1,32 @@
 <template>
   <div class="component component--project-edit">
-    <div v-if="error" class="message message--error">
-      Something went wrong.
-    </div>
+    <article>
+      <header>
+        <h1>Edit Project</h1>
+      </header>
 
-    <h1>Edit Project </h1>
-    <form @submit.prevent="editProject">
-      <div class="form-item">
-        <label for="name">Project Name</label>
-        <input v-model="name" id="name" type="text" required="required" />
-      </div>
-      <div class="form-item">
-        <label for="description">Project Description</label>
-        <textarea v-model="description" id="description"></textarea>
-      </div>
-      <div class="form-actions">
-        <div class="form-action">
-          <input type="submit" value="Edit" />
+      <section>
+        <div v-if="error" class="message message--error">
+          Something went wrong.
         </div>
-      </div>
-    </form>
+
+        <form @submit.prevent="editProject">
+          <div class="form-item">
+            <label for="name">Project Name</label>
+            <input v-model="name" id="name" type="text" required="required" />
+          </div>
+          <div class="form-item">
+            <label for="description">Project Description</label>
+            <textarea v-model="description" id="description"></textarea>
+          </div>
+          <div class="form-actions">
+            <div class="form-action">
+              <input type="submit" value="Edit" />
+            </div>
+          </div>
+        </form>
+      </section>
+    </article>
   </div>
 </template>
 
