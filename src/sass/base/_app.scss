@@ -3,9 +3,9 @@
 //-----------------------------------------------------------------------------
 
 #app {
-  > header > .component,
-  > main > .component,
-  > footer > .component {
+  > header > section,
+  > main > section,
+  > footer > section {
     margin: 0 auto;
     max-width: $component-max-width;
   }
