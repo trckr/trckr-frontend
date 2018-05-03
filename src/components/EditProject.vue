@@ -61,11 +61,10 @@
           }
         );
       },
-      editProject(){
+      editProject() {
         const that = this;
         const router = this.$router;
         const token = this.$store.getters.getCurrentUser.token;
-
 
         apiProjects.put(
           this.$apiBaseUrl,
