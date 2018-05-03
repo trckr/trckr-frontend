@@ -58,23 +58,26 @@ describe('Projects.vue', function() {
     expect(wrapper.find('.message--error').exists()).toBeFalsy();
   });
 
-  it('shows all the projects', function() {
-    expect(wrapper.find('tbody').text()).toBe('test 1 this is test 1test 2 this is test 2test 3 this is test 3')
+  it('Shows all the projects', function() {
+    expect(wrapper.vm.filteredProjects[0].name).toBe('test 1');
+    expect(wrapper.vm.filteredProjects[1].name).toBe('test 2');
+    expect(wrapper.vm.filteredProjects[2].name).toBe('test 3');
   });
 
-  it('shows the search result', function() {
+  it('Filters correctly', function() {
     wrapper.setData({
       search: '3',
     });
 
-    expect(wrapper.find('tbody').text()).toBe('test 3 this is test 3');
+    expect(wrapper.vm.filteredProjects.length).toBe(1);
+    expect(wrapper.vm.filteredProjects[0].name).toBe('test 3');
   });
 
-  it('search result is empty', function() {
+  it('Hides all projects if no project matches', function() {
     wrapper.setData({
       search: '4',
     });
 
-    expect(wrapper.find('tbody').text()).toBe('');
+    expect(wrapper.vm.filteredProjects.length).toBe(0);
   });
 });
