@@ -1,5 +1,5 @@
 <template>
-  <div class="component component--task-creation">
+  <div class="component component--create-task">
     <article>
       <header>
         <h1>Create a task</h1>

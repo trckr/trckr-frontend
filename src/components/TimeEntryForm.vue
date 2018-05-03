@@ -1,5 +1,5 @@
 <template>
-  <div class="component component--create-time-entry">
+  <div class="component component--time-entry-form">
     <article>
       <header>
         <h1>{{ title }}</h1>

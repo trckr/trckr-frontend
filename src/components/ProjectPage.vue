@@ -1,5 +1,5 @@
 <template>
-  <div class="component component--projectPage">
+  <div class="component component--project-page">
     <article>
       <header>
         <h1>{{ project.name }}</h1>
@@ -23,7 +23,7 @@
         <h2>Tasks</h2>
 
         <div class="main-actions">
-          <router-link :to="{path: '/project/'+ projectId +'/task/create'}">Create a new task</router-link>
+          <router-link :to="{path: '/project/'+ projectId +'/task/create'}">Create task</router-link>
         </div>
       </header>
 

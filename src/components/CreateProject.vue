@@ -1,5 +1,5 @@
 <template>
-  <div class="component component--project-creation">
+  <div class="component component--create-project">
     <article>
       <header>
         <h1>Create a project</h1>

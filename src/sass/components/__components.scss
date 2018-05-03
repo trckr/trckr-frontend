@@ -11,5 +11,9 @@
         margin-top: 1rem;
       }
     }
+
+    & + article {
+      margin-top: 2rem;
+    }
   }
 }

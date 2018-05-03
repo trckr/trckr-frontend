@@ -14,7 +14,7 @@
           Something went wrong.
         </div>
 
-        <div class="table-search">
+        <div class="table-filter">
           <input type="text" v-model="search" placeholder="Filter projects" />
         </div>
 

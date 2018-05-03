@@ -1,5 +1,5 @@
 <template>
-  <div class="component component--taskPage">
+  <div class="component component--task-page">
     <article>
       <header>
         <h1>{{ task.name }}</h1>

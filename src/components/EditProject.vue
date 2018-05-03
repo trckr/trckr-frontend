@@ -1,5 +1,5 @@
 <template>
-  <div class="component component--project-edit">
+  <div class="component component--edit-project">
     <article>
       <header>
         <h1>Edit Project</h1>
