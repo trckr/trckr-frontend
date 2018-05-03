@@ -1,15 +1,17 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+
 import CreateProject from '@/components/CreateProject';
 import CreateTask from '@/components/CreateTask';
+import CreateTimeEntry from '@/components/CreateTimeEntry';
 import Dashboard from '@/components/Dashboard';
 import EditProject from '@/components/EditProject';
 import ProjectPage from '@/components/ProjectPage';
 import Projects from '@/components/Projects';
 import TaskPage from '@/components/TaskPage';
+import TimeEntries from '@/components/TimeEntries';
 import UserLogin from '@/components/UserLogin';
 import UserRegistration from '@/components/UserRegistration';
-
 
 Vue.use(Router);
 
@@ -59,25 +61,38 @@ export default new Router({
     }
   }, {
     path: '/project/:projectId/task/:taskId',
-    name: 'task page',
+    name: 'Task page',
     component: TaskPage,
     meta: {
       requiresAuth: true,
     }
   }, {
     path: '/project/edit/:projectId',
-    name: 'edit project',
+    name: 'Edit project',
     component: EditProject,
     meta: {
       requiresAuth: true,
     }
-  },{
+  }, {
     path: '/projects',
-    name: 'all projects',
+    name: 'All projects',
     component: Projects,
     meta: {
       requiresAuth: true,
     }
-  },
-    ],
+  }, {
+    path: '/time-entries',
+    name: 'All time entries',
+    component: TimeEntries,
+    meta: {
+      requiresAuth: true,
+    }
+  }, {
+    path: '/time-entry/create',
+    name: 'Create time entry',
+    component: CreateTimeEntry,
+    meta: {
+      requiresAuth: true,
+    }
+  }]
 });

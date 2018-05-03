@@ -26,7 +26,7 @@
       this.fetchData();
     },
     methods: {
-      fetchData(){
+      fetchData() {
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
 
@@ -42,7 +42,7 @@
             that.error = true;
           }
         );
-      }
+      },
     }
   }
 </script>
