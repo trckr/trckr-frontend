@@ -19,4 +19,11 @@ export const apiTimeEntries = {
       }
     }).then(success).catch(error);
   },
+  getSingle: function (host, token, timeEntryId, success, error) {
+    axios.get(host + '/api/time-entries/' + timeEntryId + '/', {
+      headers: {
+        'Authorization': 'Token ' + token,
+      }
+    }).then(success).catch(error);
+  },
 };

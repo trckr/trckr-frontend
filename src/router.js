@@ -3,13 +3,13 @@ import Router from 'vue-router';
 
 import CreateProject from '@/components/CreateProject';
 import CreateTask from '@/components/CreateTask';
-import CreateTimeEntry from '@/components/CreateTimeEntry';
 import Dashboard from '@/components/Dashboard';
 import EditProject from '@/components/EditProject';
 import ProjectPage from '@/components/ProjectPage';
 import Projects from '@/components/Projects';
 import TaskPage from '@/components/TaskPage';
 import TimeEntries from '@/components/TimeEntries';
+import TimeEntryForm from '@/components/TimeEntryForm';
 import UserLogin from '@/components/UserLogin';
 import UserRegistration from '@/components/UserRegistration';
 
@@ -90,7 +90,14 @@ export default new Router({
   }, {
     path: '/time-entry/create',
     name: 'Create time entry',
-    component: CreateTimeEntry,
+    component: TimeEntryForm,
+    meta: {
+      requiresAuth: true,
+    }
+  }, {
+    path: '/time-entry/:timeEntryId/edit',
+    name: 'Edit time entry',
+    component: TimeEntryForm,
     meta: {
       requiresAuth: true,
     }

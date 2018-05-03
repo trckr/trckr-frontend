@@ -4,7 +4,7 @@
       Something went wrong.
     </div>
 
-    <h1>New time entry</h1>
+    <h1>{{ title }}</h1>
 
     <form @submit.prevent="createTimeEntry">
       <div class="form-item">
@@ -44,9 +44,11 @@
   import { apiTimeEntries } from '@/api/time-entries';
 
   export default {
-    name: 'CreateTimeEntry',
+    name: 'TimeEntryForm',
     data: function() {
       return {
+        title: 'New time entry',
+        timeEntryId: '',
         description: '',
         timeSpent: 0,
         taskId: '',
@@ -57,9 +59,36 @@
       };
     },
     created: function() {
-      this.fetchProjects();
+      var timeEntryId = this.$route.params.timeEntryId;
+
+      if (typeof timeEntryId !== 'undefined') {
+        this.title = 'Edit time entry #' + timeEntryId;
+        this.timeEntryId = timeEntryId;
+
+        this.fetchTimeEntry();
+      } else {
+        this.fetchProjects();
+      }
     },
     methods: {
+      fetchTimeEntry() {
+        const token = this.$store.getters.getCurrentUser.token;
+        const that = this;
+
+        apiTimeEntries.getSingle(
+          this.$apiBaseUrl,
+          token,
+          this.timeEntryId,
+          function(response) {
+            that.description = response.data.description;
+            that.taskId = response.data.task;
+            that.timeSpent = response.data.timeSpent;
+          },
+          function(error) {
+            that.error = true;
+          }
+        );
+      },
       fetchProjects() {
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
