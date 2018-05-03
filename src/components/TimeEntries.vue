@@ -1,19 +1,19 @@
 <template>
   <div class="component component--time-entries">
-    <div v-if="error" class="message message--error">
-      Something went wrong.
-    </div>
-
     <article>
       <header>
         <h1>Time Entries</h1>
 
         <div class="main-actions">
-          <router-link :to="{path: '/time-entry/create'}">New Time entry</router-link>
+          <router-link :to="{path: '/time-entry/create'}">Create time entry</router-link>
         </div>
       </header>
 
       <section class="content">
+        <div v-if="error" class="message message--error">
+          Something went wrong.
+        </div>
+
         <table id="time-entries" v-if="timeEntries.length > 0">
           <thead>
           <tr>
