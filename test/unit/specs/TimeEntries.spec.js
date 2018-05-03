@@ -53,4 +53,12 @@ describe('TimeEntries.vue', function() {
     expect(wrapper.vm.timeEntries[1].description).toBe('Time Entry 2');
     expect(wrapper.vm.timeEntries[2].description).toBe('Time Entry 3');
   });
+
+  it('Shows the empty message if no data is provided', function() {
+    wrapper.setData({
+      timeEntries: [],
+    });
+
+    expect(wrapper.find('.table-empty--message').isVisible()).toBe(true);
+  });
 });
