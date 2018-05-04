@@ -49,7 +49,7 @@
       };
     },
     methods: {
-      createTask(){
+      createTask() {
         const that = this;
         const router = this.$router;
         const token = this.$store.getters.getCurrentUser.token;
@@ -70,6 +70,6 @@
           }
         )
       },
-    }
+    },
   }
 </script>

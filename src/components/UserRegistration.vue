@@ -89,7 +89,7 @@
             that.error = true;
           },
         );
-      }
-    }
+      },
+    },
   }
 </script>

@@ -60,7 +60,7 @@
             that.error = true;
           }
         )
-      }
-    }
+      },
+    },
   }
 </script>

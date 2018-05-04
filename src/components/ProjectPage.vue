@@ -55,8 +55,8 @@
   import { apiTasks } from '@/api/tasks';
 
   export default {
-    name: "Project",
-    data: function(){
+    name: 'Project',
+    data: function() {
       return {
         project: [],
         projectId: 0,
@@ -68,7 +68,7 @@
       this.fetchData();
     },
     methods: {
-      fetchData(){
+      fetchData() {
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
 
@@ -108,8 +108,7 @@
             that.error = true;
           },
         );
-      }
-    }
+      },
+    },
   }
-
 </script>

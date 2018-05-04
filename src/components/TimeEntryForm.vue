@@ -49,7 +49,7 @@
 
 <script>
   import { apiProjects } from '@/api/projects';
-  import { apiTasks } from "@/api/tasks";
+  import { apiTasks } from '@/api/tasks';
   import { apiTimeEntries } from '@/api/time-entries';
 
   export default {
@@ -148,6 +148,6 @@
           }
         )
       },
-    }
+    },
   }
 </script>

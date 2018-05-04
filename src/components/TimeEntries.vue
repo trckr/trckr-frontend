@@ -16,18 +16,22 @@
 
         <table id="time-entries" v-if="timeEntries.length > 0">
           <thead>
-          <tr>
-            <th>Description</th>
-            <th>Time</th>
-            <th>Actions</th>
-          </tr>
+            <tr>
+              <th>Project</th>
+              <th>Task</th>
+              <th>Description</th>
+              <th>Time</th>
+              <th>Actions</th>
+            </tr>
           </thead>
           <tbody>
-          <tr v-for="timeEntry in timeEntries">
-            <td>{{ timeEntry.description }}</td>
-            <td>{{ timeEntry.timeSpent }}</td>
-            <td><router-link :to="{path: '/time-entry/' + timeEntry.id + '/edit'}">Edit</router-link></td>
-          </tr>
+            <tr v-for="timeEntry in timeEntries">
+              <td>{{ timeEntry.projectName }}</td>
+              <td>{{ timeEntry.taskName }}</td>
+              <td>{{ timeEntry.description }}</td>
+              <td>{{ timeEntry.timeSpent }}</td>
+              <td><router-link :to="{path: '/time-entry/' + timeEntry.id + '/edit'}">Edit</router-link></td>
+            </tr>
           </tbody>
         </table>
 
@@ -40,6 +44,8 @@
 </template>
 
 <script>
+  import { apiProjects } from '@/api/projects';
+  import { apiTasks } from '@/api/tasks';
   import { apiTimeEntries } from '@/api/time-entries';
 
   export default {
@@ -47,14 +53,18 @@
     data: function() {
       return {
         timeEntries: [],
+        projects: [],
+        tasks: [],
         error: false,
       };
     },
     created: function() {
-      this.fetchData();
+      this.fetchTimeEntries();
+      this.fetchProjects();
+      //this.fetchTasks();
     },
     methods: {
-      fetchData: function() {
+      fetchTimeEntries: function() {
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
 
@@ -62,9 +72,15 @@
           this.$apiBaseUrl,
           token,
           function(response) {
-            // Clean up numbers.
-            for (var i = 0; i < response.data.length; i++) {
+            for (let i = 0; i < response.data.length; i++) {
+              // Clean up numbers.
               response.data[i].timeSpent = parseFloat(response.data[i].timeSpent).toFixed(2);
+
+              // Set project name.
+              response.data[i].projectName = that.getProjectName(response.data[i].project);
+
+              // Set task name.
+              response.data[i].taskName = '';
             }
 
             that.timeEntries = response.data;
@@ -73,6 +89,51 @@
             that.error = true;
           }
         )
+      },
+      fetchProjects() {
+        const token = this.$store.getters.getCurrentUser.token;
+        const that = this;
+
+        apiProjects.getAll(
+          this.$apiBaseUrl,
+          token,
+          function(response) {
+            that.projects = response.data;
+
+            // Update project names.
+            for (let i = 0; i < that.timeEntries.length; i++) {
+              that.timeEntries[i].projectName = that.getProjectName(that.timeEntries[i].project);
+            }
+          },
+          function(error) {
+            that.error = true;
+          }
+        )
+      },
+      fetchTasks() {
+        const token = this.$store.getters.getCurrentUser.token;
+        const that = this;
+
+        apiTasks.getAll(
+          this.$apiBaseUrl,
+          token,
+          that.projectId,
+          function(response) {
+            that.tasks = response.data;
+          },
+          function(error) {
+            that.error = true;
+          }
+        );
+      },
+      getProjectName(projectId) {
+        for (let i = 0; i < this.projects.length; i++) {
+          if (this.projects[i].id === projectId) {
+            return this.projects[i].name;
+          }
+        }
+
+        return '';
       },
     },
   }
