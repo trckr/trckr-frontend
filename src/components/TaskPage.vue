@@ -1,14 +1,19 @@
 <template>
-  <div class="component component--taskPage">
-    <div v-if="error" class="message message--error">
-      Something went wrong.
-    </div>
-    <div v-for="item in task">
-      <h1>{{ item.name }}</h1>
-      <p>{{ item.description }}</p>
-    </div>
-  </div>
+  <div class="component component--task-page">
+    <article>
+      <header>
+        <h1>{{ task.name }}</h1>
+      </header>
 
+      <section>
+        <div v-if="error" class="message message--error">
+          Something went wrong.
+        </div>
+
+        <p>{{ task.description }}</p>
+      </section>
+    </article>
+  </div>
 </template>
 
 <script>
@@ -26,7 +31,7 @@
       this.fetchData();
     },
     methods: {
-      fetchData(){
+      fetchData() {
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
 
@@ -36,13 +41,13 @@
           token,
           that.taskId,
           function(response) {
-            that.task = response;
+            that.task = response.data;
           },
           function(error) {
             that.error = true;
           }
         );
-      }
+      },
     }
   }
 </script>

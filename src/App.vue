@@ -1,11 +1,19 @@
 <template>
   <div id="app">
     <header>
-      <navigation />
+      <section>
+        <div class="logo">
+          <img src="./assets/logo.png" alt="trckr" title="trckr" />
+        </div>
+
+        <navigation />
+      </section>
     </header>
 
     <main>
-      <router-view />
+      <section>
+        <router-view />
+      </section>
     </main>
   </div>
 </template>

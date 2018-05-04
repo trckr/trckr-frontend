@@ -1,25 +1,39 @@
 <template>
-  <div class="component component--dashboard">
-    <div v-if="error" class="message message--error">
-      Something went wrong.
-    </div>
-    <h1>Projects</h1>
-    <p><router-link :to="{path: '/project/create'}">Create</router-link> a new project here!</p>
-    <input type="text" v-model="search" placeholder="Search for a project" />
-    <table id="table--project-task">
-      <thead>
-      <tr>
-        <th>Project</th>
-        <th>Description</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr v-for="project in filteredProjects">
-        <td><router-link :to="{path: '/project/' + project.id}">{{ project.name }}</router-link></td>
-        <td>{{ project.description }}</td>
-      </tr>
-      </tbody>
-    </table>
+  <div class="component component--projects">
+    <article>
+      <header>
+        <h1>Projects</h1>
+
+        <div class="main-actions">
+          <router-link :to="{path: '/project/create'}">Create project</router-link>
+        </div>
+      </header>
+
+      <section>
+        <div v-if="error" class="message message--error">
+          Something went wrong.
+        </div>
+
+        <div class="table-filter">
+          <input type="text" v-model="search" placeholder="Filter projects" />
+        </div>
+
+        <table id="table--project-task">
+          <thead>
+          <tr>
+            <th>Project</th>
+            <th>Description</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr v-for="project in filteredProjects">
+            <td><router-link :to="{path: '/project/' + project.id}">{{ project.name }}</router-link></td>
+            <td>{{ project.description }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </section>
+    </article>
   </div>
 </template>
 
@@ -56,10 +70,10 @@
         )
       },
     },
-    computed:{
-      filteredProjects: function(){
+    computed: {
+      filteredProjects: function() {
         return this.projects.filter((project) => {
-          return project.name.match(this.search)
+          return project.name.toLowerCase().match(this.search.toLowerCase());
         });
       }
     }

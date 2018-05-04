@@ -5,13 +5,18 @@
 label {
   display: inline-block;
   margin-right: 1.5rem;
-  width: 8rem;
+  vertical-align: top;
+  width: 12rem;
 }
 
-input[type=text],
-input[type=password],
-input[type=email] {
-  width: 18rem;
+input,
+select,
+textarea {
+  width: 27rem;
+}
+
+textarea {
+  height: 6rem;
 }
 
 input[type=submit] {
@@ -23,6 +28,7 @@ input[type=submit] {
   line-height: 1;
   padding: 0.75rem 2rem;
   transition: $transition-ease-in-out;
+  width: auto;
 
   &:hover {
     background-color: $color-button-hover;

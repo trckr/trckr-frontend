@@ -1,16 +1,43 @@
 import { createLocalVue, shallow, RouterLinkStub } from '@vue/test-utils';
 import { store } from '@/store';
-import Projects from '@/components/Projects.vue';
+import TimeEntryForm from '@/components/TimeEntryForm.vue';
 
 const localVue = createLocalVue();
 
-const $route = { params: { projectId: 1 }};
+const $route = { params: {} };
 const $router = {
   path: '',
   push: function(string) {
     this.path = string
   }
 };
+
+jest.mock('@/api/time-entries', function() {
+  return {
+    apiTimeEntries: {
+      post: function(host, token, description, timeSpent, taskId, success, error) {
+        if (description.length && timeSpent > 0 && taskId > 0) {
+          let response = {
+            data:{
+              id: 1,
+              description: description,
+              timeSpent: timeSpent,
+              task: taskId,
+            },
+          };
+          success(response);
+        } else {
+          let response ={
+            data: {
+              non_field_errors: ['Something went wrong.'],
+            },
+          };
+          error(response);
+        }
+      }
+    }
+  }
+});
 
 jest.mock('@/api/projects', function() {
   return {
@@ -44,10 +71,11 @@ jest.mock('@/api/projects', function() {
   }
 });
 
+import { apiTimeEntries } from '@/api/time-entries';
 import { apiProjects } from '@/api/projects';
 
-describe('Projects.vue', function() {
-  let wrapper = shallow(Projects, {localVue, store, mocks: { $router, $route }, stubs: { RouterLink: RouterLinkStub }});
+describe('TimeEntryForm.vue', function() {
+  let wrapper = shallow(TimeEntryForm, {localVue, store, mocks: { $router, $route }, stubs: { RouterLink: RouterLinkStub }});
 
   beforeEach(function () {
     jest.resetModules();
@@ -58,26 +86,21 @@ describe('Projects.vue', function() {
     expect(wrapper.find('.message--error').exists()).toBeFalsy();
   });
 
-  it('Shows all the projects', function() {
-    expect(wrapper.vm.filteredProjects[0].name).toBe('test 1');
-    expect(wrapper.vm.filteredProjects[1].name).toBe('test 2');
-    expect(wrapper.vm.filteredProjects[2].name).toBe('test 3');
+  it('Can not submit empty form', function() {
+    wrapper.setData({
+      timeSpent: 0,
+    });
+    wrapper.find('form').trigger('submit');
+    expect(wrapper.find('.message--error').exists()).toBeTruthy();
   });
 
-  it('Filters correctly', function() {
+  it('Can create a time entry and redirect', function() {
     wrapper.setData({
-      search: '3',
+      description: 'Description',
+      timeSpent: 8.25,
+      taskId: 1,
     });
-
-    expect(wrapper.vm.filteredProjects.length).toBe(1);
-    expect(wrapper.vm.filteredProjects[0].name).toBe('test 3');
-  });
-
-  it('Hides all projects if no project matches', function() {
-    wrapper.setData({
-      search: '4',
-    });
-
-    expect(wrapper.vm.filteredProjects.length).toBe(0);
+    wrapper.find('form').trigger('submit');
+    expect(wrapper.vm.$router.path).toBe('/time-entries');
   });
 });

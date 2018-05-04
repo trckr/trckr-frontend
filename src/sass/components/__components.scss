@@ -1,0 +1,19 @@
+//-----------------------------------------------------------------------------
+// Components: All components.
+//-----------------------------------------------------------------------------
+
+.component {
+  article {
+    header {
+      margin-bottom: 1rem;
+
+      .main-actions {
+        margin-top: 1rem;
+      }
+    }
+
+    & + article {
+      margin-top: 2rem;
+    }
+  }
+}

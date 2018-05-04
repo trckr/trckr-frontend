@@ -1,32 +1,49 @@
 <template>
-  <div class="component component--projectPage">
-    <div v-if="error" class="message message--error">
-      Something went wrong.
-    </div>
-    <div v-for="item in project">
-      <h1>{{ item.name }}</h1>
-      <p>{{ item.description }}</p>
-    </div>
-    <h2>Tasks</h2>
+  <div class="component component--project-page">
+    <article>
+      <header>
+        <h1>{{ project.name }}</h1>
 
-    <p><router-link :to="{path: '/project/edit/'+ projectId }">Edit</router-link> your project here!</p>
-    <p><router-link :to="{path: '/project/'+ projectId +'/task/create'}">Create</router-link> a new task here!</p>
+        <div class="main-actions">
+          <router-link :to="{path: '/project/edit/'+ projectId }">Edit project</router-link>
+        </div>
+      </header>
 
-    <table id="table--project-task">
-      <thead>
-        <tr>
-          <th>Task</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="task in tasks">
-          <td><router-link :to="{path: projectId +'/task/' + task.id}">{{ task.name }}</router-link></td>
-          <td>{{ task.description }}</td>
-        </tr>
-      </tbody>
-    </table>
+      <section>
+        <div v-if="error" class="message message--error">
+          Something went wrong.
+        </div>
 
+        <p>{{ project.description }}</p>
+      </section>
+    </article>
+
+    <article>
+      <header>
+        <h2>Tasks</h2>
+
+        <div class="main-actions">
+          <router-link :to="{path: '/project/'+ projectId +'/task/create'}">Create task</router-link>
+        </div>
+      </header>
+
+      <section>
+        <table id="table--project-task">
+          <thead>
+            <tr>
+              <th>Task</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="task in tasks">
+              <td><router-link :to="{path: projectId +'/task/' + task.id}">{{ task.name }}</router-link></td>
+              <td>{{ task.description }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </article>
   </div>
 </template>
 
@@ -49,7 +66,6 @@
     },
     methods: {
       fetchData(){
-
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
 
@@ -60,7 +76,7 @@
           token,
           this.projectId,
           function(response) {
-            that.project = response;
+            that.project = response.data;
           },
           function(error) {
             that.error = true;

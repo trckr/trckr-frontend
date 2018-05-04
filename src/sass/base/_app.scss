@@ -3,20 +3,18 @@
 //-----------------------------------------------------------------------------
 
 #app {
+  > header > section,
+  > main > section,
+  > footer > section {
+    margin: 0 auto;
+    max-width: $component-max-width;
+  }
+
   > header {
     background-color: $color-header;
   }
 
   > main {
-    display: flex;
-    justify-content: center;
     padding-top: 1rem;
-  }
-
-  > header > .component,
-  > main > .component,
-  > footer > .component {
-    margin: 0 auto;
-    max-width: $component-max-width;
   }
 }

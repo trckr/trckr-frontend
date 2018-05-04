@@ -1,31 +1,37 @@
 <template>
   <div class="component component--user-login">
-    <div v-if="error" class="message message--error">
-      Wrong login credentials. Please try again.
-    </div>
+    <article>
+      <header>
+        <h1>Login</h1>
+      </header>
 
-    <h1>Login</h1>
-
-    <form @submit.prevent="login">
-      <div class="form-item">
-        <label for="username">Username</label>
-        <input v-model="username" id="username" type="text" required="required" />
-      </div>
-
-      <div class="form-item">
-        <label for="password">Password</label>
-        <input v-model="password" id="password" type="password" required="required" />
-      </div>
-
-      <div class="form-actions">
-        <div class="form-action">
-          <input type="submit" value="Login" />
+      <section>
+        <div v-if="error" class="message message--error">
+          Something went wrong.
         </div>
-        <div class="form-action">
-          <p>Don't have an account yet? <router-link :to="{path: '/register'}">Register</router-link> now!</p>
-        </div>
-      </div>
-    </form>
+
+        <form @submit.prevent="login">
+          <div class="form-item">
+            <label for="username">Username</label>
+            <input v-model="username" id="username" type="text" required="required" />
+          </div>
+
+          <div class="form-item">
+            <label for="password">Password</label>
+            <input v-model="password" id="password" type="password" required="required" />
+          </div>
+
+          <div class="form-actions">
+            <div class="form-action">
+              <input type="submit" value="Login" />
+            </div>
+            <div class="form-action">
+              <p>Don't have an account yet? <router-link :to="{path: '/register'}">Register</router-link> now!</p>
+            </div>
+          </div>
+        </form>
+      </section>
+    </article>
   </div>
 </template>
 

@@ -1,26 +1,33 @@
 <template>
-  <div class="component component--task-creation">
-    <div v-if="error" class="message message--error">
-      Something went wrong.
-    </div>
+  <div class="component component--create-task">
+    <article>
+      <header>
+        <h1>Create a task</h1>
+      </header>
 
-    <h1>Create a task</h1>
-    <form @submit.prevent="createTask">
-      <div class="form-item">
-        <label for="name">Task Name</label>
-        <input v-model="name" id="name" type="text" required="required" />
-      </div>
-
-      <div class="form-item">
-        <label for="description">Task Description</label>
-        <textarea v-model="description" id="description"></textarea>
-      </div>
-      <div class="form-actions">
-        <div class="form-action">
-          <input type="submit" value="Create" />
+      <section>
+        <div v-if="error" class="message message--error">
+          Something went wrong.
         </div>
-      </div>
-    </form>
+
+        <form @submit.prevent="createTask">
+          <div class="form-item">
+            <label for="name">Task Name</label>
+            <input v-model="name" id="name" type="text" required="required" />
+          </div>
+
+          <div class="form-item">
+            <label for="description">Task Description</label>
+            <textarea v-model="description" id="description"></textarea>
+          </div>
+          <div class="form-actions">
+            <div class="form-action">
+              <input type="submit" value="Create" />
+            </div>
+          </div>
+        </form>
+      </section>
+    </article>
   </div>
 </template>
 

@@ -1,12 +1,19 @@
 <template>
   <div class="component component--dashboard">
-    <div v-if="error" class="message message--error">
-      Something went wrong.
-    </div>
-    <h1>Dashboard</h1>
-    <p>Welcome to <em>trckr</em>!</p>
+    <article>
+      <header>
+        <h1>Dashboard</h1>
+      </header>
 
-    <p>Pong response: <em>{{ pong }}</em></p>
+      <section>
+        <div v-if="error" class="message message--error">
+          Something went wrong.
+        </div>
+
+        <p>Welcome to <em>trckr</em>!</p>
+        <p>Pong response: <em>{{ pong }}</em></p>
+      </section>
+    </article>
   </div>
 </template>
 
