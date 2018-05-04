@@ -19,14 +19,14 @@
           <tr>
             <th>Description</th>
             <th>Time</th>
-            <!-- <th>Actions</th> -->
+            <th>Actions</th>
           </tr>
           </thead>
           <tbody>
           <tr v-for="timeEntry in timeEntries">
             <td>{{ timeEntry.description }}</td>
             <td>{{ timeEntry.timeSpent }}</td>
-            <!-- <td><router-link :to="{path: '/time-entry/' + timeEntry.id + '/edit'}">Edit</router-link></td> -->
+            <td><router-link :to="{path: '/time-entry/' + timeEntry.id + '/edit'}">Edit</router-link></td>
           </tr>
           </tbody>
         </table>
