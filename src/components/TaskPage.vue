@@ -2,6 +2,9 @@
   <div class="component component--task-page">
     <article>
       <header>
+        <div class="back">
+          <router-link :to="{path: '/project/' + projectId}">Back to Project</router-link>
+        </div>
         <h1>{{ task.name }}</h1>
       </header>
 
@@ -24,6 +27,7 @@
     data: function() {
       return {
         task:[],
+        projectId: '',
         error: false,
       };
     },
@@ -35,7 +39,9 @@
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
 
+        that.projectId = that.$route.params.projectId;
         that.taskId = that.$route.params.taskId;
+
         apiTasks.getSingle(
           this.$apiBaseUrl,
           token,
