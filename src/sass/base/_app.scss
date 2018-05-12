@@ -9,4 +9,8 @@
     margin: 0 auto;
     max-width: $component-max-width;
   }
+
+  > main {
+    padding: 1rem;
+  }
 }
