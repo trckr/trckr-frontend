@@ -92,7 +92,7 @@
           }
         );
 
-        apiTasks.getProjectTasks(
+        apiTasks.getAllByProject(
           this.$apiBaseUrl,
           token,
           this.projectId,

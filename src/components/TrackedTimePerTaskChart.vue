@@ -1,17 +1,17 @@
 <template>
-  <div class="component component--tracked-time-chart">
-    <bar-chart :chartData="chartData"/>
+  <div class="component component--tracked-time-per-taks-chart">
+    <doughnut-chart :chartData="chartData"/>
   </div>
 </template>
 
 <script>
-  import moment from 'moment';
-  import BarChart from '@/components/BarChart';
+  import palette from 'google-palette';
+  import DoughnutChart from '@/components/DoughnutChart';
   import { apiTimeEntries } from '@/api/time-entries';
 
   export default {
     name: 'TrackedTimeChart',
-    components: { BarChart },
+    components: { DoughnutChart },
     data: function() {
       return { 
         timeEntries: [],
@@ -42,35 +42,34 @@
           }
         )
       },
+
+      getRandomColors: function(numberOfColors) {
+      
+      }
     },
     computed: {
       chartData: function() {
         const that = this;
-        var trackedTimePerDay = new Array(7).fill(0);
-
-        var currentDate = new moment();
-        var currentDay = currentDate.day();
+        var trackedTimePerTask = {};
 
         this.timeEntries.forEach(function(element) {
-          var elementDate = moment(element.startTime);
-          
-          var offset = currentDate.diff(elementDate, 'days');
-          var index = currentDay - offset;
+          var label = element.task;
 
-          if(index >= 0) {
-            trackedTimePerDay[index] += parseFloat(element.timeSpent);
-          }
-        }); 
+          if (trackedTimePerTask.hasOwnProperty(label)) {
+            trackedTimePerTask[label] += parseFloat(element.timeSpent);
+          } else {
+            trackedTimePerTask[label] = parseFloat(element.timeSpent);
+          }         
+        });
 
         return {
-          labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-          datasets: [
-            {
-              label: "Tracked time in hours", 
-              backgroundColor: '#f87979',
-              data: trackedTimePerDay
-            }
-          ]
+          labels: Object.keys(trackedTimePerTask),
+          datasets: [{ 
+            data: Object.values(trackedTimePerTask),
+            backgroundColor: palette('cb-Spectral', this.timeEntries.length).map(function(e) { 
+              return '#' + e;
+            }),
+          }]
         }
       }
     }
