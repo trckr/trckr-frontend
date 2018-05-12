@@ -7,11 +7,12 @@
 
       <section>
         <div v-if="error" class="message message--error">
-          Something went wrong.
+          Something went wrong. {{ pong }}
         </div>
+      </section>
 
-        <p>Welcome to <em>trckr</em>!</p>
-        <p>Pong response: <em>{{ pong }}</em></p>
+      <section>
+        <tracked-time-chart/>
       </section>
     </article>
   </div>
@@ -19,9 +20,11 @@
 
 <script>
   import axios from 'axios';
+  import TrackedTimeChart from '@/components/TrackedTimeChart';
 
   export default {
     name: 'Dashboard',
+    components: { TrackedTimeChart },
     data: function() {
       return {
         pong: 'Waiting for server response',
