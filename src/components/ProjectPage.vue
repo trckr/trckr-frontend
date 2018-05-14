@@ -2,6 +2,9 @@
   <div class="component component--project-page">
     <article>
       <header>
+        <div class="back">
+          <router-link :to="{path: '/projects'}">Back to Projects</router-link>
+        </div>
         <h1>{{ project.name }}</h1>
 
         <div class="main-actions">
