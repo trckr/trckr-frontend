@@ -12,34 +12,6 @@ const $router = {
   }
 };
 
-jest.mock('@/api/time-entries', function() {
-  return {
-    apiTimeEntries: {
-      post: function(host, token, description, timeSpent, taskId, date, success, error) {
-        if (description.length && timeSpent > 0 && taskId > 0) {
-          let response = {
-            data: {
-              id: 1,
-              description: description,
-              timeSpent: timeSpent,
-              task: taskId,
-              startTime: '2000-01-01T00:00:00',
-            },
-          };
-          success(response);
-        } else {
-          let response ={
-            data: {
-              non_field_errors: ['Something went wrong.'],
-            },
-          };
-          error(response);
-        }
-      }
-    }
-  }
-});
-
 jest.mock('@/api/projects', function() {
   return {
     apiProjects: {
@@ -67,6 +39,60 @@ jest.mock('@/api/projects', function() {
             },]
         };
         success(response);
+      }
+    }
+  }
+});
+
+jest.mock('@/api/tasks', function() {
+  return {
+    apiTasks: {
+      getAll: function (host, token, success, error) {
+        let response = {
+          data: [
+            {
+              id: 1,
+              name: 'first test task',
+              description: 'foo',
+              project: 1,
+            },
+            {
+              id: 2,
+              name: 'second test task',
+              description: 'bar',
+              project: 1
+            },
+          ]
+        };
+        success(response);
+      }
+    }
+  }
+});
+
+jest.mock('@/api/time-entries', function() {
+  return {
+    apiTimeEntries: {
+      post: function(host, token, description, timeSpent, taskId, date, success, error) {
+        if (description.length && timeSpent > 0 && taskId > 0) {
+          let response = {
+            data: {
+              id: 1,
+              description: description,
+              timeSpent: timeSpent,
+              task: taskId,
+              startTime: '2000-01-01T00:00:00',
+            },
+          };
+          success(response);
+        } else {
+          let response ={
+            data: {
+              non_field_errors: ['Something went wrong.'],
+            },
+          };
+          error(response);
+        }
       }
     }
   }
