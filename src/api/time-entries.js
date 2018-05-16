@@ -1,11 +1,24 @@
 import axios from 'axios';
 
 export const apiTimeEntries = {
-  post: function(host, token, description, timeSpent, taskId, success, error) {
+  post: function(host, token, description, timeSpent, taskId, date, success, error) {
     axios.post(host + '/api/time-entries/', {
       description: description,
       timeSpent: timeSpent,
       task: taskId,
+      startTime: date,
+    }, {
+      headers: {
+        'Authorization': 'Token ' + token,
+      }
+    }).then(success).catch(error);
+  },
+  put: function(host, token, timeEntryId, description, timeSpent, taskId, date, success, error) {
+    axios.put(host + '/api/time-entries/' + timeEntryId + '/', {
+      description: description,
+      timeSpent: timeSpent,
+      task: taskId,
+      startTime: date,
     }, {
       headers: {
         'Authorization': 'Token ' + token,

@@ -31,7 +31,7 @@
       </header>
 
       <section>
-        <table id="table--project-task">
+        <table id="table--project-task" v-if="tasks.length > 0">
           <thead>
             <tr>
               <th>Task</th>
@@ -45,6 +45,10 @@
             </tr>
           </tbody>
         </table>
+
+        <div class="table-empty--message" v-if="tasks.length === 0">
+          <p>You don't have any tasks in this project yet.</p>
+        </div>
       </section>
     </article>
   </div>
@@ -55,8 +59,8 @@
   import { apiTasks } from '@/api/tasks';
 
   export default {
-    name: "Project",
-    data: function(){
+    name: 'Project',
+    data: function() {
       return {
         project: [],
         projectId: 0,
@@ -68,7 +72,7 @@
       this.fetchData();
     },
     methods: {
-      fetchData(){
+      fetchData() {
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
 
@@ -86,7 +90,7 @@
           }
         );
 
-        apiTasks.getAll(
+        apiTasks.getProjectTasks(
           this.$apiBaseUrl,
           token,
           this.projectId,
@@ -108,8 +112,7 @@
             that.error = true;
           },
         );
-      }
-    }
+      },
+    },
   }
-
 </script>

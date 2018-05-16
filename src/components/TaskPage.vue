@@ -20,13 +20,13 @@
 </template>
 
 <script>
-  import { apiTasks } from "@/api/tasks";
+  import { apiTasks } from '@/api/tasks';
 
   export default {
-    name: "TaskPage",
+    name: 'TaskPage',
     data: function() {
       return {
-        task:[],
+        task: [],
         projectId: '',
         error: false,
       };
@@ -54,6 +54,6 @@
           }
         );
       },
-    }
+    },
   }
 </script>
