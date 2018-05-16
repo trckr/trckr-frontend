@@ -13,6 +13,18 @@ export const apiTimeEntries = {
       }
     }).then(success).catch(error);
   },
+  put: function(host, token, timeEntryId, description, timeSpent, taskId, date, success, error) {
+    axios.put(host + '/api/time-entries/' + timeEntryId + '/', {
+      description: description,
+      timeSpent: timeSpent,
+      task: taskId,
+      startTime: date,
+    }, {
+      headers: {
+        'Authorization': 'Token ' + token,
+      }
+    }).then(success).catch(error);
+  },
   getAll: function (host, token, success, error) {
     axios.get(host + '/api/time-entries/', {
       headers: {

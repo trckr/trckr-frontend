@@ -158,21 +158,42 @@
         const router = this.$router;
         const token = this.$store.getters.getCurrentUser.token;
         var date = this.date + 'T00:00:00';
+        var timeEntryId = this.$route.params.timeEntryId;
 
-        apiTimeEntries.post(
-          this.$apiBaseUrl,
-          token,
-          this.description,
-          this.timeSpent,
-          this.taskId,
-          date,
-          function(response) {
-            router.push('/time-entries');
-          },
-          function(error) {
-            that.error = true;
-          }
-        )
+        if (typeof timeEntryId !== 'undefined') {
+          // Update a time entry.
+          apiTimeEntries.put(
+            this.$apiBaseUrl,
+            token,
+            timeEntryId,
+            this.description,
+            this.timeSpent,
+            this.taskId,
+            date,
+            function(response) {
+              router.push('/time-entries');
+            },
+            function(error) {
+              that.error = true;
+            }
+          );
+        } else {
+          // Create a time entry.
+          apiTimeEntries.post(
+            this.$apiBaseUrl,
+            token,
+            this.description,
+            this.timeSpent,
+            this.taskId,
+            date,
+            function(response) {
+              router.push('/time-entries');
+            },
+            function(error) {
+              that.error = true;
+            }
+          );
+        }
       },
       resetTask() {
         this.taskId = '';
