@@ -16,7 +16,7 @@
         <form @submit.prevent="createTimeEntry">
           <div class="form-item">
             <label for="projectId">Project</label>
-            <select id="projectId" v-model="projectId" v-on:change="fetchTasks()" required="required">
+            <select id="projectId" v-model="projectId" v-on:change="resetTask()" required="required">
               <option value="">Please select</option>
               <option v-for="project in projects" :value="project.id">{{ project.name }}</option>
             </select>
@@ -25,7 +25,7 @@
             <label for="taskId">Task</label>
             <select id="taskId" v-model="taskId" required="required">
               <option value="">Please select</option>
-              <option v-for="task in tasks" :value="task.id">{{ task.name }}</option>
+              <option v-for="task in tasks" :value="task.id" v-if="task.project === projectId">{{ task.name }}</option>
             </select>
           </div>
           <div class="form-item">
@@ -59,8 +59,6 @@
   export default {
     name: 'TimeEntryForm',
     data: function() {
-      var dateString = new Date().toISOString().substr(0, 10);
-
       return {
         title: 'Create a time entry',
         timeEntryId: '',
@@ -68,13 +66,15 @@
         timeSpent: '',
         taskId: '',
         projectId: '',
-        date: dateString,
+        date: new Date().toISOString().substr(0, 10),
         tasks: [],
         projects: [],
         error: false,
       };
     },
     created: function() {
+      this.fetchProjects();
+      this.fetchTasks();
       var timeEntryId = this.$route.params.timeEntryId;
 
       if (typeof timeEntryId !== 'undefined') {
@@ -82,8 +82,6 @@
         this.timeEntryId = timeEntryId;
 
         this.fetchTimeEntry();
-      } else {
-        this.fetchProjects();
       }
     },
     methods: {
@@ -96,7 +94,9 @@
           token,
           this.timeEntryId,
           function(response) {
+            that.date = response.data.startTime.substring(0, 10);
             that.description = response.data.description;
+            that.projectId = response.data.project;
             that.taskId = response.data.task;
             that.timeSpent = response.data.timeSpent;
           },
@@ -120,14 +120,22 @@
           }
         )
       },
+      getProjectName(projectId) {
+        for (let i = 0; i < this.projects.length; i++) {
+          if (this.projects[i].id === projectId) {
+            return this.projects[i].name;
+          }
+        }
+
+        return '';
+      },
       fetchTasks() {
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
 
-        apiTasks.getProjectTasks(
+        apiTasks.getAll(
           this.$apiBaseUrl,
           token,
-          that.projectId,
           function(response) {
             that.tasks = response.data;
           },
@@ -135,6 +143,15 @@
             that.error = true;
           }
         );
+      },
+      getTaskName(taskId) {
+        for (let i = 0; i < this.tasks.length; i++) {
+          if (this.tasks[i].id === taskId) {
+            return this.tasks[i].name;
+          }
+        }
+
+        return '';
       },
       createTimeEntry() {
         const that = this;
@@ -156,6 +173,9 @@
             that.error = true;
           }
         )
+      },
+      resetTask() {
+        this.taskId = '';
       },
     },
   }
