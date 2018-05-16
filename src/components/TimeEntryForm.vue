@@ -124,7 +124,7 @@
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
 
-        apiTasks.getAll(
+        apiTasks.getProjectTasks(
           this.$apiBaseUrl,
           token,
           that.projectId,

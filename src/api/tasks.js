@@ -12,7 +12,14 @@ export const apiTasks = {
         }}
     ).then(success).catch(error);
   },
-  getAll: function (host, token, projectId, success, error) {
+  getAll: function (host, token, success, error) {
+    axios.get(host + '/api/tasks/', {
+      headers: {
+        'Authorization': 'Token ' + token,
+      }
+    }).then(success).catch(error);
+  },
+  getProjectTasks: function (host, token, projectId, success, error) {
     axios.get(host + '/api/projects/' + projectId + '/tasks/', {
       headers: {
         'Authorization': 'Token ' + token,

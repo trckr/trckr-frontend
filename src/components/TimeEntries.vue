@@ -63,7 +63,7 @@
     created: function() {
       this.fetchTimeEntries();
       this.fetchProjects();
-      //this.fetchTasks();
+      this.fetchTasks();
     },
     methods: {
       fetchTimeEntries: function() {
@@ -91,7 +91,7 @@
               response.data[i].projectName = that.getProjectName(response.data[i].project);
 
               // Set task name.
-              response.data[i].taskName = '';
+              response.data[i].taskName = that.getTaskName(response.data[i].task);
             }
 
             that.timeEntries = response.data;
@@ -121,6 +121,15 @@
           }
         )
       },
+      getProjectName(projectId) {
+        for (let i = 0; i < this.projects.length; i++) {
+          if (this.projects[i].id === projectId) {
+            return this.projects[i].name;
+          }
+        }
+
+        return '';
+      },
       fetchTasks() {
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
@@ -128,19 +137,23 @@
         apiTasks.getAll(
           this.$apiBaseUrl,
           token,
-          that.projectId,
           function(response) {
             that.tasks = response.data;
+
+            // Update task names.
+            for (let i = 0; i < that.timeEntries.length; i++) {
+              that.timeEntries[i].taskName = that.getTaskName(that.timeEntries[i].task);
+            }
           },
           function(error) {
             that.error = true;
           }
         );
       },
-      getProjectName(projectId) {
-        for (let i = 0; i < this.projects.length; i++) {
-          if (this.projects[i].id === projectId) {
-            return this.projects[i].name;
+      getTaskName(taskId) {
+        for (let i = 0; i < this.tasks.length; i++) {
+          if (this.tasks[i].id === taskId) {
+            return this.tasks[i].name;
           }
         }
 

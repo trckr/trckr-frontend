@@ -15,14 +15,15 @@ const $router = {
 jest.mock('@/api/time-entries', function() {
   return {
     apiTimeEntries: {
-      post: function(host, token, description, timeSpent, taskId, success, error) {
+      post: function(host, token, description, timeSpent, taskId, date, success, error) {
         if (description.length && timeSpent > 0 && taskId > 0) {
           let response = {
-            data:{
+            data: {
               id: 1,
               description: description,
               timeSpent: timeSpent,
               task: taskId,
+              startTime: '2000-01-01T00:00:00',
             },
           };
           success(response);

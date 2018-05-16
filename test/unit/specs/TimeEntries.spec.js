@@ -14,18 +14,24 @@ jest.mock('@/api/time-entries', function() {
           data: [{
             id: 1,
             description: 'Time Entry 1',
+            startTime: '2000-01-01T00:00:00',
             timeSpent: 1.25000,
             task: 1,
+            project: 1,
           }, {
             id: 2,
             description: 'Time Entry 2',
+            startTime: '2000-01-02T00:00:00',
             timeSpent: 2.50000,
             task: 2,
+            project: 1,
           }, {
             id: 3,
             description: 'Time Entry 3',
+            startTime: '2000-01-03T00:00:00',
             timeSpent: 3.75000,
             task: 3,
+            project: 1,
           }]
         };
         success(response);
