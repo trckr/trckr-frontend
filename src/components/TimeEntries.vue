@@ -17,6 +17,7 @@
         <table id="time-entries" v-if="timeEntries.length > 0">
           <thead>
             <tr>
+              <th>Date</th>
               <th>Project</th>
               <th>Task</th>
               <th>Description</th>
@@ -26,6 +27,7 @@
           </thead>
           <tbody>
             <tr v-for="timeEntry in timeEntries">
+              <td>{{ timeEntry.date }}</td>
               <td>{{ timeEntry.projectName }}</td>
               <td>{{ timeEntry.taskName }}</td>
               <td>{{ timeEntry.description }}</td>
@@ -73,6 +75,15 @@
           token,
           function(response) {
             for (let i = 0; i < response.data.length; i++) {
+              // Clean up dates.
+              var date = new Date(response.data[i].startTime);
+              var day = date.getDate();
+              var month = date.getMonth() + 1;
+              day = day < 10 ? '0' + day : day;
+              month = month < 10 ? '0' + month : month;
+
+              response.data[i].date = day + '.' + month + '.' + date.getFullYear();
+
               // Clean up numbers.
               response.data[i].timeSpent = parseFloat(response.data[i].timeSpent).toFixed(2);
 
