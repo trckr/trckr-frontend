@@ -31,7 +31,7 @@
       </header>
 
       <section>
-        <table id="table--project-task">
+        <table id="table--project-task" v-if="tasks.length > 0">
           <thead>
             <tr>
               <th>Task</th>
@@ -45,6 +45,10 @@
             </tr>
           </tbody>
         </table>
+
+        <div class="table-empty--message" v-if="tasks.length === 0">
+          <p>You don't have any tasks in this project yet.</p>
+        </div>
       </section>
     </article>
   </div>

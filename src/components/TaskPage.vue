@@ -26,7 +26,7 @@
     name: 'TaskPage',
     data: function() {
       return {
-        task:[],
+        task: [],
         projectId: '',
         error: false,
       };
