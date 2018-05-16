@@ -29,12 +29,16 @@
             </select>
           </div>
           <div class="form-item">
+            <label for="timeSpent">Time (hours)</label>
+            <input v-model="timeSpent" id="timeSpent" type="number" step="0.25" required="required" min="0.25" />
+          </div>
+          <div class="form-item">
             <label for="description">Description</label>
             <textarea v-model="description" id="description"></textarea>
           </div>
           <div class="form-item">
-            <label for="timeSpent">Time (hours)</label>
-            <input v-model="timeSpent" id="timeSpent" type="number" step="0.25" required="required" min="0.25" />
+            <label for="date">Date</label>
+            <input v-model="date" id="date" type="date" required="required" />
           </div>
           <div class="form-actions">
             <div class="form-action">
@@ -55,6 +59,8 @@
   export default {
     name: 'TimeEntryForm',
     data: function() {
+      var dateString = new Date().toISOString().substr(0, 10);
+
       return {
         title: 'Create a time entry',
         timeEntryId: '',
@@ -62,6 +68,7 @@
         timeSpent: '',
         taskId: '',
         projectId: '',
+        date: dateString,
         tasks: [],
         projects: [],
         error: false,
@@ -133,6 +140,7 @@
         const that = this;
         const router = this.$router;
         const token = this.$store.getters.getCurrentUser.token;
+        var date = this.date + 'T00:00:00';
 
         apiTimeEntries.post(
           this.$apiBaseUrl,
@@ -140,6 +148,7 @@
           this.description,
           this.timeSpent,
           this.taskId,
+          date,
           function(response) {
             router.push('/time-entries');
           },
