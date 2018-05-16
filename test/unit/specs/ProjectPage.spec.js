@@ -33,7 +33,7 @@ jest.mock('@/api/projects', function() {
 
 jest.mock('@/api/tasks', function() {
   return {
-    apiTasks:{
+    apiTasks: {
       getProjectTasks: function (host, token, projectId, success, error) {
         let response = {
           data: [

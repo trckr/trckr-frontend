@@ -6,6 +6,64 @@ import Router from 'vue-router';
 const localVue = createLocalVue();
 localVue.use(Router);
 
+jest.mock('@/api/projects', function() {
+  return {
+    apiProjects: {
+      getAll: function (host, token, success, error) {
+        let response = {
+          data: [
+            {
+              id: 1,
+              name: 'test 1',
+              description: 'this is test 1',
+              modifiedDate: '2018-04-19T16:54:07.677763Z',
+              createdDate: '2018-04-19T16:54:07.677717Z',
+            }, {
+              id: 2,
+              name: 'test 2',
+              description: 'this is test 2',
+              modifiedDate: '2018-04-19T16:54:07.677763Z',
+              createdDate: '2018-04-19T16:54:07.677717Z',
+            }, {
+              id: 3,
+              name: 'test 3',
+              description: 'this is test 3',
+              modifiedDate: '2018-04-19T16:54:07.677763Z',
+              createdDate: '2018-04-19T16:54:07.677717Z',
+            },]
+        };
+        success(response);
+      }
+    }
+  }
+});
+
+jest.mock('@/api/tasks', function() {
+  return {
+    apiTasks: {
+      getAll: function (host, token, success, error) {
+        let response = {
+          data: [
+            {
+              id: 1,
+              name: 'first test task',
+              description: 'foo',
+              project: 1,
+            },
+            {
+              id: 2,
+              name: 'second test task',
+              description: 'bar',
+              project: 1
+            },
+          ]
+        };
+        success(response);
+      }
+    }
+  }
+});
+
 jest.mock('@/api/time-entries', function() {
   return {
     apiTimeEntries: {
