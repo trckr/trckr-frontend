@@ -75,7 +75,11 @@
 
     @media screen and (max-width: $breakpoint-mobile) {
       &.is-active {
-        height: 16rem;
+        height: 8rem;
+
+        &.is-logged-in {
+          height: 16rem;
+        }
 
         ul {
           li {

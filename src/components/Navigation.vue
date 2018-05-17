@@ -10,7 +10,7 @@
       </svg>
     </span>
 
-    <nav id="main-navigation">
+    <nav id="main-navigation" v-bind:class="{ 'is-logged-in': this.$store.getters.isLoggedIn }">
       <ul>
         <li v-if="!this.$store.getters.isLoggedIn"><router-link to="/login" v-on:click.native="closeNavigation">Login</router-link></li>
         <li v-if="!this.$store.getters.isLoggedIn"><router-link to="/register" v-on:click.native="closeNavigation">Register</router-link></li>
