@@ -4,12 +4,14 @@
 
 .component--navigation {
   @media screen and (max-width: $breakpoint-mobile) {
-    float: right !important;
+    float: none !important;
   }
 
   #responsive-menu-trigger {
     cursor: pointer;
+    float: right;
     display: none;
+    margin-right: 1rem;
     margin-top: 8px;
     @include prefix((user-select: none));
 
@@ -27,6 +29,11 @@
   nav {
     float: left;
 
+    @media screen and (max-width: $breakpoint-mobile) {
+      float: none;
+      padding-top: 48px;
+    }
+
     ul {
       display: block;
 
@@ -41,6 +48,7 @@
         float: left;
 
         @media screen and (max-width: $breakpoint-mobile) {
+          float: none;
           display: none;
         }
 
@@ -57,6 +65,16 @@
 
           &:hover {
             background-color: $color-nav-hover;
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: $breakpoint-mobile) {
+      &.is-active {
+        ul {
+          li {
+            display: block;
           }
         }
       }
