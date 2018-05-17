@@ -181,13 +181,20 @@ describe('TimeEntryForm.vue - Update', function() {
     expect(wrapper.find('.message--error').exists()).toBeFalsy();
   });
 
+  it('Has by default the existing date', function() {
+    expect(wrapper.vm.date).toBe('2000-01-01');
+  });
+
   it('Can update a time entry and redirect', function() {
     wrapper.setData({
       description: 'Description',
       timeSpent: 8.25,
       taskId: 1,
+      date: '2018-01-01',
     });
     wrapper.find('form').trigger('submit');
+
+    expect(wrapper.vm.date).toBe('2018-01-01');
     expect(wrapper.vm.$router.path).toBe('/time-entries');
   });
 });
