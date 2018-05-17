@@ -31,7 +31,10 @@
 
     @media screen and (max-width: $breakpoint-mobile) {
       float: none;
-      padding-top: 48px;
+      height: 0;
+      overflow: hidden;
+      transition: $transition-ease-in-out;
+      width: 100%;
     }
 
     ul {
@@ -72,6 +75,8 @@
 
     @media screen and (max-width: $breakpoint-mobile) {
       &.is-active {
+        height: 16rem;
+
         ul {
           li {
             display: block;
