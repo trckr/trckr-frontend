@@ -2,7 +2,7 @@
   <div class="component component--project-page">
     <article>
       <header>
-        <div class="back">
+        <div class="back--wrapper">
           <router-link :to="{path: '/projects'}">Back to Projects</router-link>
         </div>
         <h1>{{ project.name }}</h1>

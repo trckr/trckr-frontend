@@ -2,7 +2,7 @@
   <div id="app">
     <header>
       <section>
-        <div class="logo">
+        <div class="logo--wrapper">
           <img src="./assets/logo.png" alt="trckr" title="trckr" />
         </div>
 

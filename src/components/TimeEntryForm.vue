@@ -2,7 +2,7 @@
   <div class="component component--time-entry-form">
     <article>
       <header>
-        <div class="back">
+        <div class="back--wrapper">
           <router-link :to="{path: '/time-entries'}">Back to Time Entries</router-link>
         </div>
         <h1>{{ title }}</h1>

@@ -1,12 +1,7 @@
 //-----------------------------------------------------------------------------
-// Base: App.
+// Elements: Back.
 //-----------------------------------------------------------------------------
 
-#app {
-  > header > section,
-  > main > section,
-  > footer > section {
-    margin: 0 auto;
-    max-width: $component-max-width;
-  }
+.back--wrapper {
+  padding-bottom: 1rem;
 }
