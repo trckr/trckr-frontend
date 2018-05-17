@@ -29,25 +29,10 @@ main a {
   color: $color-link;
   display: inline-block;
   position: relative;
-  text-decoration: none;
+  text-decoration: underline;
   transition: $transition-linear;
-
-  &::after {
-    background-color: $color-link;
-    bottom: 0;
-    content: '';
-    display: block;
-    position: absolute;
-    height: 1px;
-    transition: $transition-ease-in-out;
-    width: 100%;
-  }
 
   &:hover {
     color: $color-link-hover;
-
-    &::after {
-      background-color: $color-link-hover;
-    }
   }
 }
