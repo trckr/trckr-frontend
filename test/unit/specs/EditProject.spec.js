@@ -1,4 +1,4 @@
-import { createLocalVue, shallow } from '@vue/test-utils';
+import { createLocalVue, shallow, RouterLinkStub } from '@vue/test-utils';
 import { store } from '@/store';
 import EditProject from '@/components/EditProject.vue';
 
@@ -54,7 +54,7 @@ jest.mock('@/api/projects', function() {
 import { apiProjects } from '@/api/projects';
 
 describe('EditProject.vue', function() {
-  let wrapper = shallow(EditProject, {localVue, store, mocks: { $router, $route }});
+  let wrapper = shallow(EditProject, {localVue, store, mocks: { $router, $route }, stubs: { RouterLink: RouterLinkStub }});
 
   beforeEach(function () {
     jest.resetModules();

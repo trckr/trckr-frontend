@@ -1,4 +1,4 @@
-import { createLocalVue, shallow } from '@vue/test-utils';
+import { createLocalVue, shallow, RouterLinkStub } from '@vue/test-utils';
 import { store } from '@/store';
 import CreateTask from '@/components/CreateTask.vue';
 
@@ -6,10 +6,10 @@ const localVue = createLocalVue();
 
 const $route = { params: { projectId: 1 }};
 const $router = {
-    path: '',
-    push: function(string) {
-        this.path = string
-    }
+  path: '',
+  push: function(string) {
+    this.path = string
+  }
 };
 
 jest.mock('@/api/tasks', function() {
@@ -42,7 +42,7 @@ jest.mock('@/api/tasks', function() {
 import { apiTasks } from '@/api/tasks';
 
 describe('CreateTask.vue', function () {
-  let wrapper = shallow(CreateTask, {localVue, store, mocks: { $router, $route }});
+  let wrapper = shallow(CreateTask, {localVue, store, mocks: { $router, $route }, stubs: { RouterLink: RouterLinkStub }});
 
   beforeEach(function() {
     jest.resetModules();
