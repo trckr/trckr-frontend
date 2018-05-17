@@ -5,6 +5,7 @@ import TimeEntryForm from '@/components/TimeEntryForm.vue';
 const localVue = createLocalVue();
 
 const $route = { params: {} };
+const $routeEdit = { params: { timeEntryId: 1 } };
 const $router = {
   path: '',
   push: function(string) {
@@ -73,6 +74,19 @@ jest.mock('@/api/tasks', function() {
 jest.mock('@/api/time-entries', function() {
   return {
     apiTimeEntries: {
+      getSingle: function (host, token, timeEntryId, success, error) {
+        let response = {
+          data: {
+            id: 1,
+            description: 'description',
+            timeSpent: 1.00000,
+            task: 1,
+            project: 1,
+            startTime: '2000-01-01T00:00:00',
+          },
+        };
+        success(response);
+      },
       post: function(host, token, description, timeSpent, taskId, date, success, error) {
         if (description.length && timeSpent > 0 && taskId > 0) {
           let response = {
@@ -81,6 +95,7 @@ jest.mock('@/api/time-entries', function() {
               description: description,
               timeSpent: timeSpent,
               task: taskId,
+              project: 1,
               startTime: '2000-01-01T00:00:00',
             },
           };
@@ -93,7 +108,29 @@ jest.mock('@/api/time-entries', function() {
           };
           error(response);
         }
-      }
+      },
+      put: function(host, token, timeEntryId, description, timeSpent, taskId, date, success, error) {
+        if (description.length && timeSpent > 0 && taskId > 0) {
+          let response = {
+            data: {
+              id: 1,
+              description: description,
+              timeSpent: timeSpent,
+              task: taskId,
+              project: 1,
+              startTime: '2000-01-01T00:00:00',
+            },
+          };
+          success(response);
+        } else {
+          let response ={
+            data: {
+              non_field_errors: ['Something went wrong.'],
+            },
+          };
+          error(response);
+        }
+      },
     }
   }
 });
@@ -101,7 +138,7 @@ jest.mock('@/api/time-entries', function() {
 import { apiTimeEntries } from '@/api/time-entries';
 import { apiProjects } from '@/api/projects';
 
-describe('TimeEntryForm.vue', function() {
+describe('TimeEntryForm.vue - Create', function() {
   let wrapper = shallow(TimeEntryForm, {localVue, store, mocks: { $router, $route }, stubs: { RouterLink: RouterLinkStub }});
 
   beforeEach(function () {
@@ -122,6 +159,29 @@ describe('TimeEntryForm.vue', function() {
   });
 
   it('Can create a time entry and redirect', function() {
+    wrapper.setData({
+      description: 'Description',
+      timeSpent: 8.25,
+      taskId: 1,
+    });
+    wrapper.find('form').trigger('submit');
+    expect(wrapper.vm.$router.path).toBe('/time-entries');
+  });
+});
+
+describe('TimeEntryForm.vue - Update', function() {
+  let wrapper = shallow(TimeEntryForm, {localVue, store, mocks: { $router: $router, $route: $routeEdit }, stubs: { RouterLink: RouterLinkStub }});
+
+  beforeEach(function () {
+    jest.resetModules();
+    jest.clearAllMocks();
+  });
+
+  it('Shows no error message at start', function() {
+    expect(wrapper.find('.message--error').exists()).toBeFalsy();
+  });
+
+  it('Can update a time entry and redirect', function() {
     wrapper.setData({
       description: 'Description',
       timeSpent: 8.25,
