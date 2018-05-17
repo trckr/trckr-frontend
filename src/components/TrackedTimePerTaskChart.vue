@@ -13,7 +13,7 @@
     name: 'TrackedTimeChart',
     components: { DoughnutChart },
     data: function() {
-      return { 
+      return {
         timeEntries: [],
         error: false,
       };
@@ -42,10 +42,6 @@
           }
         )
       },
-
-      getRandomColors: function(numberOfColors) {
-      
-      }
     },
     computed: {
       chartData: function() {
@@ -59,12 +55,12 @@
             trackedTimePerTask[label] += parseFloat(element.timeSpent);
           } else {
             trackedTimePerTask[label] = parseFloat(element.timeSpent);
-          }         
+          }
         });
 
         return {
           labels: Object.keys(trackedTimePerTask),
-          datasets: [{ 
+          datasets: [{
             data: Object.values(trackedTimePerTask),
             backgroundColor: palette('cb-Spectral', this.timeEntries.length).map(function(e) { 
               return '#' + e;

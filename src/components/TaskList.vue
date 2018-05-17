@@ -1,5 +1,5 @@
 <template>
-  <div class="component component--task-list">
+  <div class="component component--task-list table-wrapper">
     <table id="table--project-task">
       <thead>
         <tr>
