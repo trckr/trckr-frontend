@@ -17,7 +17,12 @@
     "imports-loader": "^0.8.0",
     "localforage": "^1.7.1",
     "snapsvg": "^0.5.1",
+    "chart.js": "^2.7.2",
+    "google-palette": "^1.1.0",
+    "localforage": "^1.7.1",
+    "moment": "^2.22.1",
     "vue": "^2.5.2",
+    "vue-chartjs": "^3.3.1",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },

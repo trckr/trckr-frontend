@@ -19,7 +19,7 @@ export const apiTasks = {
       }
     }).then(success).catch(error);
   },
-  getProjectTasks: function (host, token, projectId, success, error) {
+  getAllByProject: function (host, token, projectId, success, error) {
     axios.get(host + '/api/projects/' + projectId + '/tasks/', {
       headers: {
         'Authorization': 'Token ' + token,

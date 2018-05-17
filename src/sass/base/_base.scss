@@ -1,6 +1,7 @@
 //-----------------------------------------------------------------------------
 // Base: Base Styling.
 //-----------------------------------------------------------------------------
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 * {
   box-sizing: border-box;
@@ -11,7 +12,7 @@
 
 html {
   color: $color-main;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
   font-size: 100%;
   font-weight: normal;
   -webkit-font-smoothing: antialiased;
@@ -24,6 +25,10 @@ h3 { font-size: 1.565rem; }
 h4 { font-size: 1.250rem; }
 h5 { font-size: 1.125rem; }
 h6 { font-size: 1.000rem; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 1rem;
+}
 
 main a {
   color: $color-link;
