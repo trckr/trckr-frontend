@@ -14,8 +14,9 @@
           Something went wrong.
         </div>
 
-        <table id="time-entries" v-if="timeEntries.length > 0">
-          <thead>
+        <div class="table-wrapper">
+          <table id="time-entries" v-if="timeEntries.length > 0">
+            <thead>
             <tr>
               <th>Date</th>
               <th>Project</th>
@@ -24,8 +25,8 @@
               <th>Time</th>
               <th>Actions</th>
             </tr>
-          </thead>
-          <tbody>
+            </thead>
+            <tbody>
             <tr v-for="timeEntry in timeEntries">
               <td>{{ timeEntry.date }}</td>
               <td>{{ timeEntry.projectName }}</td>
@@ -34,8 +35,9 @@
               <td>{{ timeEntry.timeSpent }}</td>
               <td><router-link :to="{path: '/time-entry/' + timeEntry.id + '/edit'}">Edit</router-link></td>
             </tr>
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
 
         <div class="table-empty--message" v-if="timeEntries.length === 0">
           <p>You don't have any time entries yet.</p>

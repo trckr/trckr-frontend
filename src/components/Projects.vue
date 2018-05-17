@@ -19,20 +19,22 @@
             <input type="text" v-model="search" placeholder="Filter projects" />
           </div>
 
-          <table id="table--project-task">
-            <thead>
-            <tr>
-              <th>Project</th>
-              <th>Description</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="project in filteredProjects">
-              <td><router-link :to="{path: '/project/' + project.id}">{{ project.name }}</router-link></td>
-              <td>{{ project.description }}</td>
-            </tr>
-            </tbody>
-          </table>
+          <div class="table-wrapper">
+            <table id="table--project-task">
+              <thead>
+              <tr>
+                <th>Project</th>
+                <th>Description</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr v-for="project in filteredProjects">
+                <td><router-link :to="{path: '/project/' + project.id}">{{ project.name }}</router-link></td>
+                <td>{{ project.description }}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <div class="table-empty--message" v-if="projects.length === 0">

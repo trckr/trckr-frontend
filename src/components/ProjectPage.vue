@@ -31,20 +31,22 @@
       </header>
 
       <section>
-        <table id="table--project-task" v-if="tasks.length > 0">
-          <thead>
-            <tr>
-              <th>Task</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="task in tasks">
-              <td><router-link :to="{path: projectId +'/task/' + task.id}">{{ task.name }}</router-link></td>
-              <td>{{ task.description }}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-wrapper">
+          <table id="table--project-task" v-if="tasks.length > 0">
+            <thead>
+              <tr>
+                <th>Task</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="task in tasks">
+                <td><router-link :to="{path: projectId +'/task/' + task.id}">{{ task.name }}</router-link></td>
+                <td>{{ task.description }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
 
         <div class="table-empty--message" v-if="tasks.length === 0">
           <p>You don't have any tasks in this project yet.</p>
