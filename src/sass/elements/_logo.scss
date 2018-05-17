@@ -2,9 +2,16 @@
 // Elements: Logo.
 //-----------------------------------------------------------------------------
 
-.logo {
+.logo--wrapper {
   height: 64px;
+  margin-left: 2rem;
   width: 64px;
+
+  @media screen and (max-width: $breakpoint-mobile) {
+    height: 48px;
+    margin-left: 1rem;
+    width: 48px;
+  }
 
   img {
     display: block;

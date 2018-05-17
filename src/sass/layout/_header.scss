@@ -2,18 +2,24 @@
 // Layout: Header.
 //-----------------------------------------------------------------------------
 
-#app > header > section {
-  @extend .clearfix;
+#app > header {
+  background-color: $color-header;
+  transition: $transition-linear-longer;
 
-  > * {
-    float: left;
+  @media screen and (max-width: $breakpoint-mobile) {
+    background-color: $color-base-black;
   }
 
-  > .logo {
-    margin-left: 2rem;
-  }
+  > section {
+    @extend .clearfix;
 
-  > .component {
-    padding-left: 0;
+    > * {
+      float: left;
+    }
+
+    > .component {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 }

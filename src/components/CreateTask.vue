@@ -2,7 +2,7 @@
   <div class="component component--create-task">
     <article>
       <header>
-        <div class="back">
+        <div class="back--wrapper">
           <router-link :to="{path: '/project/' + projectId}">Back to Project</router-link>
         </div>
         <h1>Create a task</h1>

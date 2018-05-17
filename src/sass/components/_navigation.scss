@@ -3,7 +3,37 @@
 //-----------------------------------------------------------------------------
 
 .component--navigation {
+  @media screen and (max-width: $breakpoint-mobile) {
+    float: none !important;
+  }
+
+  #responsive-menu-trigger {
+    cursor: pointer;
+    float: right;
+    display: none;
+    margin-right: 1rem;
+    margin-top: 8px;
+    @include prefix((user-select: none));
+
+    @media screen and (max-width: $breakpoint-mobile) {
+      display: inline-block;
+    }
+
+    svg {
+      display: block;
+      height: 32px;
+      width: 32px;
+    }
+  }
+
   nav {
+    float: left;
+
+    @media screen and (max-width: $breakpoint-mobile) {
+      float: none;
+      padding-top: 48px;
+    }
+
     ul {
       display: block;
 
@@ -16,6 +46,11 @@
       li {
         display: inline-block;
         float: left;
+
+        @media screen and (max-width: $breakpoint-mobile) {
+          float: none;
+          display: none;
+        }
 
         a {
           color: $color-base-white;
@@ -30,6 +65,16 @@
 
           &:hover {
             background-color: $color-nav-hover;
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: $breakpoint-mobile) {
+      &.is-active {
+        ul {
+          li {
+            display: block;
           }
         }
       }

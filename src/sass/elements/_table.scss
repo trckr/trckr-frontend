@@ -2,20 +2,25 @@
 // Elements: Table.
 //-----------------------------------------------------------------------------
 
-table {
-  border-collapse: collapse;
-  width: 100%;
+.table-wrapper {
+  overflow-x: auto;
 
-  th,
-  td {
-    border: solid 1px $color-main;
-    padding: 0.5rem;
-  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
 
-  th {
-    background-color: $color-header;
-    border-color: $color-main;
-    color: $color-base-white;
-    text-align: left;
+    th,
+    td {
+      border: solid 1px $color-main;
+      padding: 0.5rem;
+      vertical-align: top;
+    }
+
+    th {
+      background-color: $color-header;
+      border-color: $color-main;
+      color: $color-base-white;
+      text-align: left;
+    }
   }
 }

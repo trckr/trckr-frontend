@@ -26,7 +26,11 @@ $color-link-hover: $color-shark;
 // Transitions.
 $transition-ease-in-out: all .35s ease-in-out;
 $transition-linear: all .35s linear;
+$transition-linear-longer: all .5s linear;
 
 
-// Sizes (Desktop First).
+// Sizes.
 $component-max-width: 90rem; // 1440px
+
+// Breakpoints.
+$breakpoint-mobile: 720px;

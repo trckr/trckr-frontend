@@ -5,6 +5,10 @@
 .component {
   padding: 0 2rem;
 
+  @media screen and (max-width: $breakpoint-mobile) {
+    padding: 0 1rem;
+  }
+
   article {
     header {
       margin-bottom: 1rem;
@@ -17,9 +21,5 @@
     & + article {
       margin-top: 2rem;
     }
-  }
-
-  .back {
-    padding-bottom: 1rem;
   }
 }

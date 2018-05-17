@@ -2,7 +2,7 @@
   <div class="component component--edit-project">
     <article>
       <header>
-        <div class="back">
+        <div class="back--wrapper">
           <router-link :to="{path: '/project/' + projectId}">Back to Project</router-link>
         </div>
         <h1>Edit Project</h1>

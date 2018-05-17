@@ -52,3 +52,28 @@ input[type=submit] {
     }
   }
 }
+
+@media screen and (max-width: $breakpoint-mobile) {
+  label {
+    margin-bottom: 0.25rem;
+  }
+
+  label,
+  input,
+  select,
+  textarea {
+    display: block;
+    width: 100%;
+  }
+
+  .form-actions {
+    .form-action {
+      display: block;
+
+      & + .form-action {
+        margin-left: 0;
+        margin-top: 1rem;
+      }
+    }
+  }
+}

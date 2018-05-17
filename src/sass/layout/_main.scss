@@ -1,12 +1,7 @@
 //-----------------------------------------------------------------------------
-// Base: App.
+// Layout: Main.
 //-----------------------------------------------------------------------------
 
-#app {
-  > header > section,
-  > main > section,
-  > footer > section {
-    margin: 0 auto;
-    max-width: $component-max-width;
-  }
+#app > main {
+  padding-top: 1rem;
 }
