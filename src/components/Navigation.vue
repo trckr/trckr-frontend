@@ -12,12 +12,12 @@
 
     <nav id="main-navigation">
       <ul>
-        <li v-if="!this.$store.getters.isLoggedIn"><router-link to="/login">Login</router-link></li>
-        <li v-if="!this.$store.getters.isLoggedIn"><router-link to="/register">Register</router-link></li>
-        <li v-if="this.$store.getters.isLoggedIn"><router-link to="/dashboard">Dashboard</router-link></li>
-        <li v-if="this.$store.getters.isLoggedIn"><router-link to="/projects">Projects</router-link></li>
-        <li v-if="this.$store.getters.isLoggedIn"><router-link to="/time-entries">Time Entries</router-link></li>
-        <li v-if="this.$store.getters.isLoggedIn"><router-link to="/logout">Logout</router-link></li>
+        <li v-if="!this.$store.getters.isLoggedIn"><router-link to="/login" v-on:click.native="closeNavigation">Login</router-link></li>
+        <li v-if="!this.$store.getters.isLoggedIn"><router-link to="/register" v-on:click.native="closeNavigation">Register</router-link></li>
+        <li v-if="this.$store.getters.isLoggedIn"><router-link to="/dashboard" v-on:click.native="closeNavigation">Dashboard</router-link></li>
+        <li v-if="this.$store.getters.isLoggedIn"><router-link to="/projects" v-on:click.native="closeNavigation">Projects</router-link></li>
+        <li v-if="this.$store.getters.isLoggedIn"><router-link to="/time-entries" v-on:click.native="closeNavigation">Time Entries</router-link></li>
+        <li v-if="this.$store.getters.isLoggedIn"><router-link to="/logout" v-on:click.native="closeNavigation">Logout</router-link></li>
       </ul>
     </nav>
   </div>
@@ -31,20 +31,31 @@
     methods: {
       toggleResponsiveMenu() {
         let nav = document.getElementById('main-navigation');
+
+        if (nav.classList.contains('is-active')) {
+          this.closeNavigation();
+        } else {
+          this.openNavigation();
+        }
+      },
+      openNavigation() {
+        let nav = document.getElementById('main-navigation');
+        let menuTrigger = Snap('#responsive-menu-trigger svg');
+
+        menuTrigger.select('path:nth-child(1)').animate({path: 'M 12.972944,50.936147 51.027056,12.882035'}, 250);
+        menuTrigger.select('path:nth-child(2)').animate({opacity: 0}, 250);
+        menuTrigger.select('path:nth-child(3)').animate({path: 'M 12.972944,12.882035 51.027056,50.936147'}, 250);
+        nav.classList.add('is-active');
+      },
+      closeNavigation() {
+        let nav = document.getElementById('main-navigation');
         let menuTrigger = Snap('#responsive-menu-trigger svg');
 
         if (nav.classList.contains('is-active')) {
           menuTrigger.select('path:nth-child(1)').animate({path: 'm 5.0916789,20.818994 53.8166421,0'}, 250);
           menuTrigger.select('path:nth-child(2)').animate({opacity: 1}, 250);
           menuTrigger.select('path:nth-child(3)').animate({path: 'm 5.0916788,42.95698 53.8166422,0'}, 250);
-
           nav.classList.remove('is-active');
-        } else {
-          menuTrigger.select('path:nth-child(1)').animate({path: 'M 12.972944,50.936147 51.027056,12.882035'}, 250);
-          menuTrigger.select('path:nth-child(2)').animate({opacity: 0}, 250);
-          menuTrigger.select('path:nth-child(3)').animate({path: 'M 12.972944,12.882035 51.027056,50.936147'}, 250);
-
-          nav.classList.add('is-active');
         }
       },
     },
