@@ -3,7 +3,8 @@
     <article>
       <header>
         <div class="back--wrapper">
-          <router-link :to="{path: '/project/' + projectId}">Back to Project</router-link>
+          <router-link v-if="projectId.length > 0" :to="{path: '/project/' + projectId}">Back to Project</router-link>
+          <router-link v-if="projectId.length === 0" :to="{path: '/projects'}">Back to Projects</router-link>
         </div>
         <h1>Create a task</h1>
       </header>
