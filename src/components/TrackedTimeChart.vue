@@ -1,6 +1,6 @@
 <template>
   <div class="component component--tracked-time-chart">
-    <bar-chart :chartData="chartData"/>
+    <bar-chart :chartData="chartData" />
   </div>
 </template>
 
@@ -13,7 +13,7 @@
     name: 'TrackedTimeChart',
     components: { BarChart },
     data: function() {
-      return { 
+      return {
         timeEntries: [],
         error: false,
       };
@@ -31,7 +31,7 @@
           token,
           function(response) {
             // Clean up numbers.
-            for (var i = 0; i < response.data.length; i++) {
+            for (let i = 0; i < response.data.length; i++) {
               response.data[i].timeSpent = parseFloat(response.data[i].timeSpent).toFixed(2);
             }
 
@@ -46,33 +46,29 @@
     computed: {
       chartData: function() {
         const that = this;
-        var trackedTimePerDay = new Array(7).fill(0);
-
-        var currentDate = new moment();
-        var currentDay = currentDate.day();
+        let trackedTimePerDay = new Array(7).fill(0);
+        let currentDate = new moment();
+        let currentDay = currentDate.day();
 
         this.timeEntries.forEach(function(element) {
-          var elementDate = moment(element.startTime);
-          
-          var offset = currentDate.diff(elementDate, 'days');
-          var index = currentDay - offset;
+          let elementDate = moment(element.startTime);
+          let offset = currentDate.diff(elementDate, 'days');
+          let index = currentDay - offset;
 
-          if(index >= 0) {
+          if (index >= 0) {
             trackedTimePerDay[index] += parseFloat(element.timeSpent);
           }
-        }); 
+        });
 
         return {
           labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-          datasets: [
-            {
-              label: "Tracked time in hours", 
-              backgroundColor: '#f87979',
-              data: trackedTimePerDay
-            }
-          ]
-        }
-      }
-    }
+          datasets: [{
+            label: 'Tracked time in hours',
+            backgroundColor: '#f87979',
+            data: trackedTimePerDay
+          }],
+        };
+      },
+    },
   }
 </script>

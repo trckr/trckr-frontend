@@ -108,7 +108,7 @@
               };
               tasks.push(task);
             }
-            that.tasks  = tasks;
+            that.tasks = tasks;
           },
           function(error) {
             that.error = true;

@@ -1,6 +1,8 @@
 <template>
   <div class="component component--tracked-time-per-taks-chart">
-    <doughnut-chart :chartData="chartData"/>
+    <h2>Tracked time per task</h2>
+
+    <doughnut-chart :chartData="chartData" />
   </div>
 </template>
 
@@ -62,7 +64,7 @@
           labels: Object.keys(trackedTimePerTask),
           datasets: [{
             data: Object.values(trackedTimePerTask),
-            backgroundColor: palette('cb-Spectral', this.timeEntries.length).map(function(e) { 
+            backgroundColor: palette('cb-Spectral', this.timeEntries.length).map(function(e) {
               return '#' + e;
             }),
           }]
