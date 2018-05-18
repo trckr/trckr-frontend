@@ -15,6 +15,12 @@
 
         <p>{{ task.description }}</p>
       </section>
+
+      <footer>
+        <div class="main-actions">
+          <router-link :to="{path: '/time-entry/create'}">Create time entry</router-link>
+        </div>
+      </footer>
     </article>
   </div>
 </template>
