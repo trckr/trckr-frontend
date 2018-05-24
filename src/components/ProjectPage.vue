@@ -81,6 +81,10 @@
 
         that.projectId = that.$route.params.projectId;
 
+        /**
+         * this method will load in the project data such as the title and the description, which is displayed at the
+         * top of the page
+         */
         apiProjects.getSingle(
           this.$apiBaseUrl,
           token,
@@ -93,6 +97,10 @@
           }
         );
 
+        /**
+         * this method will load all the tasks for the selected project, the tasks are then iteratively added to a
+         * generated table.
+         */
         apiTasks.getAllByProject(
           this.$apiBaseUrl,
           token,

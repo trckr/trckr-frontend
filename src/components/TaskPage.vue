@@ -48,11 +48,15 @@
         that.projectId = that.$route.params.projectId;
         that.taskId = that.$route.params.taskId;
 
+        /**
+         * this method loads the task data that is then displayed on the task page.
+         */
         apiTasks.getSingle(
           this.$apiBaseUrl,
           token,
           that.taskId,
           function(response) {
+            // data that is displayed on page
             that.task = response.data;
           },
           function(error) {

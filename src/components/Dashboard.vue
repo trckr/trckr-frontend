@@ -32,6 +32,7 @@
 
   export default {
     name: 'Dashboard',
+    // the components are the charts that are included on the dashboard.
     components: { TrackedTimeChart, TrackedTimePerTaskChart, TaskList },
     data: function() {
       return {

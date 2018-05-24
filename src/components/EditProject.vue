@@ -51,6 +51,9 @@
       this.fetchData();
     },
     methods: {
+      /**
+       * fetchdata() is required to load the currently existing data into the form
+       */
       fetchData() {
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
@@ -63,7 +66,9 @@
           this.projectId,
           function(response) {
             that.project = response;
+            // will load the current name into the name textfield
             that.name = response.data.name;
+            // will load the current description to the description textfield
             that.description = response.data.description;
           },
           function(error) {
