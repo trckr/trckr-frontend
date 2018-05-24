@@ -22,6 +22,11 @@ textarea {
   border: solid 1px $color-mid-gray;
   padding: 0.375rem;
   width: 27rem;
+
+  &:invalid {
+    border-color: $color-error-red;
+    box-shadow: none;
+  }
 }
 
 select {
