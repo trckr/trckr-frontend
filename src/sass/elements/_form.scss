@@ -2,6 +2,13 @@
 // Elements: Form.
 //-----------------------------------------------------------------------------
 
+form {
+  background-color: $color-light-gray;
+  border: solid 1px $color-base-black;
+  display: inline-block;
+  padding: 1rem;
+}
+
 label {
   display: inline-block;
   margin-right: 1.5rem;
@@ -12,6 +19,8 @@ label {
 input,
 select,
 textarea {
+  border: solid 1px $color-mid-gray;
+  padding: 0.375rem;
   width: 27rem;
 }
 
