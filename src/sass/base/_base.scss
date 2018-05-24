@@ -19,6 +19,13 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+textarea,
+input[type=date] {
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  font-weight: normal;
+}
+
 h1 { font-size: 2.185rem; }
 h2 { font-size: 1.875rem; }
 h3 { font-size: 1.565rem; }
