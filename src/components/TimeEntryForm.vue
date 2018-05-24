@@ -55,6 +55,7 @@
   import { apiProjects } from '@/api/projects';
   import { apiTasks } from '@/api/tasks';
   import { apiTimeEntries } from '@/api/time-entries';
+  import Toasted from 'vue-toasted';
 
   export default {
     name: 'TimeEntryForm',
@@ -153,6 +154,18 @@
 
         return '';
       },
+      displaySuccessMessage() {
+        this.$toasted.show('Time entry was successfully saved.', {
+          position: 'top-center',
+          type: 'success',
+          action: {
+            text: 'Close',
+            onClick : (e, toastObject) => {
+              toastObject.goAway(0);
+            },
+          },
+        });
+      },
       createTimeEntry() {
         const that = this;
         const router = this.$router;
@@ -171,6 +184,7 @@
             this.taskId,
             date,
             function(response) {
+              that.displaySuccessMessage();
               router.push('/time-entries');
             },
             function(error) {
@@ -187,6 +201,7 @@
             this.taskId,
             date,
             function(response) {
+              that.displaySuccessMessage();
               router.push('/time-entries');
             },
             function(error) {
