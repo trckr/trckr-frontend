@@ -15,6 +15,12 @@
         <router-view />
       </section>
     </main>
+
+    <footer>
+      <section>
+        <p>© 2018 by trckr. Hackable on <a href="https://github.com/trckr/trckr-frontend" target="_blank">github.com/trckr/trckr-frontend</a>.</p>
+      </section>
+    </footer>
   </div>
 </template>
 
