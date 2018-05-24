@@ -3,7 +3,7 @@
     <article>
       <header>
         <div class="back--wrapper">
-          <router-link :to="{path: '/time-entries'}">Back to Time Entries</router-link>
+          <router-link :to="{path: '/time-entries'}" class="icon icon--back">Back to Time Entries</router-link>
         </div>
         <h1>{{ title }}</h1>
       </header>
@@ -42,7 +42,7 @@
           </div>
           <div class="form-actions">
             <div class="form-action">
-              <input type="submit" value="Save time entry" />
+              <input type="submit" :value="submitText" :class="submitCls" />
             </div>
           </div>
         </form>
@@ -70,6 +70,8 @@
         date: new Date().toISOString().substr(0, 10),
         tasks: [],
         projects: [],
+        submitText: 'Create',
+        submitCls: 'icon icon--add',
         error: false,
       };
     },
@@ -81,6 +83,8 @@
       if (typeof timeEntryId !== 'undefined') {
         this.title = 'Edit time entry #' + timeEntryId;
         this.timeEntryId = timeEntryId;
+        this.submitText = 'Edit';
+        this.submitCls = 'icon icon--edit';
 
         this.fetchTimeEntry();
       }

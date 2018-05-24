@@ -3,7 +3,7 @@
     <article>
       <header>
         <div class="back--wrapper">
-          <router-link :to="{path: '/project/' + projectId}">Back to Project</router-link>
+          <router-link :to="{path: '/project/' + projectId}" class="icon icon--back">Back to project</router-link>
         </div>
         <h1>{{ task.name }}</h1>
       </header>
@@ -18,7 +18,7 @@
 
       <footer>
         <div class="main-actions">
-          <router-link :to="{path: '/time-entry/create'}">Create time entry</router-link>
+          <router-link :to="{path: '/time-entry/create'}" class="icon icon--add">Create time entry</router-link>
         </div>
       </footer>
     </article>

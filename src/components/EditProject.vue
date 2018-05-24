@@ -3,7 +3,7 @@
     <article>
       <header>
         <div class="back--wrapper">
-          <router-link :to="{path: '/project/' + projectId}">Back to Project</router-link>
+          <router-link :to="{path: '/project/' + projectId}" class="icon icon--back">Back to project</router-link>
         </div>
         <h1>Edit Project</h1>
       </header>
@@ -24,7 +24,7 @@
           </div>
           <div class="form-actions">
             <div class="form-action">
-              <input type="submit" value="Edit" />
+              <input type="submit" value="Edit" class="icon icon--edit" />
             </div>
           </div>
         </form>

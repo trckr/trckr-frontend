@@ -3,31 +3,28 @@
     <article>
       <header>
         <div class="back--wrapper">
-          <router-link :to="{path: '/projects'}">Back to Projects</router-link>
+          <router-link :to="{path: '/projects'}" class="icon icon--back">Back to projects</router-link>
         </div>
-        <h1>{{ project.name }}</h1>
 
-        <div class="main-actions">
-          <router-link :to="{path: '/project/edit/'+ projectId }">Edit project</router-link>
-        </div>
-      </header>
-
-      <section>
         <div v-if="error" class="message message--error">
           Something went wrong.
         </div>
 
+        <h1>{{ project.name }}</h1>
+      </header>
+
+      <section>
         <p>{{ project.description }}</p>
+
+        <div class="main-actions">
+          <router-link :to="{path: '/project/edit/'+ projectId }" class="icon icon--edit">Edit project</router-link>
+        </div>
       </section>
     </article>
 
     <article>
       <header>
         <h2>Tasks</h2>
-
-        <div class="main-actions">
-          <router-link :to="{path: '/project/'+ projectId +'/task/create'}">Create task</router-link>
-        </div>
       </header>
 
       <section>
@@ -50,6 +47,10 @@
 
         <div class="table-empty--message" v-if="tasks.length === 0">
           <p>You don't have any tasks in this project yet.</p>
+        </div>
+
+        <div class="main-actions">
+          <router-link :to="{path: '/project/'+ projectId +'/task/create'}" class="icon icon--add">Create task</router-link>
         </div>
       </section>
     </article>
