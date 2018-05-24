@@ -12,10 +12,6 @@
   article {
     header {
       margin-bottom: 1rem;
-
-      .main-actions {
-        margin-top: 1rem;
-      }
     }
 
     & + article {
@@ -25,5 +21,14 @@
     section {
       margin-bottom: 1rem;
     }
+
+    .main-actions {
+      margin-top: 1rem;
+    }
   }
+}
+
+// Remove paddings from components inside other components, the padding will be applied to the parent component.
+.component .component {
+  padding: 0;
 }

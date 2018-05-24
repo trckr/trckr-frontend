@@ -1,0 +1,22 @@
+//-----------------------------------------------------------------------------
+// Layout: Footer.
+//-----------------------------------------------------------------------------
+
+#app > footer {
+  background-color: $color-footer;
+  color: $color-base-white;
+  padding: 1rem 1rem;
+  transition: $transition-linear-longer;
+
+  @media screen and (max-width: $breakpoint-mobile) {
+    background-color: $color-base-black;
+  }
+
+  a {
+    color: $color-base-white;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

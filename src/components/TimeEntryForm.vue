@@ -3,7 +3,7 @@
     <article>
       <header>
         <div class="back--wrapper">
-          <router-link :to="{path: '/time-entries'}">Back to Time Entries</router-link>
+          <router-link :to="{path: '/time-entries'}" class="icon icon--back">Back to Time Entries</router-link>
         </div>
         <h1>{{ title }}</h1>
       </header>
@@ -42,7 +42,7 @@
           </div>
           <div class="form-actions">
             <div class="form-action">
-              <input type="submit" value="Save time entry" />
+              <input type="submit" :value="submitText" :class="submitCls" />
             </div>
           </div>
         </form>
@@ -55,6 +55,7 @@
   import { apiProjects } from '@/api/projects';
   import { apiTasks } from '@/api/tasks';
   import { apiTimeEntries } from '@/api/time-entries';
+  import Toasted from 'vue-toasted';
 
   export default {
     name: 'TimeEntryForm',
@@ -69,6 +70,8 @@
         date: new Date().toISOString().substr(0, 10),
         tasks: [],
         projects: [],
+        submitText: 'Create',
+        submitCls: 'icon icon--add',
         error: false,
       };
     },
@@ -80,6 +83,8 @@
       if (typeof timeEntryId !== 'undefined') {
         this.title = 'Edit time entry #' + timeEntryId;
         this.timeEntryId = timeEntryId;
+        this.submitText = 'Edit';
+        this.submitCls = 'icon icon--edit';
 
         this.fetchTimeEntry();
       }
@@ -153,6 +158,18 @@
 
         return '';
       },
+      displaySuccessMessage() {
+        this.$toasted.show('Time entry was successfully saved.', {
+          position: 'top-center',
+          type: 'success',
+          action: {
+            text: 'Close',
+            onClick : (e, toastObject) => {
+              toastObject.goAway(0);
+            },
+          },
+        });
+      },
       createTimeEntry() {
         const that = this;
         const router = this.$router;
@@ -171,6 +188,7 @@
             this.taskId,
             date,
             function(response) {
+              that.displaySuccessMessage();
               router.push('/time-entries');
             },
             function(error) {
@@ -187,6 +205,7 @@
             this.taskId,
             date,
             function(response) {
+              that.displaySuccessMessage();
               router.push('/time-entries');
             },
             function(error) {

@@ -22,15 +22,17 @@
 
 @import 'base/base';
 @import 'base/app';
+@import 'base/grid';
 
 
 //-----------------------------------------------------------------------------
 // Layout.
 //-----------------------------------------------------------------------------
 
+@import 'layout/footer';
 @import 'layout/header';
 @import 'layout/main';
-@import 'layout/grid';
+
 
 //-----------------------------------------------------------------------------
 // Elements.
@@ -38,6 +40,7 @@
 
 @import 'elements/back';
 @import 'elements/form';
+@import 'elements/icon';
 @import 'elements/logo';
 @import 'elements/message';
 @import 'elements/table';

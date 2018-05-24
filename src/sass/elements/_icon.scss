@@ -1,0 +1,40 @@
+//-----------------------------------------------------------------------------
+// Elements: Icon.
+//-----------------------------------------------------------------------------
+
+.icon {
+  background-position: 1rem center;
+  background-repeat: no-repeat;
+  background-size: 1.25rem 1.25rem;
+  padding-left: 3.25rem !important;
+
+  &.icon--add {
+    background-color: $color-green !important;
+    background-image: url('/static/img/icons/add.svg');
+
+    &:hover {
+      background-color: darken($color-green, 5%) !important;
+    }
+  }
+
+  &.icon--back {
+    background-color: $color-calypso !important;
+    background-image: url('/static/img/icons/back.svg');
+
+    &:hover {
+      background-color: darken($color-calypso, 5%) !important;
+    }
+  }
+
+  &.icon--edit {
+    background-image: url('/static/img/icons/edit.svg');
+  }
+
+  &.icon--login {
+    background-image: url('/static/img/icons/login.svg');
+  }
+
+  &.icon--register {
+    background-image: url('/static/img/icons/register.svg');
+  }
+}

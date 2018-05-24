@@ -1,6 +1,10 @@
 <template>
   <div class="component component--create-project">
     <article>
+      <div class="back--wrapper">
+        <router-link :to="{path: '/projects'}" class="icon icon--back">Back to projects</router-link>
+      </div>
+
       <header>
         <h1>Create a project</h1>
       </header>
@@ -21,7 +25,7 @@
           </div>
           <div class="form-actions">
             <div class="form-action">
-              <input type="submit" value="Create" />
+              <input type="submit" value="Create" class="icon icon--add" />
             </div>
           </div>
         </form>

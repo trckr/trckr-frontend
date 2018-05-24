@@ -3,7 +3,8 @@
     <article>
       <header>
         <div class="back--wrapper">
-          <router-link :to="{path: '/project/' + projectId}">Back to Project</router-link>
+          <router-link v-if="projectId.length > 0" :to="{path: '/project/' + projectId}" class="icon icon--back">Back to project</router-link>
+          <router-link v-if="projectId.length === 0" :to="{path: '/projects'}" class="icon icon--back">Back to projects</router-link>
         </div>
         <h1>Create a task</h1>
       </header>
@@ -25,7 +26,7 @@
           </div>
           <div class="form-actions">
             <div class="form-action">
-              <input type="submit" value="Create" />
+              <input type="submit" value="Create" class="icon icon--add" />
             </div>
           </div>
         </form>

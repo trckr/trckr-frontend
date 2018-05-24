@@ -1,19 +1,23 @@
 <template>
-  <div class="component component--task-list table-wrapper">
-    <table id="table--project-task">
-      <thead>
+  <div class="component component--task-list">
+    <h2>My Tasks</h2>
+
+    <div class="table-wrapper">
+      <table id="table--project-task">
+        <thead>
         <tr>
           <th>Task</th>
           <th>Description</th>
         </tr>
-      </thead>
-      <tbody>
+        </thead>
+        <tbody>
         <tr v-for="task in tasks">
           <td><router-link :to="{path: 'project/' + task.project +'/task/' + task.id}">{{ task.name }}</router-link></td>
           <td>{{ task.description }}</td>
         </tr>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -21,7 +25,7 @@
   import { apiTasks } from '@/api/tasks';
 
   export default {
-    name: "TaskList",
+    name: 'TaskList',
     props: ['max'],
     data: function() {
       return {
@@ -34,7 +38,7 @@
       this.fetchData();
     },
     methods: {
-      fetchData(){
+      fetchData() {
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
 
@@ -42,7 +46,7 @@
           this.$apiBaseUrl,
           token,
           function(response) {
-            that.tasks  = response.data;
+            that.tasks = response.data;
           },
           function(error) {
             that.error = true;
@@ -51,5 +55,4 @@
       }
     }
   }
-
 </script>

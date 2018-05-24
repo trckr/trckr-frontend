@@ -3,7 +3,9 @@ import App from './App';
 import { store } from './store';
 import router from './router';
 import { apiTokensInvalidate } from '@/api/tokens/invalidate';
+import Toasted from 'vue-toasted';
 
+Vue.use(Toasted);
 Vue.config.productionTip = false;
 Vue.prototype.$apiBaseUrl = 'https://trckr-api.trvlr.ch';
 
@@ -69,5 +71,5 @@ new Vue({
   store: store,
   router: router,
   components: { App },
-  template: '<App/>',
+  template: '<App />',
 });

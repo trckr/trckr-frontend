@@ -2,6 +2,13 @@
 // Elements: Form.
 //-----------------------------------------------------------------------------
 
+form {
+  background-color: $color-light-gray;
+  border: solid 1px $color-base-black;
+  display: inline-block;
+  padding: 1rem;
+}
+
 label {
   display: inline-block;
   margin-right: 1.5rem;
@@ -12,26 +19,44 @@ label {
 input,
 select,
 textarea {
+  border: solid 1px $color-mid-gray;
+  padding: 0.375rem;
   width: 27rem;
+
+  &:invalid {
+    border-color: $color-error-red;
+    box-shadow: none;
+  }
+}
+
+select {
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAh0lEQVQ4T93TMQrCUAzG8V9x8QziiYSuXdzFC7h4AcELOPQAdXYovZCHEATlgQV5GFTe1ozJlz/kS1IpjKqw3wQBVyy++JI0y1GTe7DCBbMAckeNIQKk/BanALBB+16LtnDELoMcsM/BESDlz2heDR3WePwKSLo5eoxz3z6NNcFD+vu3ij14Aqz/DxGbKB7CAAAAAElFTkSuQmCC');
+  background-repeat: no-repeat;
+  background-position: calc(100% - 0.375rem) center;
+
+  @include prefix((appearance: none));
 }
 
 textarea {
   height: 6rem;
 }
 
-input[type=submit] {
-  background-color: $color-button;
+input[type=submit],
+.icon {
+  background-color: $color-button !important;
   border: none;
-  color: white;
+  color: $color-base-white !important;
   cursor: pointer;
   display: inline-block;
   line-height: 1;
   padding: 0.75rem 2rem;
+  text-decoration: none;
   transition: $transition-ease-in-out;
   width: auto;
 
   &:hover {
-    background-color: $color-button-hover;
+    background-color: $color-button-hover !important;
+    color: $color-base-white !important;
   }
 }
 

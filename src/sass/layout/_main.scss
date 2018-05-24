@@ -3,5 +3,7 @@
 //-----------------------------------------------------------------------------
 
 #app > main {
+  min-height: calc(100vh - 64px - 3rem);
+  padding-bottom: 1rem;
   padding-top: 1rem;
 }

@@ -6,33 +6,26 @@
       </header>
 
       <section>
-        <div v-if="error" class="message message--error">
-          Something went wrong. {{ pong }}
-        </div>
+        <h2>This week's tracked time</h2>
+        <tracked-time-chart />
       </section>
 
       <section>
-        <h2>This week's tracked time</h2>
-        <tracked-time-chart/>
-      </section>
+        <div class="grid">
+          <div class="col col-6-12">
+            <task-list />
+          </div>
 
-      <section class="grid-two-columns">
-          <div>
-            <h2>My Tasks</h2>
-            <task-list/>
+          <div class="col col-6-12">
+            <tracked-time-per-task-chart />
           </div>
-          
-          <div>
-            <h2>Tracked time per task</h2>
-            <tracked-time-per-task-chart/>
-          </div>
+        </div>
       </section>
     </article>
   </div>
 </template>
 
 <script>
-  import axios from 'axios';
   import TrackedTimeChart from '@/components/TrackedTimeChart';
   import TrackedTimePerTaskChart from '@/components/TrackedTimePerTaskChart';
   import TaskList from '@/components/TaskList'
@@ -42,30 +35,8 @@
     components: { TrackedTimeChart, TrackedTimePerTaskChart, TaskList },
     data: function() {
       return {
-        pong: 'Waiting for server response',
-        projects: [],
-        search: '',
         error: false,
       };
-    },
-    created: function() {
-      this.fetchData();
-    },
-    methods: {
-      fetchData: function() {
-        const token = this.$store.getters.getCurrentUser.token;
-        const that = this;
-
-        axios.get(this.$apiBaseUrl + '/api/ping/', {
-          headers: {
-            'Authorization': 'Token ' + token
-          }
-        }).then(function(response) {
-          that.pong = response.data;
-        }).catch(function(error) {
-          that.pong = 'The ping request resulted in an error.'
-        });
-      },
     },
   }
 </script>

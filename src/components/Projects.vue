@@ -3,10 +3,6 @@
     <article>
       <header>
         <h1>Projects</h1>
-
-        <div class="main-actions">
-          <router-link :to="{path: '/project/create'}">Create project</router-link>
-        </div>
       </header>
 
       <section>
@@ -41,6 +37,12 @@
           <p>You don't have any projects yet.</p>
         </div>
       </section>
+
+      <footer>
+        <div class="main-actions">
+          <router-link :to="{path: '/project/create'}" class="icon icon--add">Create project</router-link>
+        </div>
+      </footer>
     </article>
   </div>
 </template>

@@ -3,10 +3,6 @@
     <article>
       <header>
         <h1>Time Entries</h1>
-
-        <div class="main-actions">
-          <router-link :to="{path: '/time-entry/create'}">Create time entry</router-link>
-        </div>
       </header>
 
       <section>
@@ -43,6 +39,12 @@
           <p>You don't have any time entries yet.</p>
         </div>
       </section>
+
+      <footer>
+        <div class="main-actions">
+          <router-link :to="{path: '/time-entry/create'}" class="icon icon--add">Create time entry</router-link>
+        </div>
+      </footer>
     </article>
   </div>
 </template>

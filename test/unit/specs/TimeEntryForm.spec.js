@@ -1,8 +1,10 @@
 import { createLocalVue, shallow, RouterLinkStub } from '@vue/test-utils';
 import { store } from '@/store';
 import TimeEntryForm from '@/components/TimeEntryForm.vue';
+import Toasted from 'vue-toasted';
 
 const localVue = createLocalVue();
+localVue.use(Toasted);
 
 const $route = { params: {} };
 const $routeEdit = { params: { timeEntryId: 1 } };

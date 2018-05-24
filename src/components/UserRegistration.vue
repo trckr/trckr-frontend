@@ -33,7 +33,7 @@
           </div>
           <div class="form-actions">
             <div class="form-action">
-              <input type="submit" value="Register" />
+              <input type="submit" value="Register" class="icon icon--register" />
             </div>
             <div class="form-action">
               <p>Already have an account? <router-link :to="{path: '/login'}">Login</router-link>!</p>
