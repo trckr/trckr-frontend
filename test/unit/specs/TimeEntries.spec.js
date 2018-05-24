@@ -72,7 +72,7 @@ jest.mock('@/api/time-entries', function() {
           data: [{
             id: 1,
             description: 'Time Entry 1',
-            startTime: '2000-01-01T00:00:00',
+            startTime: '2000-01-03T00:00:00',
             timeSpent: 1.25000,
             task: 1,
             project: 1,
@@ -86,7 +86,7 @@ jest.mock('@/api/time-entries', function() {
           }, {
             id: 3,
             description: 'Time Entry 3',
-            startTime: '2000-01-03T00:00:00',
+            startTime: '2000-01-01T00:00:00',
             timeSpent: 3.75000,
             task: 3,
             project: 1,
