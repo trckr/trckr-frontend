@@ -18,7 +18,8 @@
 
     <footer>
       <section>
-        <p>© 2018 by trckr. Hackable on <a href="https://github.com/trckr/trckr-frontend" target="_blank">github.com/trckr/trckr-frontend</a>.</p>
+        <p>© 2018 by trckr.</p>
+        <p class="hackable">Hackable on <a href="https://github.com/trckr/trckr-frontend" target="_blank">github.com/trckr/trckr-frontend</a>.</p>
       </section>
     </footer>
   </div>

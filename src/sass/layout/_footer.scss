@@ -12,6 +12,22 @@
     background-color: $color-base-black;
   }
 
+  > section {
+    padding: 0 2rem;
+  }
+
+  p {
+    display: inline-block;
+
+    @media screen and (max-width: $breakpoint-mobile) {
+      font-size: 0.875rem;
+
+      &.hackable {
+        display: none;
+      }
+    }
+  }
+
   a {
     color: $color-base-white;
 
