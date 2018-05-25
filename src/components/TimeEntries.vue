@@ -78,11 +78,25 @@
           this.$apiBaseUrl,
           token,
           function(response) {
+            // Sort by date.
+            response.data.sort(function(a, b) {
+              let ad = new Date(a.startTime);
+              let bd = new Date(b.startTime);
+
+              if (ad.getTime() < bd.getTime()) {
+                return 1;
+              } else if (ad.getTime() > bd.getTime()) {
+                return -1;
+              }
+
+              return 0;
+            });
+
+            // Clean up dates.
             for (let i = 0; i < response.data.length; i++) {
-              // Clean up dates.
-              var date = new Date(response.data[i].startTime);
-              var day = date.getDate();
-              var month = date.getMonth() + 1;
+              let date = new Date(response.data[i].startTime);
+              let day = date.getDate();
+              let month = date.getMonth() + 1;
               day = day < 10 ? '0' + day : day;
               month = month < 10 ? '0' + month : month;
 
