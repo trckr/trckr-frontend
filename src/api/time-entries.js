@@ -1,5 +1,12 @@
 import axios from 'axios';
 
+/**
+ * This module takes care of the api calls to the backend concerning the '/api/time-entries/' url.
+ *
+ * The calls and their return values are described in the technical documentation on github:
+ * https://github.com/trckr/trckr-documentation/blob/master/doc/technical/implementation/api.md
+ * @type {{post: apiTimeEntries.post, put: apiTimeEntries.put, getAll: apiTimeEntries.getAll, getSingle: apiTimeEntries.getSingle}}
+ */
 export const apiTimeEntries = {
   post: function(host, token, description, timeSpent, taskId, date, success, error) {
     axios.post(host + '/api/time-entries/', {

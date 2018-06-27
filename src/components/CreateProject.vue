@@ -47,6 +47,11 @@
       };
     },
     methods: {
+      /**
+       * this method calls the create project api component, after a successful creation the browser is redirected to
+       * the projects page.
+       * The apiBaseUrl is passed to the api component to keep the api compnent modular.
+       */
       createProject() {
         const that = this;
         const router = this.$router;
