@@ -58,7 +58,7 @@ describe('Dashboard.vue', function() {
 
   it('Time entries are grouped by day', function() {
     var currentDate = new moment();
-    var currentDay = currentDate.day();
+    var currentDay = currentDate.isoWeekday() - 1;
     var trackedTimePerDay = wrapper.vm.chartData.datasets[0].data;
 
     expect(trackedTimePerDay.length).toBe(7);

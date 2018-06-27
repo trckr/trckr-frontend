@@ -34,7 +34,6 @@
             for (let i = 0; i < response.data.length; i++) {
               response.data[i].timeSpent = parseFloat(response.data[i].timeSpent).toFixed(2);
             }
-
             that.timeEntries = response.data;
           },
           function(error) {
@@ -48,14 +47,15 @@
         const that = this;
         let trackedTimePerDay = new Array(7).fill(0);
         let currentDate = new moment();
-        let currentDay = currentDate.day();
+        let startOfWeek = currentDate.startOf('isoWeek').unix();
+        let endOfWeek = currentDate.endOf('isoWeek').unix();
 
         this.timeEntries.forEach(function(element) {
           let elementDate = moment(element.startTime);
-          let offset = currentDate.diff(elementDate, 'days');
-          let index = currentDay - offset;
-
-          if (index >= 0) {
+          let elementTimestamp = elementDate.unix();
+          if (elementTimestamp >= startOfWeek && elementTimestamp <= endOfWeek) {
+            // Subtract one since the numeric value isoWeekday of monday is 1.
+            let index = elementDate.isoWeekday() - 1;
             trackedTimePerDay[index] += parseFloat(element.timeSpent);
           }
         });
