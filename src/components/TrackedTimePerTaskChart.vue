@@ -9,6 +9,7 @@
 <script>
   import palette from 'google-palette';
   import DoughnutChart from '@/components/DoughnutChart';
+  import { apiTasks } from '@/api/tasks';
   import { apiTimeEntries } from '@/api/time-entries';
 
   export default {
@@ -16,6 +17,7 @@
     components: { DoughnutChart },
     data: function() {
       return {
+        taskNames: {},
         timeEntries: [],
         error: false,
       };
@@ -27,6 +29,19 @@
       fetchData: function() {
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
+
+        apiTasks.getAll(
+          this.$apiBaseUrl,
+          token,
+          function(response) {
+            for (var i = 0; i < response.data.length; i++) {
+              that.taskNames[response.data[i].id] = response.data[i].name;
+            }
+          },
+          function(error) {
+            that.error = true;
+          },
+        );
 
         apiTimeEntries.getAll(
           this.$apiBaseUrl,
@@ -51,7 +66,7 @@
         var trackedTimePerTask = {};
 
         this.timeEntries.forEach(function(element) {
-          var label = element.task;
+          var label = that.taskNames[element.task];
 
           if (trackedTimePerTask.hasOwnProperty(label)) {
             trackedTimePerTask[label] += parseFloat(element.timeSpent);

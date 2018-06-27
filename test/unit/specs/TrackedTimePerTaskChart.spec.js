@@ -7,6 +7,25 @@ const localVue = createLocalVue();
 localVue.use(Router);
 
 
+jest.mock('@/api/tasks', function() {
+  return {
+    apiTasks: {
+      getAll: function (host, token, success, error) {
+        let response = {
+          data: [{
+            id: 1,
+            name: 'Test',
+          }, {
+            id: 2,
+            name: 'Test 2',
+          }]
+        };
+        success(response);
+      }
+    }
+  }
+});
+
 jest.mock('@/api/time-entries', function() {
   return {
     apiTimeEntries: {
@@ -41,6 +60,7 @@ jest.mock('@/api/time-entries', function() {
   }
 });
 
+import { apiTasks } from '@/api/tasks';
 import { apiTimeEntries } from '@/api/time-entries';
 
 describe('Dashboard.vue', function() {
