@@ -61,6 +61,11 @@
       }
     },
     methods: {
+      /**
+       * after a successful user creation the response will contain a token that is used for authentication.
+       * the token is stored in the local storage through the storage dispatcher. also after a successful user
+       * creation the new user will be logged in and redirected to the dashboard.
+       */
       register() {
         const that = this;
         const store = this.$store;

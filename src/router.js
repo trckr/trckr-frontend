@@ -15,6 +15,10 @@ import UserRegistration from '@/components/UserRegistration';
 
 Vue.use(Router);
 
+/**
+ * the router is necessary to provide all urls of the web app. if a component should receive a new url and its own route
+ * then it has to be defined in here.
+ */
 export default new Router({
   mode: 'history',
   routes: [{

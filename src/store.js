@@ -20,6 +20,12 @@ export const store = new Vuex.Store({
     },
   },
   mutations: {
+    /**
+     * on login the token and the username are pushed into the local store
+     * @param state
+     * @param username
+     * @param token
+     */
     login(state, { username, token }) {
       state.currentUser = {
         username: username,

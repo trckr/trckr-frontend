@@ -50,6 +50,11 @@
       };
     },
     methods: {
+      /**
+       * this method calls the create task api component. after a successful create the browser is redirect to the
+       * project page of which a task just has been added.
+       * The apiBaseUrl is passed to the api component to keep the api compnent modular.
+       */
       createTask() {
         const that = this;
         const router = this.$router;

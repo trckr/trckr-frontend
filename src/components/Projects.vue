@@ -68,6 +68,10 @@
         const token = this.$store.getters.getCurrentUser.token;
         const that = this;
 
+        /**
+         * this method will get all projects for the current user. the projects are iteratively added to a generated
+         * table.
+         */
         apiProjects.getAll(
           this.$apiBaseUrl,
           token,
@@ -81,6 +85,10 @@
       },
     },
     computed: {
+
+      /**
+       * this method allows to filter the projects and returns the projects that match the filter
+       */
       filteredProjects: function() {
         return this.projects.filter((project) => {
           return project.name.toLowerCase().match(this.search.toLowerCase());

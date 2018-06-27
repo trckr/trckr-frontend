@@ -1,5 +1,12 @@
 import axios from 'axios';
 
+/**
+ * This module takes care of the api calls to the backend concerning the '/api/tasks/' url.
+ *
+ * The calls and their return values are described in the technical documentation on github:
+ * https://github.com/trckr/trckr-documentation/blob/master/doc/technical/implementation/api.md
+ * @type {{post: apiTasks.post, getAll: apiTasks.getAll, getAllByProject: apiTasks.getAllByProject, getSingle: apiTasks.getSingle}}
+ */
 export const apiTasks = {
   post: function(host, token, name, description, projectId, success, error) {
     axios.post(host + '/api/tasks/', {
